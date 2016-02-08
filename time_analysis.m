@@ -1,14 +1,14 @@
 clear;
 tick = 0.001;
-MAC_ID = 4;
-PACKET_COUNT = 6;
+MAC_ID = 6;
+PACKET_COUNT = 8;
 UINT8_MAX_NUM = 256;
 % nameOfDir = 'data';
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('long_tests\After_lunch_05_02');
-
+load('long_tests\long_test_04_02');
+twoCount=1;
 length = size(dataArray);
 % min([dataArrat()])
 count=ones(1,8);
@@ -26,9 +26,9 @@ for i = 1:length(2)
     element = dataArray(:,i);
     mac_id = element(MAC_ID);
     packet_number = element(PACKET_COUNT);
-    time = combineBytesToDecimal(element,11,12,13,14)*tick;
+    time = combineBytesToDecimal(element,13,14,15,16)*tick;
     %         time = combineBytesToDecimal(element,15,16,17,18)*tick;
-    pir =  DecimalTo32bits(element,7,8,9, 10);
+    pir =  DecimalTo32bits(element,9,10,11,12);
     if(mac_id==1)
         %node_1(:,count(mac_id))=element;
         if(count(mac_id)==1)
@@ -45,7 +45,7 @@ for i = 1:length(2)
         if(actual_packet_number(mac_id)>count(mac_id))
             %packet_lost
             packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            pac_2=packets_lost+pac_2;
+           
             time_diff = (time-prev_time(mac_id))/(packets_lost+1);
             time_array = prev_time(mac_id):time_diff:time;
             time_index = 2;
@@ -62,7 +62,9 @@ for i = 1:length(2)
         prev_time(mac_id) = time;
         
     elseif(mac_id==2)
-        %         node_2(:,count(2))=element;
+       
+%         node_2(:,twoCount)=element;
+         
         if(count(mac_id)==1)
             pir_2 = pir;
             packet_count(mac_id) = packet_number;
@@ -77,7 +79,8 @@ for i = 1:length(2)
         if(actual_packet_number(mac_id)>count(mac_id))
             %packet_lost
             packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            
+             pac_2(twoCount)=packets_lost;
+             twoCount= twoCount+1;
             time_diff = (time-prev_time(mac_id))/(packets_lost+1);
             time_array = prev_time(mac_id):time_diff:time;
             time_index = 2;
