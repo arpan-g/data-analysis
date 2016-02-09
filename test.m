@@ -1,24 +1,17 @@
-    count=ones(1,8);
-for i = 1:length(2)
-
-    element = dataArray(:,i);
-	mac_id = element(MAC_ID);
-	switch mac_id
-    case 1
-        count(mac_id)=count(mac_id)+1;
-    case 2
-       count(mac_id)=count(mac_id)+1;
-    case 3
-        count(mac_id)=count(mac_id)+1;
-    case 4
-	count(mac_id)=count(mac_id)+1;
-	 case 5
-	count(mac_id)=count(mac_id)+1;
-	 case 6
-	count(mac_id)=count(mac_id)+1;
-	 case 7
-	count(mac_id)=count(mac_id)+1;
-	 case 8
-	count(mac_id)=count(mac_id)+1;
-end
-end
+plot(node1(4,:),node1(3,:))
+hold on;
+plot(node2(4,:),node2(3,:))
+hold on;
+plot(node3(4,:),node3(3,:))
+hold on;
+plot(node4(4,:),node4(3,:))
+hold on;
+plot(node5(4,:),node5(3,:))
+hold on;
+plot(node6(4,:),node6(3,:))
+hold on;
+plot(node7(4,:),node7(3,:))
+hold on;
+plot(node8(4,:),node8(3,:))
+hold on;
+legend('1','2','3','4','5','6','7','8');
