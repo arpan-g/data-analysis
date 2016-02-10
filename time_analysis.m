@@ -1,14 +1,14 @@
 clear;
 tick = 0.001;
-MAC_ID = 6;
-PACKET_COUNT = 8;
+MAC_ID =2;
+PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
 % nameOfDir = 'data';
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('long_tests\long_test_04_02');
-twoCount=1;
+load('trans_power_lid_closed_1.mat');
+recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
 count=ones(1,8);
@@ -26,11 +26,12 @@ for i = 1:length(2)
     element = dataArray(:,i);
     mac_id = element(MAC_ID);
     packet_number = element(PACKET_COUNT);
-    time = combineBytesToDecimal(element,13,14,15,16)*tick;
+    time = combineBytesToDecimal(element,11,12,13,14)*tick;
     %         time = combineBytesToDecimal(element,15,16,17,18)*tick;
-    pir =  DecimalTo32bits(element,9,10,11,12);
+    pir =  DecimalTo32bits(element,7,8,9,10);
     if(mac_id==1)
-        %node_1(:,count(mac_id))=element;
+        node_1(:, recPAckets(mac_id))=element;
+        recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_1 = pir;
             packet_count(mac_id) = packet_number;
@@ -64,7 +65,7 @@ for i = 1:length(2)
     elseif(mac_id==2)
        
 %         node_2(:,twoCount)=element;
-         
+         recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_2 = pir;
             packet_count(mac_id) = packet_number;
@@ -79,8 +80,8 @@ for i = 1:length(2)
         if(actual_packet_number(mac_id)>count(mac_id))
             %packet_lost
             packets_lost=actual_packet_number(mac_id)-count(mac_id);
-             pac_2(twoCount)=packets_lost;
-             twoCount= twoCount+1;
+             
+            
             time_diff = (time-prev_time(mac_id))/(packets_lost+1);
             time_array = prev_time(mac_id):time_diff:time;
             time_index = 2;
@@ -100,6 +101,7 @@ for i = 1:length(2)
         prev_time(mac_id) = time;
     elseif(mac_id==3)
         %         node_3(:,count(3))=element;
+        recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_3 = pir;
             packet_count(mac_id) = packet_number;
@@ -130,6 +132,7 @@ for i = 1:length(2)
         prev_time(mac_id) = time;
     elseif(mac_id==4 )
         %         node_4(:,count(4))=element;
+        recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_4 = pir;
             packet_count(mac_id) = packet_number;
@@ -160,6 +163,7 @@ for i = 1:length(2)
         prev_time(mac_id) = time;
     elseif(mac_id==5 )
         %         node_5(:,count(5))=element;
+        recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_5 = pir;
             packet_count(mac_id) = packet_number;
@@ -189,7 +193,8 @@ for i = 1:length(2)
         prev_packet_number(mac_id)= packet_number;
         prev_time(mac_id) = time;
     elseif(mac_id==6 )
-        %         node_6(:,count(6))=element;
+                node_6(:,recPAckets(mac_id))=element;
+                recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_6 = pir;
             packet_count(mac_id) = packet_number;
@@ -220,6 +225,7 @@ for i = 1:length(2)
         prev_time(mac_id) = time;
     elseif(mac_id==7 )
         %         node_7(:,count(7))=element;
+        recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_7 = pir;
             packet_count(mac_id) = packet_number;
@@ -250,6 +256,7 @@ for i = 1:length(2)
         prev_time(mac_id) = time;
     elseif(mac_id==8 )
         %         node_8(:,count(8))=element;
+        recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_8 = pir;
             packet_count(mac_id) = packet_number;
