@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('trans_power_lid_closed_1.mat');
+load('Afterlunch_12_02_17_28.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
