@@ -1,4 +1,4 @@
-file = 'long_tests\memsic_data\pre_lunch_12_02.report';
+file = 'long_tests\memsic_data\1455276592.58.report';
 [c1 c2 c3 c4 c5 c6 c7 c8 c9]= textread(file, '%f %u %u %u %u %u %u %u %u', 'commentstyle', 'shell');
 % data = [c2 c3 c4 c5];
 % mac_id packet_num time light temp audio sync
@@ -64,7 +64,7 @@ for i = 1:length(1)
                 if(count(mac_id)==1)
                 node3(:,count(mac_id))= populateData(light,temp,audio,time,packet_number);
                 count(mac_id)=count(mac_id)+1;
-               counter=counter+1;
+               
                 else
                     
                     while(diff>=1)
@@ -80,7 +80,7 @@ for i = 1:length(1)
                 if(count(mac_id)==1)
                 node4(:,count(mac_id))= populateData(light,temp,audio,time,packet_number);
                 count(mac_id)=count(mac_id)+1;
-               counter=counter+1;
+               
                 else
                     
                     while(diff>=1)
@@ -95,7 +95,7 @@ for i = 1:length(1)
                 if(count(mac_id)==1)
                 node5(:,count(mac_id))= populateData(light,temp,audio,time,packet_number);
                 count(mac_id)=count(mac_id)+1;
-               counter=counter+1;
+               
                 else
                     
                     while(diff>=1)
@@ -110,7 +110,7 @@ for i = 1:length(1)
                 if(count(mac_id)==1)
                 node6(:,count(mac_id))= populateData(light,temp,audio,time,packet_number);
                 count(mac_id)=count(mac_id)+1;
-               counter=counter+1;
+               
                 else
                     
                     while(diff>=1)
@@ -125,7 +125,7 @@ for i = 1:length(1)
                 if(count(mac_id)==1)
                 node7(:,count(mac_id))= populateData(light,temp,audio,time,packet_number);
                 count(mac_id)=count(mac_id)+1;
-               counter=counter+1;
+               
                 else
                     
                     while(diff>=1)
@@ -140,7 +140,7 @@ for i = 1:length(1)
                 if(count(mac_id)==1)
                 node8(:,count(mac_id))= populateData(light,temp,audio,time,packet_number);
                 count(mac_id)=count(mac_id)+1;
-               counter=counter+1;
+               
                 else
                     
                     while(diff>=1)
