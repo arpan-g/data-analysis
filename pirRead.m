@@ -19,7 +19,8 @@ beep;
    
    rawdata = fread(sensor,18);
    dataArray(:,count)= rawdata;
-   count = count + 1
+   count = count + 1;
+   rawdata(2)
    
  
  end

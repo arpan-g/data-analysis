@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('Afterlunch_12_02_17_28.mat');
+load('packet_loss_15_02_17_34.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
@@ -64,7 +64,7 @@ for i = 1:length(2)
         
     elseif(mac_id==2)
        
-%         node_2(:,twoCount)=element;
+        node_2(:,recPAckets(mac_id))=element;
          recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_2 = pir;
@@ -100,7 +100,7 @@ for i = 1:length(2)
         prev_packet_number(mac_id)= packet_number;
         prev_time(mac_id) = time;
     elseif(mac_id==3)
-        %         node_3(:,count(3))=element;
+                node_3(:, recPAckets(mac_id))=element;
         recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_3 = pir;
@@ -131,7 +131,7 @@ for i = 1:length(2)
         prev_packet_number(mac_id)= packet_number;
         prev_time(mac_id) = time;
     elseif(mac_id==4 )
-        %         node_4(:,count(4))=element;
+                node_4(:,recPAckets(mac_id))=element;
         recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_4 = pir;
@@ -162,7 +162,7 @@ for i = 1:length(2)
         prev_packet_number(mac_id)= packet_number;
         prev_time(mac_id) = time;
     elseif(mac_id==5 )
-        %         node_5(:,count(5))=element;
+        node_5(:,recPAckets(mac_id))=element;
         recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_5 = pir;
@@ -224,7 +224,7 @@ for i = 1:length(2)
         prev_packet_number(mac_id)= packet_number;
         prev_time(mac_id) = time;
     elseif(mac_id==7 )
-        %         node_7(:,count(7))=element;
+        node_7(:,recPAckets(mac_id))=element;
         recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_7 = pir;
@@ -255,7 +255,7 @@ for i = 1:length(2)
         prev_packet_number(mac_id)= packet_number;
         prev_time(mac_id) = time;
     elseif(mac_id==8 )
-        %         node_8(:,count(8))=element;
+        node_8(:, recPAckets(mac_id))=element;
         recPAckets(mac_id)=recPAckets(mac_id)+1;
         if(count(mac_id)==1)
             pir_8 = pir;

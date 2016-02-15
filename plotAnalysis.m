@@ -51,9 +51,11 @@
 % % plot(transTime2);
 
 
-x = [time_1;time_2;time_3;time_4;time_5;time_6;time_7;time_8];
-y = [1,8];
-c = [pirA;pirB;pirC;pirD;pirE;pirF;pirG;pirH];
+% x = [time_1;time_2;time_3;time_4;time_5;time_6;time_7;time_8];
+x = [time_1;time_2;time_3;time_5;time_6;time_7;time_8];
+y = [1,7];
+% c = [pirA;pirB;pirC;pirD;pirE;pirF;pirG;pirH];
+c = [pirA;pirB;pirC;pirE;pirF;pirG;pirH];
 imagesc(x,y,c);
 xlabel('time(s)');
 ylabel('nodeId');
