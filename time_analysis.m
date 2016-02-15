@@ -29,262 +29,264 @@ for i = 1:length(2)
     time = combineBytesToDecimal(element,11,12,13,14)*tick;
     %         time = combineBytesToDecimal(element,15,16,17,18)*tick;
     pir =  DecimalTo32bits(element,7,8,9,10);
-    if(mac_id==1)
-        node_1(:, recPAckets(mac_id))=element;
-        recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_1 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_1 = cat(32,pir_1,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_1(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-           
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_1 = cat(32,pir_1,packet_lost_pir);
-                transTime_1(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+    if(prev_packet_number(mac_id)~=packet_number)
+        if(mac_id==1)
+            node_1(:, recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_1 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_1 = cat(32,pir_1,pir);
             end
-        end
-        transTime_1(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-        
-    elseif(mac_id==2)
-       
-        node_2(:,recPAckets(mac_id))=element;
-         recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_2 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_2 = cat(32,pir_2,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_2(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-             
-            
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_2 = cat(32,pir_2,packet_lost_pir);
-                transTime_2(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
+            end
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_1(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
                 
-                count(mac_id) = count(mac_id)+1;
-                 
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_1 = cat(32,pir_1,packet_lost_pir);
+                    transTime_1(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
             end
-        end
-        
-        transTime_2(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-    elseif(mac_id==3)
-                node_3(:, recPAckets(mac_id))=element;
-        recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_3 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_3 = cat(32,pir_3,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_3(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_3 = cat(32,pir_3,packet_lost_pir);
-                transTime_3(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+            transTime_1(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+            
+        elseif(mac_id==2)
+            
+            node_2(:,recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_2 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_2 = cat(32,pir_2,pir);
             end
-        end
-        transTime_3(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-    elseif(mac_id==4 )
-                node_4(:,recPAckets(mac_id))=element;
-        recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_4 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_4 = cat(32,pir_4,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_4(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_4 = cat(32,pir_4,packet_lost_pir);
-                transTime_4(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
-        end
-        transTime_4(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-    elseif(mac_id==5 )
-        node_5(:,recPAckets(mac_id))=element;
-        recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_5 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_5 = cat(32,pir_5,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_5(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_5 = cat(32,pir_5,packet_lost_pir);
-                transTime_5(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_2(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                
+                
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_2 = cat(32,pir_2,packet_lost_pir);
+                    transTime_2(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    
+                    count(mac_id) = count(mac_id)+1;
+                    
+                end
             end
-        end
-        transTime_5(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-    elseif(mac_id==6 )
-                node_6(:,recPAckets(mac_id))=element;
-                recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_6 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_6 = cat(32,pir_6,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_6(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_6 = cat(32,pir_6,packet_lost_pir);
-                transTime_6(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+            
+            transTime_2(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+        elseif(mac_id==3)
+            node_3(:, recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_3 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_3 = cat(32,pir_3,pir);
             end
-        end
-        transTime_6(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-    elseif(mac_id==7 )
-        node_7(:,recPAckets(mac_id))=element;
-        recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_7 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_7 = cat(32,pir_7,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_7(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_7 = cat(32,pir_7,packet_lost_pir);
-                transTime_7(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
-        end
-        transTime_7(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
-    elseif(mac_id==8 )
-        node_8(:, recPAckets(mac_id))=element;
-        recPAckets(mac_id)=recPAckets(mac_id)+1;
-        if(count(mac_id)==1)
-            pir_8 = pir;
-            packet_count(mac_id) = packet_number;
-        else
-            pir_8 = cat(32,pir_8,pir);
-        end
-        if(prev_packet_number(mac_id)>packet_number)
-             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
-        end
-        actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-        transTime_8(count(mac_id),:) = time;
-        if(actual_packet_number(mac_id)>count(mac_id))
-            %packet_lost
-            packets_lost=actual_packet_number(mac_id)-count(mac_id);
-            time_diff = (time-prev_time(mac_id))/(packets_lost+1);
-            time_array = prev_time(mac_id):time_diff:time;
-            time_index = 2;
-            while(count((mac_id))<actual_packet_number(mac_id))
-                pir_8 = cat(32,pir_8,packet_lost_pir);
-                transTime_8(count(mac_id),:) = time_array(time_index);
-                time_index = time_index+1;
-                count(mac_id) = count(mac_id)+1;
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_3(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_3 = cat(32,pir_3,packet_lost_pir);
+                    transTime_3(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
             end
+            transTime_3(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+        elseif(mac_id==4 )
+            node_4(:,recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_4 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_4 = cat(32,pir_4,pir);
+            end
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
+            end
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_4(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_4 = cat(32,pir_4,packet_lost_pir);
+                    transTime_4(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
+            end
+            transTime_4(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+        elseif(mac_id==5 )
+            node_5(:,recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_5 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_5 = cat(32,pir_5,pir);
+            end
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
+            end
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_5(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_5 = cat(32,pir_5,packet_lost_pir);
+                    transTime_5(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
+            end
+            transTime_5(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+        elseif(mac_id==6 )
+            node_6(:,recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_6 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_6 = cat(32,pir_6,pir);
+            end
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
+            end
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_6(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_6 = cat(32,pir_6,packet_lost_pir);
+                    transTime_6(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
+            end
+            transTime_6(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+        elseif(mac_id==7 )
+            node_7(:,recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_7 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_7 = cat(32,pir_7,pir);
+            end
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
+            end
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_7(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_7 = cat(32,pir_7,packet_lost_pir);
+                    transTime_7(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
+            end
+            transTime_7(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
+        elseif(mac_id==8 )
+            node_8(:, recPAckets(mac_id))=element;
+            recPAckets(mac_id)=recPAckets(mac_id)+1;
+            if(count(mac_id)==1)
+                pir_8 = pir;
+                packet_count(mac_id) = packet_number;
+            else
+                pir_8 = cat(32,pir_8,pir);
+            end
+            if(prev_packet_number(mac_id)>packet_number)
+                overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
+            end
+            actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
+            transTime_8(count(mac_id),:) = time;
+            if(actual_packet_number(mac_id)>count(mac_id))
+                %packet_lost
+                packets_lost=actual_packet_number(mac_id)-count(mac_id);
+                time_diff = (time-prev_time(mac_id))/(packets_lost+1);
+                time_array = prev_time(mac_id):time_diff:time;
+                time_index = 2;
+                while(count((mac_id))<actual_packet_number(mac_id))
+                    pir_8 = cat(32,pir_8,packet_lost_pir);
+                    transTime_8(count(mac_id),:) = time_array(time_index);
+                    time_index = time_index+1;
+                    count(mac_id) = count(mac_id)+1;
+                end
+            end
+            transTime_8(count(mac_id),:) = time;
+            count(mac_id) = count(mac_id)+1;
+            prev_packet_number(mac_id)= packet_number;
+            prev_time(mac_id) = time;
         end
-        transTime_8(count(mac_id),:) = time;
-        count(mac_id) = count(mac_id)+1;
-        prev_packet_number(mac_id)= packet_number;
-        prev_time(mac_id) = time;
     end
 end
 maxCount = max([count(1) count(2) count(3) count(4) count(5) count(6) count(7) count(8)])
