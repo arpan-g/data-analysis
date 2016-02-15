@@ -61,4 +61,4 @@ xlabel('time(s)');
 ylabel('nodeId');
 % labels = {'lost_packet','0','1'};
 % lcolorbar(labels,'fontweight','bold');
- colorbar();
+colorbar();
