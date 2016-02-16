@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('packet_loss_15_02_17_34.mat');
+load('packet_loss_16_02_morning.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
