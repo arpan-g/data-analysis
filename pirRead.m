@@ -6,8 +6,8 @@ count = 1;
 %           \n 10
 delete(instrfindall);
 dataArray = zeros(18,10);
-sensor = serial('COM8');
-set(sensor, 'BaudRate', 9600, 'DataBits', 8,'InputBufferSize', 512, 'Timeout', 30)
+sensor = serial('COM7');
+set(sensor, 'BaudRate', 9600, 'DataBits', 8,'InputBufferSize', 512, 'Timeout', 31)
 fopen(sensor);
  fprintf(sensor, '#');
 readasync(sensor);
