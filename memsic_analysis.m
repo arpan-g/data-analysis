@@ -1,4 +1,4 @@
-file = 'long_tests\memsic_data\16_02.report';
+file = 'long_tests\memsic_data\18_02.report';
 [c1 c2 c3 c4 c5 c6 c7 c8 c9]= textread(file, '%f %u %u %u %u %u %u %u %u', 'commentstyle', 'shell');
 % data = [c2 c3 c4 c5];
 % mac_id packet_num time light temp audio sync

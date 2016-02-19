@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('18_2_11_50.mat');
+load('18_2_2_00.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
@@ -304,9 +304,9 @@ end
 if(count(4)<maxCount)
     transTime_4(count(4):maxCount-1) =  GenerateArray(maxCount,count(4),transTime_4(count(4)-1),time);
 end
-if(count(5)<maxCount)
-    transTime_5(count(5):maxCount-1) =  GenerateArray(maxCount,count(5),transTime_5(count(5)-1),time);
-end
+% if(count(5)<maxCount)
+%     transTime_5(count(5):maxCount-1) =  GenerateArray(maxCount,count(5),transTime_5(count(5)-1),time);
+% end
 if(count(6)<maxCount)
     transTime_6(count(6):maxCount-1) =  GenerateArray(maxCount,count(6),transTime_6(count(6)-1),time);
 end
@@ -320,12 +320,13 @@ end
 
 
 
-minCount = min([count(1) count(2) count(3) count(4) count(5) count(6) count(7) count(8)]);
+% minCount = min([count(1) count(2) count(3) count(4) count(5) count(6) count(7) count(8)]);
+minCount = min([count(1) count(2) count(3) count(4) count(6) count(7) count(8)]);
 time_1=TimeArrayGenerator(transTime_1,maxCount);
 time_2=TimeArrayGenerator(transTime_2,maxCount);
 time_3=TimeArrayGenerator(transTime_3,maxCount);
 time_4=TimeArrayGenerator(transTime_4,maxCount);
-time_5=TimeArrayGenerator(transTime_5,maxCount);
+% time_5=TimeArrayGenerator(transTime_5,maxCount);
 time_6=TimeArrayGenerator(transTime_6,maxCount);
 time_7=TimeArrayGenerator(transTime_7,maxCount);
 time_8=TimeArrayGenerator(transTime_8,maxCount);
@@ -344,7 +345,7 @@ tempPirA = pir_1(:);
 tempPirB = pir_2(:);
 tempPirC = pir_3(:);
 tempPirD = pir_4(:);
-tempPirE = pir_5(:);
+% tempPirE = pir_5(:);
 tempPirF = pir_6(:);
 tempPirG = pir_7(:);
 tempPirH = pir_8(:);
@@ -354,7 +355,7 @@ tempPirA((count(1)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(1))*32)*(-
 tempPirB((count(2)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(2))*32)*(-1);
 tempPirC((count(3)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(3))*32)*(-1);
 tempPirD((count(4)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(4))*32)*(-1);
-tempPirE((count(5)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(5))*32)*(-1);
+% tempPirE((count(5)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(5))*32)*(-1);
 tempPirF((count(6)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(6))*32)*(-1);
 tempPirG((count(7)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(7))*32)*(-1);
 tempPirH((count(8)-1)*32+1:(maxCount-1)*32) =  ones(1,(maxCount-count(8))*32)*(-1);
@@ -363,7 +364,7 @@ pirA= transpose(tempPirA(1:(minCount-1)*32));
 pirB= transpose(tempPirB(1:(minCount-1)*32));
 pirC= transpose(tempPirC(1:(minCount-1)*32));
 pirD= transpose(tempPirD(1:(minCount-1)*32));
-pirE= transpose(tempPirE(1:(minCount-1)*32));
+% pirE= transpose(tempPirE(1:(minCount-1)*32));
 pirF= transpose(tempPirF(1:(minCount-1)*32));
 pirG= transpose(tempPirG(1:(minCount-1)*32));
 pirH= transpose(tempPirH(1:(minCount-1)*32));
