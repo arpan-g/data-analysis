@@ -24,5 +24,5 @@ beep;
    
  
  end
-% save('From_1to8_long_route_2','dataArray')
+save('19_02_exp_1.mat','dataArray')
 beep;
