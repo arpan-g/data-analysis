@@ -50,7 +50,7 @@
 % % hold on;
 % % plot(transTime2);
 
-
+figure1 = figure;
 x = [time_1;time_2;time_3;time_4;time_5;time_6;time_7;time_8];
 % x = [time_1;time_2;time_3;time_5;time_6;time_7;time_8];
 y = [1,8];
@@ -62,3 +62,4 @@ ylabel('nodeId');
 % labels = {'lost_packet','0','1'};
 % lcolorbar(labels,'fontweight','bold');
 colorbar();
+saveas(figure1,'22_2/pir_output.png')

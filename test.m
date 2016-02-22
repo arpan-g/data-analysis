@@ -1,10 +1,10 @@
-
-plot(diff(1,:));hold on;
-plot(diff(2,:));hold on;
-plot(diff(3,:));hold on;
-plot(diff(4,:));hold on;
-plot(diff(5,:));hold on;
-plot(diff(6,:));hold on;
-plot(diff(7,:));hold on;
-plot(diff(8,:));hold on;
-legend('1','2','3','4','5','6','7','8');
+hold on;
+plot(fftData(1,:));hold on;
+% plot(fftData(2,:));hold on;
+plot(fftData(3,:));hold on;
+% plot(fftData(4,:));hold on;
+% plot(fftData(5,:));hold on;
+% plot(fftData(6,:));hold on;
+% plot(fftData(7,:));hold on;
+% plot(fftData(8,:));hold on;
+% legend('1','2','3','4','5','6','7','8');

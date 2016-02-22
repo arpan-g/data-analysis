@@ -2,6 +2,7 @@ file = 'long_tests\memsic_data\18_02.report';
 [c1 c2 c3 c4 c5 c6 c7 c8 c9]= textread(file, '%f %u %u %u %u %u %u %u %u', 'commentstyle', 'shell');
 % data = [c2 c3 c4 c5];
 % mac_id packet_num time light temp audio sync
+receivedPackets=ones(1,8);
 length = size(c1);
 count=ones(1,8);
 dummy_node = ones(1,4);
@@ -25,7 +26,7 @@ for i = 1:length(1)
     audio = c7(i);
     if(packets(mac_id)~=packet_number)
         
-       
+       receivedPackets(mac_id)=receivedPackets(mac_id)+1;
         switch mac_id
             case 1
                 diff=packet_number-packets(mac_id);
