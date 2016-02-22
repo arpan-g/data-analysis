@@ -27,8 +27,8 @@ zone(2,:)= calcEnergy(3,:)+ calcEnergy(4,:);
 zone(3,:)= calcEnergy(5,:)+ calcEnergy(6,:);
 zone(4,:)= calcEnergy(7,:)+ calcEnergy(8,:);
 for i = 1:energyLength(2)
-[value,index] = max(zone(:,i));
-region(i) = index;
+region = max(zone())
+
 end
 for i = 1:8
    
@@ -39,14 +39,7 @@ for i = 1:8
 end
 x=256:509;
 y=[1,8];
+imagesc(zone);
+colorbar();
 
-% imagesc(calcEnergy);
-% clac
-% colorbar();
-plot(calcEnergy(2,:));
-hold on;
-plot(calcEnergy(3,:));
-xlabel('timeX3.2s');ylabel('sum');
-legend('2','3');
-
-% stairs(region);
+% step(indexMatrix);
