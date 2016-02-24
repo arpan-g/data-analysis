@@ -1,0 +1,40 @@
+%calculate binary coefficients
+clear corr_matrix;
+window_size = 2400;%4min=4*60*10*100ms
+figure1=figure;
+combine_data = [pirA ;pirB; pirC; pirD;pirE; pirF; pirG;pirH];
+len=size(combine_data);
+for i=1:8
+    for j=1:8
+        for k = 1:window_size:length(2)
+            if(window_size+k<length(2))
+                a=similar_data(combine_data(i,k:k+window_size),combine_data(j,k:k+window_size),0);
+                d=similar_data(combine_data(i,:),combine_data(j,:),1);
+                p_1=sum(combine_data(i,:));
+                p_2=sum(combine_data(j,:));
+                [b,c] = disimilar_data(combine_data(i,:),combine_data(j,:));
+                q_1 = window_size-p_1;
+                q_2 = len(2)-p_2;
+                numerator = a*d-b*c;
+                denominator = sqrt(p_1*p_2*q_1*q_2);
+                corr_matrix(i,j) = numerator /(denominator);
+                graphMatrix(i,j) = (corr_matrix(i,j) > 0.30);
+            end
+        end
+    end
+end
+h=imagesc(corr_matrix);
+xlabel('nodeId');ylabel('nodeId');
+% impixelregion(h);
+textStrings = num2str(corr_matrix(:),'%0.2f');  %# Create strings from the matrix values
+textStrings = strtrim(cellstr(textStrings));  %# Remove any space padding
+[x,y] = meshgrid(1:8);   %# Create x and y coordinates for the strings
+hStrings = text(x(:),y(:),textStrings(:),...      %# Plot the strings
+    'HorizontalAlignment','center');
+midValue = mean(get(gca,'CLim'));  %# Get the middle value of the color range
+textColors = repmat(corr_matrix(:) < midValue,1,3);  %# Choose white or black for the
+%#   text color of the strings so
+%#   they can be easily seen over
+%#   the background color
+set(hStrings,{'Color'},num2cell(textColors,2));
+colorbar();

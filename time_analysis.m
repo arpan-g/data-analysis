@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('22_02.mat');
+load('23_02.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
@@ -16,7 +16,7 @@ packet_count = ones(1,8);
 overflow_flag  =zeros(1,8);
 prev_time = zeros(1,8);
 actual_packet_number = zeros(1,8);
-packet_lost_pir = ones(1,32)*-1;
+packet_lost_pir = ones(1,32)*0;
 prev_packet_number = ones(1,8)*-1;
 pac_2 = 0;
 %initialize prev_packet_number to -1
@@ -26,8 +26,8 @@ for i = 1:length(2)
     element = dataArray(:,i);
     mac_id = element(MAC_ID);
     packet_number = element(PACKET_COUNT);
-    time = combineBytesToDecimal(element,11,12,13,14)*tick;
-    %         time = combineBytesToDecimal(element,15,16,17,18)*tick;
+%     time = combineBytesToDecimal(element,11,12,13,14)*tick;
+            time = combineBytesToDecimal(element,15,16,17,18)*tick;
     pir =  DecimalTo32bits(element,7,8,9,10);
     if(prev_packet_number(mac_id)~=packet_number)
         if(mac_id==1)
@@ -290,6 +290,7 @@ for i = 1:length(2)
     end
 end
 maxCount = max([count(1) count(2) count(3) count(4) count(5) count(6) count(7) count(8)])
+%  maxCount = max([ count(2) count(6) ])
 
 if(count(1)<maxCount)
     transTime_1(count(1):maxCount-1) =  GenerateArray(maxCount,count(1),transTime_1(count(1)-1),time);
@@ -321,6 +322,7 @@ end
 
 
 minCount = min([count(1) count(2) count(3) count(4) count(5) count(6) count(7) count(8)]);
+% minCount = min([ count(2) count(6) ])
 time_1=TimeArrayGenerator(transTime_1,minCount);
 time_2=TimeArrayGenerator(transTime_2,minCount);
 time_3=TimeArrayGenerator(transTime_3,minCount);
