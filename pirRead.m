@@ -8,10 +8,10 @@ count = 1;
 %           \n 10
 delete(instrfindall);
 dataArray = zeros(18,10);
-sensor = serial('COM7');
+sensor = serial('COM8');
 set(sensor, 'BaudRate', 9600, 'DataBits', 8,'InputBufferSize', 512, 'Timeout', 31)
 fopen(sensor);
- fprintf(sensor, '#');
+fprintf(sensor, '#');
 readasync(sensor);
 
 beep;
@@ -26,6 +26,6 @@ beep;
    
  
  end
-save('23_02.mat','dataArray')
+save('25_02.mat','dataArray')
 
 beep;

@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('23_02.mat');
+load('19_02_exp.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
@@ -16,7 +16,7 @@ packet_count = ones(1,8);
 overflow_flag  =zeros(1,8);
 prev_time = zeros(1,8);
 actual_packet_number = zeros(1,8);
-packet_lost_pir = ones(1,32)*0;
+packet_lost_pir = ones(1,32)*-1;
 prev_packet_number = ones(1,8)*-1;
 pac_2 = 0;
 %initialize prev_packet_number to -1
@@ -26,8 +26,9 @@ for i = 1:length(2)
     element = dataArray(:,i);
     mac_id = element(MAC_ID);
     packet_number = element(PACKET_COUNT);
-%     time = combineBytesToDecimal(element,11,12,13,14)*tick;
-            time = combineBytesToDecimal(element,15,16,17,18)*tick;
+    time = combineBytesToDecimal(element,11,12,13,14)*tick;
+    start_time(mac_id,recPAckets) = combineBytesToDecimal(element,3,4,5,14);
+%     time = combineBytesToDecimal(element,15,16,17,18)*tick;
     pir =  DecimalTo32bits(element,7,8,9,10);
     if(prev_packet_number(mac_id)~=packet_number)
         if(mac_id==1)
@@ -43,22 +44,23 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_1(count(mac_id),:) = time;
+            endTime_1(count(mac_id),:) = time;
+        
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
-                
+%                 start_time_diff = 
                 time_diff = (time-prev_time(mac_id))/(packets_lost+1);
                 time_array = prev_time(mac_id):time_diff:time;
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_1 = cat(32,pir_1,packet_lost_pir);
-                    transTime_1(count(mac_id),:) = time_array(time_index);
+                    endTime_1(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_1(count(mac_id),:) = time;
+            endTime_1(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -77,7 +79,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_2(count(mac_id),:) = time;
+            endTime_2(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -88,7 +90,7 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_2 = cat(32,pir_2,packet_lost_pir);
-                    transTime_2(count(mac_id),:) = time_array(time_index);
+                    endTime_2(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     
                     count(mac_id) = count(mac_id)+1;
@@ -96,7 +98,7 @@ for i = 1:length(2)
                 end
             end
             
-            transTime_2(count(mac_id),:) = time;
+            endTime_2(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -113,7 +115,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_3(count(mac_id),:) = time;
+            endTime_3(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -122,12 +124,12 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_3 = cat(32,pir_3,packet_lost_pir);
-                    transTime_3(count(mac_id),:) = time_array(time_index);
+                    endTime_3(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_3(count(mac_id),:) = time;
+            endTime_3(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -144,7 +146,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_4(count(mac_id),:) = time;
+            endTime_4(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -153,12 +155,12 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_4 = cat(32,pir_4,packet_lost_pir);
-                    transTime_4(count(mac_id),:) = time_array(time_index);
+                    endTime_4(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_4(count(mac_id),:) = time;
+            endTime_4(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -175,7 +177,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_5(count(mac_id),:) = time;
+            endTime_5(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -184,12 +186,12 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_5 = cat(32,pir_5,packet_lost_pir);
-                    transTime_5(count(mac_id),:) = time_array(time_index);
+                    endTime_5(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_5(count(mac_id),:) = time;
+            endTime_5(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -206,7 +208,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_6(count(mac_id),:) = time;
+            endTime_6(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -215,12 +217,12 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_6 = cat(32,pir_6,packet_lost_pir);
-                    transTime_6(count(mac_id),:) = time_array(time_index);
+                    endTime_6(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_6(count(mac_id),:) = time;
+            endTime_6(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -237,7 +239,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_7(count(mac_id),:) = time;
+            endTime_7(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -246,12 +248,12 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_7 = cat(32,pir_7,packet_lost_pir);
-                    transTime_7(count(mac_id),:) = time_array(time_index);
+                    endTime_7(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_7(count(mac_id),:) = time;
+            endTime_7(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -268,7 +270,7 @@ for i = 1:length(2)
                 overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
             end
             actual_packet_number(mac_id) = overflow_flag(mac_id) + packet_number -(packet_count(mac_id)*(overflow_flag(mac_id)==0));
-            transTime_8(count(mac_id),:) = time;
+            endTime_8(count(mac_id),:) = time;
             if(actual_packet_number(mac_id)>count(mac_id))
                 %packet_lost
                 packets_lost=actual_packet_number(mac_id)-count(mac_id);
@@ -277,12 +279,12 @@ for i = 1:length(2)
                 time_index = 2;
                 while(count((mac_id))<actual_packet_number(mac_id))
                     pir_8 = cat(32,pir_8,packet_lost_pir);
-                    transTime_8(count(mac_id),:) = time_array(time_index);
+                    endTime_8(count(mac_id),:) = time_array(time_index);
                     time_index = time_index+1;
                     count(mac_id) = count(mac_id)+1;
                 end
             end
-            transTime_8(count(mac_id),:) = time;
+            endTime_8(count(mac_id),:) = time;
             count(mac_id) = count(mac_id)+1;
             prev_packet_number(mac_id)= packet_number;
             prev_time(mac_id) = time;
@@ -293,29 +295,29 @@ maxCount = max([count(1) count(2) count(3) count(4) count(5) count(6) count(7) c
 %  maxCount = max([ count(2) count(6) ])
 
 if(count(1)<maxCount)
-    transTime_1(count(1):maxCount-1) =  GenerateArray(maxCount,count(1),transTime_1(count(1)-1),time);
+    endTime_1(count(1):maxCount-1) =  GenerateArray(maxCount,count(1),endTime_1(count(1)-1),time);
 end
 if(count(2)<maxCount)
-    transTime_2(count(2):maxCount-1) =  GenerateArray(maxCount,count(2),transTime_2(count(2)-1),time);
+    endTime_2(count(2):maxCount-1) =  GenerateArray(maxCount,count(2),endTime_2(count(2)-1),time);
 end
 if(count(3)<maxCount)
-    transTime_3(count(3):maxCount-1) =  GenerateArray(maxCount,count(3),transTime_3(count(3)-1),time);
+    endTime_3(count(3):maxCount-1) =  GenerateArray(maxCount,count(3),endTime_3(count(3)-1),time);
 end
 
 if(count(4)<maxCount)
-    transTime_4(count(4):maxCount-1) =  GenerateArray(maxCount,count(4),transTime_4(count(4)-1),time);
+    endTime_4(count(4):maxCount-1) =  GenerateArray(maxCount,count(4),endTime_4(count(4)-1),time);
 end
 if(count(5)<maxCount)
-    transTime_5(count(5):maxCount-1) =  GenerateArray(maxCount,count(5),transTime_5(count(5)-1),time);
+    endTime_5(count(5):maxCount-1) =  GenerateArray(maxCount,count(5),endTime_5(count(5)-1),time);
 end
 if(count(6)<maxCount)
-    transTime_6(count(6):maxCount-1) =  GenerateArray(maxCount,count(6),transTime_6(count(6)-1),time);
+    endTime_6(count(6):maxCount-1) =  GenerateArray(maxCount,count(6),endTime_6(count(6)-1),time);
 end
 if(count(7)<maxCount)
-    transTime_7(count(7):maxCount-1) =  GenerateArray(maxCount,count(7),transTime_7(count(7)-1),time);
+    endTime_7(count(7):maxCount-1) =  GenerateArray(maxCount,count(7),endTime_7(count(7)-1),time);
 end
 if(count(8)<maxCount)
-    transTime_8(count(8):maxCount-1) =  GenerateArray(maxCount,count(8),transTime_8(count(8)-1),time);
+    endTime_8(count(8):maxCount-1) =  GenerateArray(maxCount,count(8),endTime_8(count(8)-1),time);
 end
 
 
@@ -323,14 +325,14 @@ end
 
 minCount = min([count(1) count(2) count(3) count(4) count(5) count(6) count(7) count(8)]);
 % minCount = min([ count(2) count(6) ])
-time_1=TimeArrayGenerator(transTime_1,minCount);
-time_2=TimeArrayGenerator(transTime_2,minCount);
-time_3=TimeArrayGenerator(transTime_3,minCount);
-time_4=TimeArrayGenerator(transTime_4,minCount);
-time_5=TimeArrayGenerator(transTime_5,minCount);
-time_6=TimeArrayGenerator(transTime_6,minCount);
-time_7=TimeArrayGenerator(transTime_7,minCount);
-time_8=TimeArrayGenerator(transTime_8,minCount);
+time_1=TimeArrayGenerator(endTime_1,minCount);
+time_2=TimeArrayGenerator(endTime_2,minCount);
+time_3=TimeArrayGenerator(endTime_3,minCount);
+time_4=TimeArrayGenerator(endTime_4,minCount);
+time_5=TimeArrayGenerator(endTime_5,minCount);
+time_6=TimeArrayGenerator(endTime_6,minCount);
+time_7=TimeArrayGenerator(endTime_7,minCount);
+time_8=TimeArrayGenerator(endTime_8,minCount);
 
 % pir_1(count(1)+1:maxCount) =  zeros(1,maxCount-count(1));
 % pir_2(count(2)+1:maxCount) =  zeros(1,maxCount-count(2));

@@ -61,8 +61,8 @@ xlabel('time(s)');
 ylabel('nodeId');
 % labels = {'lost_packet','0','1'};
 % lcolorbar(labels,'fontweight','bold');
- stem(time_2,pirB);hold on;
- stem(time_6,pirF);
- legend('2','6');
+%  stem(time_2,pirB);hold on;
+%  stem(time_6,pirF);
+%  legend('2','6');
 colorbar();
-saveas(figure1,'22_2/pir_output.png')
+% saveas(figure1,'22_2/pir_output.png')
