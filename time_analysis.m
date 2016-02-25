@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('19_02_exp.mat');
+load('25_02_5.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
@@ -16,7 +16,7 @@ packet_count = ones(1,8);
 overflow_flag  =zeros(1,8);
 prev_time = zeros(1,8);
 actual_packet_number = zeros(1,8);
-packet_lost_pir = ones(1,32)*-1;
+packet_lost_pir = ones(1,32)*0;
 prev_packet_number = ones(1,8)*-1;
 pac_2 = 0;
 %initialize prev_packet_number to -1
