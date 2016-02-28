@@ -3,18 +3,19 @@ clear corrValues;
 clear graphMatrix;
 figure1 = figure;
 node_id = 8;
-a=[pirA ;pirB; pirC; pirD;pirE; pirF; pirG;pirH];
+a=mega_imf;
+% a=[pirA ;pirB; pirC; pirD;pirE; pirF; pirG;pirH];
 % a = [node1(value,1:6778);node2(value,1:6778);node3(value,1:6778);node4(value,1:6778);node5(value,1:6778);node6(value,1:6778);node7(value,1:6778);node8(value,1:6778)];
-plotTitle = ['correlation variation'];
+% plotTitle = ['correlation variation'];
 for j = 1:8
     for i = 1:8
         
-%         [c,lags] = xcorr(a(j,:),a(i,:),0,'coeff');
-        c=corrcoef(a(j,:),a(i,:));
-        corrValues(j,i) = abs(c(1,2));
-%         corrValues(j,i) = max(c);
-        graphMatrix(j,i) = (corrValues(j,i) > 0.30);
-        
+        [c,lags] = xcorr(a(j,:),a(i,:),0,'coeff');
+%         c=corrcoef(a(j,:),a(i,:));
+%         corrValues(j,i) = abs(c(1,2));
+        corrValues(j,i) = max(c);
+%         graphMatrix(j,i) = (corrValues(j,i) > 0.30);
+       
         
         
     end

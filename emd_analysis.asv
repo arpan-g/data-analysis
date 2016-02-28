@@ -1,0 +1,35 @@
+value=3;
+clear mega_imf;
+megaNode=[node1(value,1:12953);node2(value,1:12953);node3(value,1:12953);node4(value,1:12953);node5(value,1:12953);node6(value,1:12953);node7(value,1:12953);node8(value,1:12953)];
+for j = 1:8
+    clear ZCR;
+    clear ZCT;
+    clear imf;
+    clear index;
+    imf=emd(megaNode(j,:));
+%     len = size(imf);
+%     count =1;
+%     % calc freq mean(abs(diff(sign(imf(i,:)))));
+%     for i = 1:len(1)
+%         ZCR(i)=mean(abs(diff(sign(imf(i,:)))));
+%         
+%         ZCT(i)=1/ZCR(i);
+%         if(ZCT(i)>4 && ZCT(i)<80)
+%             index(count)=i;
+%             count = count+1;
+%         end
+%     end
+%     sum_imf=0;
+%     len_index=size(index);
+%     for i = 1:len_index(2)
+%         sum_imf = sum_imf+imf(index(i),:);
+%     end
+    mega_imf(j,:) = imf(13,:);
+    
+end
+for i = 1:8
+    figure;
+    plot(mega_imf(i,:));
+    hline = refline([0 0]);
+    hline.Color = 'r';
+end

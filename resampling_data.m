@@ -7,7 +7,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('25_02.mat');
+load('26_02.mat');
 
 recPAckets=ones(1,8);
 length = size(dataArray);
@@ -38,7 +38,7 @@ for i = 1:length(2)
     pir =  DecimalTo32bits(element,7,8,9,10);
     if(prev_packet_number(mac_id)~=packet_number)
         
-    diff(mac_id,recPAckets(mac_id)) = start_time;%-pre_time(mac_id);
+    diff(mac_id,recPAckets(mac_id)) = start_time-457373;%-pre_time(mac_id);
     pre_time(mac_id) = time;
         if(mac_id==1)
             node_1(:, recPAckets(mac_id))=element;

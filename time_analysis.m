@@ -1,5 +1,6 @@
 clear;
 tick = 0.001;
+tick = 1;
 MAC_ID =2;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
@@ -7,7 +8,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('25_02_5.mat');
+load('time_sync.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])
@@ -31,6 +32,7 @@ for i = 1:length(2)
 %     time = combineBytesToDecimal(element,15,16,17,18)*tick;
     pir =  DecimalTo32bits(element,7,8,9,10);
     if(prev_packet_number(mac_id)~=packet_number)
+%      diff = endTime
         if(mac_id==1)
             node_1(:, recPAckets(mac_id))=element;
             recPAckets(mac_id)=recPAckets(mac_id)+1;
