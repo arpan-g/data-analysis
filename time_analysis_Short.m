@@ -3,7 +3,7 @@ tick = 0.001;
 MAC_ID =2;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load('23_02.mat');
+load('under_8.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 count=ones(1,8);
@@ -12,7 +12,7 @@ overflow_flag  =zeros(1,8);
 prev_time = zeros(1,8);
 prev_start_time = zeros(1,8);
 actual_packet_number = zeros(1,8);
-packet_lost_pir = ones(1,32)*0;
+packet_lost_pir = ones(1,32)*-1;
 prev_packet_number = ones(1,8)*-1;%initialize prev_packet_number to -1
 pac_2 = 0;
 pir=zeros(8,8);
@@ -32,9 +32,10 @@ for i = 1:length(2)
         if(count(mac_id)==1)
             pir_array(mac_id,1:32) = pir;
             packet_count(mac_id) = packet_number;
+            
         else
             
-             pir_array(mac_id,(count(mac_id)-1)*32+1:count(mac_id)*32) = pir;
+            pir_array(mac_id,(count(mac_id)-1)*32+1:count(mac_id)*32) = pir;
         end
         if(prev_packet_number(mac_id)>packet_number)
             overflow_flag(mac_id) =actual_packet_number(mac_id)+1;
@@ -68,9 +69,44 @@ for i = 1:length(2)
     end
 end
 % %create sample every 100ms
+maxCount=max(count);
+
 
 timeArrayLength=size(start_time);
+for i = 1:8
+   switch i
+        case 1
+            time_1 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 2
+            time_2 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 3
+            time_3 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 4
+            time_4 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 5
+            time_5 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 6
+            time_6 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 7
+            time_7 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+        case 8
+            time_8 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+    end
+   
+    
+end
 
+% time_1=TimeArrayGenerator(endTime_1,minCount);
+% time_2=TimeArrayGenerator(endTime_2,minCount);
+% time_3=TimeArrayGenerator(endTime_3,minCount);
+% time_4=TimeArrayGenerator(endTime_4,minCount);
+% time_5=TimeArrayGenerator(endTime_5,minCount);
+% time_6=TimeArrayGenerator(endTime_6,minCount);
+% time_7=TimeArrayGenerator(endTime_7,minCount);
+% time_8=TimeArrayGenerator(endTime_8,minCount);
+for i = 1:8
+maxEndTime=max(endTime(:,i));
+end
 for j = 1:timeArrayLength(2)
     minDiff = min(endTime(:,j));
     maxDiff = max(endTime(:,j));

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+clear;
+>>>>>>> 89fb5f05962afb7beff80bb7a2c2ba4797016b48
 file = 'long_tests\memsic_data\19_02.report';
 [c1 c2 c3 c4 c5 c6 c7 c8 c9]= textread(file, '%f %u %u %u %u %u %u %u %u', 'commentstyle', 'shell');
 % data = [c2 c3 c4 c5];

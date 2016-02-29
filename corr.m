@@ -1,25 +1,33 @@
-
+value=2;
 clear corrValues;
 clear graphMatrix;
 range=16728;
 figure1 = figure;
 node_id = 8;
+
 % a=[pirA ;pirB; pirC; pirD;pirE; pirF; pirG;pirH];
 a = [node1(value,1:range);node2(value,1:range);node3(value,1:range);node4(value,1:range);node5(value,1:range);node6(value,1:range);node7(value,1:range);node8(value,1:range)];
-plotTitle = ['correlation variation'];
+% plotTitle = ['correlation variation'];
+
+% a=mega_imf;
+
 for j = 1:8
     for i = 1:8
         
 %         [c,lags] = xcorr(a(j,:),a(i,:),0,'coeff');
         c=corrcoef(a(j,:),a(i,:));
-        corrValues(j,i) = abs(c(1,2));
+        corrValues(j,i) = c(1,2);
 %         corrValues(j,i) = max(c);
-%         graphMatrix(j,i) = (corrValues(j,i) > 0.30);
-        
+        graphMatrix(j,i) = (corrValues(j,i) > 0.82);
+
         
         
     end
 end
+
+G= graph(graphMatrix);
+plot(G);
+figure;
 
 h=imagesc(corrValues);
 xlabel('nodeId');ylabel('nodeId');
@@ -36,5 +44,5 @@ textColors = repmat(corrValues(:) < midValue,1,3);  %# Choose white or black for
 %#   the background color
 set(hStrings,{'Color'},num2cell(textColors,2));
 colorbar();
-title('light sensor');
-saveas(figure1,'29_02/correlated_light.png');
+title('temp sensor');
+saveas(figure1,'29_02/correlated_audio.png');

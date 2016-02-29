@@ -1,6 +1,6 @@
 % save('From_1to8_long_route_2','dataArray')
 
-% pause(5);
+pause(15);
 count = 1;
 % string "IxxxxRxLxx\r\n"
 %           I 73   R 114 L 108 
@@ -23,9 +23,11 @@ beep;
    dataArray(:,count)= rawdata;
    count = count + 1;
    rawdata(2)
-   
+   if(count==500)
+   break;
+   end
  
  end
-save('25_02.mat','dataArray')
+save('under_8.mat','dataArray')
 
 beep;
