@@ -8,7 +8,7 @@ UINT8_MAX_NUM = 256;
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('time_sync.mat');
+load('26_02_1.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])

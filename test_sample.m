@@ -1,5 +1,6 @@
 
 clear sample;
+figure1 = figure;
 maxTime(1)=max(time_1);
 maxTime(2)=max(time_2);
 maxTime(3)=max(time_3);
@@ -341,5 +342,11 @@ while(time<MAXLIMIT && index<limit)
     end
    
 end
+% x=[sample_pir(2,:);sample_pir(4,:);sample_pir(6,:);sample_pir(8,:);sample_pir(10,:);sample_pir(12,:);sample_pir(14,:);sample_pir(16,:)];
+% y = [1,8];
 newPirArray=[sample_pir(1,:);sample_pir(3,:);sample_pir(5,:);sample_pir(7,:);sample_pir(9,:);sample_pir(11,:);sample_pir(13,:);sample_pir(15,:)];
 imagesc(newPirArray);
+xlabel('time(x0.1s)');
+ylabel('nodeId');
+colorbar();
+% saveas(figure1,'29_02/pir_output.png')

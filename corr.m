@@ -10,10 +10,10 @@ a=mega_imf;
 for j = 1:8
     for i = 1:8
         
-        [c,lags] = xcorr(a(j,:),a(i,:),0,'coeff');
-%         c=corrcoef(a(j,:),a(i,:));
-%         corrValues(j,i) = abs(c(1,2));
-        corrValues(j,i) = max(c);
+%         [c,lags] = xcorr(a(j,:),a(i,:),0,'coeff');
+        c=corrcoef(a(j,:),a(i,:));
+        corrValues(j,i) = abs(c(1,2));
+%         corrValues(j,i) = max(c);
 %         graphMatrix(j,i) = (corrValues(j,i) > 0.30);
        
         

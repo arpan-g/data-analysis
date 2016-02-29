@@ -3,7 +3,7 @@ tick = 0.001;
 MAC_ID =2;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load('26_02.mat');
+load('26_02_1.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 count=ones(1,8);

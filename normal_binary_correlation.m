@@ -51,4 +51,4 @@ textColors = repmat(corr_matrix(:) < midValue,1,3);  %# Choose white or black fo
 %#   the background color
 set(hStrings,{'Color'},num2cell(textColors,2));
 colorbar();
-saveas(figure1,'29_02/bin_coeff_normal_smc.png')
+saveas(figure1,'29_02/bin_coeff_normal_cc.png')
