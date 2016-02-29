@@ -1,4 +1,5 @@
-value=1; 
+value=2; 
+figure1 = figure;
 plot(node1(4,:),node1(value,:));
 hold on;
 plot(node2(4,:),node2(value,:));
@@ -16,3 +17,7 @@ hold on;
 plot(node8(4,:),node8(value,:));
 hold on;
 legend('1','2','3','4','5','6','7','8')
+xlabel('time(s)');
+ylabel('sensor output');
+title('temperature sensor data');
+saveas(figure1,'29_02/temp.png')
