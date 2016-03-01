@@ -18,7 +18,7 @@ prev_packet_number = ones(1,8)*-1;%initialize prev_packet_number to -1
 pac_2 = 0;
 pir=zeros(8,8);
 lost_packets= zeros(1,8);
-previou_14=zeros(1,8);
+previou_14=0;
 % generate pir,starttime and end time arrays
 for i = 1:length(2)
     
@@ -26,8 +26,8 @@ for i = 1:length(2)
     mac_id = element(MAC_ID);
     packet_number = element(PACKET_COUNT);
     time = combineBytesToDecimal(element,11,12,13,14);
-    startTime= combineBytesToDecimal2(element,3,4,5,14,previou_14(mac_id));
-    previou_14(mac_id) = element(LAST_BYTE_TIME);
+    startTime= combineBytesToDecimal2(element,3,4,5,14,previou_14);
+    previou_14() = element(LAST_BYTE_TIME);
     %     time = combineBytesToDecimal(element,15,16,17,18)*tick;
     pir =  DecimalTo32bits(element,7,8,9,10);
     if(prev_packet_number(mac_id)~=packet_number)
