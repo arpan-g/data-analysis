@@ -1,6 +1,6 @@
 %calculate binary coefficients
 clear corr_matrix;
-num_mins=6;
+num_mins=8;
 window_size = num_mins*60*10;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2; %2min = 2*60*100ms
 figure1=figure;
@@ -27,9 +27,9 @@ for i=1:8
                 % in the same positions
                 q_1 = c+d; % number of 0's in 1st array
                 q_2 = b+d; % number of 0's in 2nd array      
-%                 value=correlation_coefficient(a,p_1,p_2);
+                value=correlation_coefficient(a,p_1,p_2);
 %                 value=gleas( a,p_1,p_2 );
-                value=jacard( a,b,c );
+%                 value=jacard( a,b,c );
 %                 value=bb( a,p_1,p_2 );
 %                 value=loevinger(a,b,c,d,p_1,p_2,q_1,q_2);
 %                 value=cohen(a,b,c,d,p_1,p_2,q_1,q_2);
@@ -49,9 +49,9 @@ for l =1:8
     end
     
 end
-% G= graph(graphMatrix);
-% plot(G);
-% figure;
+G= graph(graphMatrix);
+plot(G);
+figure;
 h=imagesc(corr_matrix);
 xlabel('nodeId');ylabel('nodeId');
 % impixelregion(h);

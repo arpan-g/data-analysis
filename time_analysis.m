@@ -1,14 +1,14 @@
 clear;
 tick = 0.001;
 tick = 1;
-MAC_ID =4;
+MAC_ID =2;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
 % nameOfDir = 'data';
 % listing=dir(nameOfDir);
 % matFile = strcat(nameOfDir,'\',listing(3).name);
 % load(matFile);
-load('2ppl_2way_normal_29_01_2016_zigzag.mat');
+load('29_02_under_1_2.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 % min([dataArrat()])

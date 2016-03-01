@@ -21,7 +21,7 @@ for i=1:8
         %variable in the same positions
         %c = proportion of 0s in the first variable and 1s in second variable
         % in the same positions
-%                          value=correlation_coefficient(a,p_1,p_2);
+                         value=correlation_coefficient(a,p_1,p_2);
         %                 value=gleas( a,p_1,p_2 );
 %                         value=jacard( a,b,c );
 %                         value=bb( a,p_1,p_2 );
