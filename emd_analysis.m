@@ -1,4 +1,4 @@
-value=3;
+value=1;
 MAX_VALUE = 16728;
 clear mega_imf;
 clear diff;
@@ -21,7 +21,7 @@ for j = 1:8
         matrix(j,i)= ZCT(i);
         if(ZCR(i)==0)
 %         if(ZCT(i)>640 && ZCT(i)<3000)
-            index(count)=freq(j);
+            index(count)=i;
             count = count+1;
         end
     end

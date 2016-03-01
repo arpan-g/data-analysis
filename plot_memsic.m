@@ -16,3 +16,12 @@ hold on;
 plot(node8(4,:),node8(value,:));
 hold on;
 legend('1','2','3','4','5','6','7','8')
+
+for i =1:8
+    plot(mega_imf(i,:));
+    hold on
+end
+xlabel('time(s)');
+ylabel('amplitude');
+title('low frequency');
+legend('1','2','3','4','5','6','7','8')
