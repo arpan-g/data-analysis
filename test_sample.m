@@ -9,8 +9,18 @@ maxTime(5)=max(time_5);
 maxTime(6)=max(time_6);
 maxTime(7)=max(time_7);
 maxTime(8)=max(time_8);
+
+minTime(1)=min(time_1);
+minTime(2)=min(time_2);
+minTime(3)=min(time_3);
+minTime(4)=min(time_4);
+minTime(5)=min(time_5);
+minTime(6)=min(time_6);
+minTime(7)=min(time_7);
+minTime(8)=min(time_8);
+
 MAXLIMIT = min(maxTime);
-start_time=max(endTime(:,1));
+start_time=max(minTime);
 sample_pir=zeros(16,1);
 len_1=size(time_1);
 len_2=size(pir_array);
@@ -57,6 +67,7 @@ len_1=size(time_2);
 clear sample;
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(2,1:limit);
+% sample(1,:)= pirB;
 % sample(2,:)= time_2;
 index=1;
 count=1;
@@ -98,6 +109,7 @@ len_1=size(time_3);
 % len_2=size(pir_array);
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(3,1:limit);
+% sample(1,:)= pirC;
 % sample(2,:)= time_2;
 index=1;
 count=1;
@@ -140,6 +152,7 @@ len_1=size(time_4);
 
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(PIR_NODE,1:limit);
+% sample(1,:)= pirD;
 
 index=1;
 count=1;
@@ -182,6 +195,7 @@ len_1=size(time_5);
 
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(PIR_NODE,1:limit);
+% sample(1,:)= pirE;
 
 index=1;
 count=1;
@@ -224,6 +238,7 @@ len_1=size(time_6);
 
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(PIR_NODE,1:limit);
+% sample(1,:)= pirF;
 
 index=1;
 count=1;
@@ -266,6 +281,7 @@ len_1=size(time_7);
 
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(PIR_NODE,1:limit);
+% sample(1,:)= pirG;
 
 index=1;
 count=1;
@@ -308,6 +324,7 @@ len_1=size(time_8);
 
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(PIR_NODE,1:limit);
+% sample(1,:)= pirH;
 
 index=1;
 count=1;

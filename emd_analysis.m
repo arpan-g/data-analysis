@@ -19,7 +19,7 @@ for j = 1:8
         
         ZCT(i)=1/ZCR(i);
         matrix(j,i)= ZCT(i);
-        if(ZCR(i)==0)
+        if(ZCR(i)~=0)
 %         if(ZCT(i)>640 && ZCT(i)<3000)
             index(count)=i;
             count = count+1;

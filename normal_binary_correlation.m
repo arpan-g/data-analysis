@@ -23,8 +23,8 @@ for i=1:8
         % in the same positions
                          value=correlation_coefficient(a,p_1,p_2);
         %                 value=gleas( a,p_1,p_2 );
-        %                 value=jacard( a,b,c );
-        %                 value=bb( a,p_1,p_2 );
+%                         value=jacard( a,b,c );
+%                         value=bb( a,p_1,p_2 );
 %         value=loevinger(a,b,c,d,p_1,p_2,q_1,q_2);
 %                         value=cohen(a,b,c,d,p_1,p_2,q_1,q_2);
 %                         value=rr( a,b,c,d );

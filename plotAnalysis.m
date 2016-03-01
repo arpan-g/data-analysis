@@ -64,9 +64,9 @@ ylabel('nodeId');
 %  stem(time_2,pirB);hold on;
 %  stem(time_6,pirF);
 %  legend('2','6');
-samples = 3456;
- stem(time_1,pir_array(1,1:samples));hold on
-stem(time_2,pir_array(2,1:samples))
+% samples = 3456;
+%  stem(time_1,pir_array(1,1:samples));hold on
+% stem(time_2,pir_array(2,1:samples))
 
 colorbar();
 saveas(figure1,'29_02/pir_output.png')

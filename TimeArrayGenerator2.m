@@ -7,7 +7,7 @@ for i = 1:count-1
         start = startTime(i); 
         end_ = endTime(i);
         tempTime_1(:,i) = transpose(start:(diff/31):end_);
-        i
+        
         
   
 end
