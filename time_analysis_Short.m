@@ -4,7 +4,7 @@ MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load('19_02.mat');
+load('01_03.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 count=ones(1,8);

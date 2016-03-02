@@ -1,6 +1,6 @@
 %calculate binary coefficients
 clear corr_matrix;
-num_mins=8;
+num_mins=12;
 window_size = num_mins*60*10;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2; %2min = 2*60*100ms
 figure1=figure;
