@@ -4,7 +4,7 @@ MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load('01_03.mat');
+load('19_02_exp.mat');
 recPAckets=ones(1,8);
 length = size(dataArray);
 count=ones(1,8);
@@ -56,14 +56,14 @@ for i = 1:length(2)
             while(count((mac_id))<actual_packet_number(mac_id))
                 
                 pir_array(mac_id,(count(mac_id)-1)*32+1:count(mac_id)*32) = pir;
-                start_time(mac_id,count(mac_id)) = start_time_array(time_index);
+                start_time_list(mac_id,count(mac_id)) = start_time_array(time_index);
                 endTime(mac_id,count(mac_id)) = end_time_array(time_index);
                 time_index = time_index+1;
                 count(mac_id) = count(mac_id)+1;
                 lost_packets(mac_id)=lost_packets(mac_id)+1;
             end
         end
-        start_time(mac_id,count(mac_id))=startTime;
+        start_time_list(mac_id,count(mac_id))=startTime;
         endTime(mac_id,count(mac_id)) = time;
         count(mac_id) = count(mac_id)+1;
         prev_packet_number(mac_id)= packet_number;
@@ -75,25 +75,25 @@ end
 maxCount=max(count);
 
 
-timeArrayLength=size(start_time);
+timeArrayLength=size(start_time_list);
 for i = 1:8
    switch i
         case 1
-            time_1 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_1 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 2
-            time_2 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_2 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 3
-            time_3 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_3 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 4
-            time_4 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_4 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 5
-            time_5 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_5 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 6
-            time_6 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_6 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 7
-            time_7 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_7 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
         case 8
-            time_8 =transpose(TimeArrayGenerator2(start_time(i,:),endTime(i,:),count(i)-1));
+            time_8 =transpose(TimeArrayGenerator2(start_time_list(i,:),endTime(i,:),count(i)-1));
     end
    
     

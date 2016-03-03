@@ -25,11 +25,8 @@ sample_pir=zeros(16,1);
 len_1=size(time_1);
 len_2=size(pir_array);
 limit=min(len_1(2),len_2(2));
-% sample=zeros(16,148448);
 sample(1,:)= pir_array(1,1:limit);
 sample(2,:)= time_1;
-% sample(3,:)= pir_array(2,1:limit);
-% sample(4,:)= time_2;
 index=1;
 count=1;
 time = start_time;
@@ -63,12 +60,9 @@ while(time<MAXLIMIT && index<limit)
     
 end
 len_1=size(time_2);
-% len_2=size(pir_array);
 clear sample;
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(2,1:limit);
-% sample(1,:)= pirB;
-% sample(2,:)= time_2;
 index=1;
 count=1;
 time = start_time;
@@ -106,11 +100,8 @@ clear sample;
 ARRAY_SLOT_PIR=5;
 ARRAY_SLOT_TIME=6;
 len_1=size(time_3);
-% len_2=size(pir_array);
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(3,1:limit);
-% sample(1,:)= pirC;
-% sample(2,:)= time_2;
 index=1;
 count=1;
 time = start_time;
@@ -149,11 +140,8 @@ ARRAY_SLOT_PIR=7;
 ARRAY_SLOT_TIME=8;
 PIR_NODE=4;
 len_1=size(time_4);
-
 limit=min(len_1(2),len_2(2));
 sample(1,:)= pir_array(PIR_NODE,1:limit);
-% sample(1,:)= pirD;
-
 index=1;
 count=1;
 time = start_time;

@@ -10,7 +10,7 @@ a = [node1(value,1:range);node2(value,1:range);node3(value,1:range);node4(value,
 % plotTitle = ['correlation variation'];
 
 % a=mega_imf;
-
+t
 for j = 1:8
     for i = 1:8
         

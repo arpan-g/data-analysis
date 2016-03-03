@@ -19,3 +19,5 @@ for i = 1:8
         
     end
 end
+
+[val,index]=binary_xcorr(transitionMatrix(1,:),transitionMatrix(2,:),30);
