@@ -1,10 +1,11 @@
-clear;
-tick = 0.001;
+
+% clear;
+% tick = 0.001;
 MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load('26_02.mat');
+load(file);
 recPAckets=ones(1,8);
 length = size(dataArray);
 count=ones(1,8);

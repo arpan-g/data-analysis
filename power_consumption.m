@@ -1,4 +1,6 @@
 % num_mins=12;
+
+% clc;close all;
 clear standardDeviationMatrix;
 clear total_pow;
 clear energyMatrix;
@@ -12,12 +14,15 @@ for i = 1:8
     for k = 1:overlap_size:len(2)
         if(k+window_size<len(2))
             values=combine_data(i,k:k+window_size);
+            time_power(i,count) = sum(values);
             F = fft(values);
             pow = F.*conj(F);
+            mean=abs(F(1));
             total_pow = sum(pow);
-            standardDeviationMatrix(i,count)=max(pow);
+            DCMatrix(i,count)=mean;
+            standardDeviationMatrix(i,count)=std(pow);
             energyMatrix(i,count)=total_pow;
-            count =count +1;
+            count = count +1;
         end
     end
 end
@@ -31,21 +36,27 @@ for i = 1:count-1
     end
 end
 
-figure;
+figure3=figure;
 imagesc(energyMatrix);
 colorbar();
-% R=corrcoef(transpose(energyMatrix));
-R=corrcoef(transpose(standardDeviationMatrix));
+xlabel('nodeID');
+ylabel('nodeID');
+
+saveas(figure3,power_file);
+
+R=corrcoef(transpose(energyMatrix));
+% R=corrcoef(transpose(time_power));
+% R=corrcoef(transpose(standardDeviationMatrix));
 for l =1:8
-    for m =1:8
-        
-        graphMatrix(l,m)=R(l,m)>0.45;
+    for m =1:8        
+        graphMatrix(l,m)=R(l,m)>=0.40;
     end
     
 end
+figure1=figure;
 G= graph(graphMatrix);
 plot(G);
-figure;
+figure2=figure;
 h=imagesc(R);
 xlabel('nodeId');ylabel('nodeId');
 % impixelregion(h);
@@ -54,10 +65,14 @@ textStrings = strtrim(cellstr(textStrings));  %# Remove any space padding
 [x,y] = meshgrid(1:8);   %# Create x and y coordinates for the strings
 hStrings = text(x(:),y(:),textStrings(:),...      %# Plot the strings
     'HorizontalAlignment','center');
-midValue = mean(get(gca,'CLim'));  %# Get the middle value of the color range
-textColors = repmat(R(:) < midValue,1,3);  %# Choose white or black for the
+% midValue = mean(get(gca,'CLim'));  %# Get the middle value of the color range
+textColors = repmat(R(:) < 0.5,1,3);  %# Choose white or black for the
 %#   text color of the strings so
 %#   they can be easily seen over
 %#   the background color
 set(hStrings,{'Color'},num2cell(textColors,2));
 colorbar();
+
+saveas(figure1,corr_file)
+saveas(figure2,map_file)
+
