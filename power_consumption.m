@@ -8,6 +8,8 @@ window_size = 64;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 rand_array=[1,2,3,4,5,6,7,8];
 % rand_array=[1,3,4,8,2,5,7,6];
+load('long_tests\pir_data\pir01_03.mat');
+load(file);
 combine_data = zeros(8,8);
 combine_data=newPirArray(rand_array(1),:);
 for i =2:8
@@ -48,9 +50,9 @@ colorbar();
 xlabel('nodeID');
 ylabel('nodeID');
 % [RHO,PVAL] = corr(a',b','Type','Spearman');
-R=corr(transpose(energyMatrix),'type','Kendall');
+R=correlation_pearson(transpose(energyMatrix));
 % R=corrcoef(transpose(energyMatrix),'Spearman');
-% R=corrcoef(transpose(time_power));
+% R=corrcoef(transpose(energyMatrix));
 % R=corrcoef(transpose(standardDeviationMatrix));
 for l =1:8
     for m =1:8        
@@ -77,8 +79,8 @@ textColors = repmat(R(:) < 0.5,1,3);  %# Choose white or black for the
 %#   the background color
 set(hStrings,{'Color'},num2cell(textColors,2));
 colorbar();
-saveas(figure3,power_file);
-saveas(figure1,corr_file)
-saveas(figure2,map_file)
+% saveas(figure3,power_file);
+% saveas(figure1,corr_file)
+% saveas(figure2,map_file)
 % 
 % clearvars -except newPirArray energyMatrix DCMatrix R
