@@ -23,9 +23,7 @@ beep;
    dataArray(:,count)= rawdata;
    count = count + 1;
    rawdata(2)
-   if(count==500)
-   break;
-   end
+ 
  
  end
 save('under_8.mat','dataArray')
