@@ -354,5 +354,6 @@ newPirArray=[spike_removal(sample_pir(1,:));spike_removal(sample_pir(3,:));spike
 imagesc(newPirArray);
 xlabel('time(x0.1s)');
 ylabel('nodeId');
-% colorbar();
+colorbar();
 % saveas(figure1,'29_02/pir_output.png')
+% clearvars -except newPirArray

@@ -1,0 +1,25 @@
+count =1;
+neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
+R(r,c)
+for i = 1:64
+    
+    if(correlation_sorted(i)~=1)
+        norm_correlation_sorted(count)=correlation_sorted(i);
+        count =count + 1;
+        
+    end
+end
+% figure
+% hist(norm_correlation_sorted(:))
+% [mu,s,muci,sci]=normfit(norm_correlation_sorted);
+% x=0:0.01:1;
+% norm=normpdf(x,mu,s);
+% figure
+% plot(x,norm)
+x = 0:.1:1;
+A = [x; exp(x)];
+
+fileID = fopen('exp.txt','w');
+fprintf(fileID,'%6s %12s\n','x','exp(x)');
+fprintf(fileID,'%6.2f %12.8f\n',A);
+fclose(fileID);

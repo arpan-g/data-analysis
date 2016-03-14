@@ -1,13 +1,17 @@
-
+%% This script converts raw data obtained from the sensors to an array of pir output.
+% raw packet contains pir data, start time, end time of sampling for the
+% pir values. The mac id field helps in identifying the sensor node to
+% which the data belongs to. The packet also contains packet number which
+% helps in identifying duplicate packets and also to detect missing
+% packets.
 % clear;
-% tick = 0.001;
 MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
 load(file);
 recPAckets=ones(1,8);
-length = size(dataArray);
+[rows,column] = size(dataArray);
 count=ones(1,8);
 packet_count = ones(1,8);
 overflow_flag  =zeros(1,8);
@@ -15,13 +19,16 @@ prev_time = zeros(1,8);
 prev_start_time = zeros(1,8);
 actual_packet_number = zeros(1,8);
 packet_lost_pir = ones(1,32)*-1;
-prev_packet_number = ones(1,8)*-1;%initialize prev_packet_number to -1
-pac_2 = 0;
+%initialize prev_packet_number to -1;
+prev_packet_number = ones(1,8)*-1;
 pir=zeros(8,8);
 lost_packets= zeros(1,8);
+% since the last byte of the start time is same as that of the end time it
+% previos_14 is used to overcome anomalies that occur due to which when
+% there is a transition of the value.
 previou_14=zeros(1,8);
 % generate pir,starttime and end time arrays
-for i = 1:length(2)
+for i = 1:column
     
     element = dataArray(:,i);
     mac_id = element(MAC_ID);
@@ -72,9 +79,6 @@ for i = 1:length(2)
         prev_start_time(mac_id) = startTime;
     end
 end
-% %create sample every 100ms
-maxCount=max(count);
-
 
 timeArrayLength=size(start_time_list);
 for i = 1:8
@@ -99,24 +103,4 @@ for i = 1:8
    
     
 end
-
-% time_1=TimeArrayGenerator(endTime_1,minCount);
-% time_2=TimeArrayGenerator(endTime_2,minCount);
-% time_3=TimeArrayGenerator(endTime_3,minCount);
-% time_4=TimeArrayGenerator(endTime_4,minCount);
-% time_5=TimeArrayGenerator(endTime_5,minCount);
-% time_6=TimeArrayGenerator(endTime_6,minCount);
-% time_7=TimeArrayGenerator(endTime_7,minCount);
-% time_8=TimeArrayGenerator(endTime_8,minCount);
-for i = 1:8
-maxEndTime=max(endTime(:,i));
-end
-for j = 1:timeArrayLength(2)
-    minDiff = min(endTime(:,j));
-    maxDiff = max(endTime(:,j));
-    difference(j)=maxDiff-minDiff;
-    if((maxDiff-minDiff)<3500)
-        start_index = j;
-        break;
-    end
-end
+% clearvars -except time_* pir_array lost_packets

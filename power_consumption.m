@@ -4,16 +4,22 @@
 clear standardDeviationMatrix;
 clear total_pow;
 clear energyMatrix;
-window_size = 128;%num_mins min=num_mins*60*10ms
+window_size = 64;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
-combine_data = newPirArray;
-len=size(combine_data);
+rand_array=[1,2,3,4,5,6,7,8];
+% rand_array=[1,3,4,8,2,5,7,6];
+combine_data = zeros(8,8);
+combine_data=newPirArray(rand_array(1),:);
+for i =2:8
+combine_data = [combine_data;newPirArray(rand_array(i),:)];
+    end
+ len=size(combine_data);
 
 for i = 1:8
     count =1;
     for k = 1:overlap_size:len(2)
         if(k+window_size<len(2))
-            values=combine_data(i,k:k+window_size);
+            values=combine_data(i,k:k+window_size-1);
             time_power(i,count) = sum(values);
             F = fft(values);
             pow = F.*conj(F);
@@ -21,7 +27,7 @@ for i = 1:8
             total_pow = sum(pow);
             DCMatrix(i,count)=mean;
             standardDeviationMatrix(i,count)=std(pow);
-            energyMatrix(i,count)=total_pow;
+            energyMatrix(i,count)=calc_energy(values);
             count = count +1;
         end
     end
@@ -41,15 +47,14 @@ imagesc(energyMatrix);
 colorbar();
 xlabel('nodeID');
 ylabel('nodeID');
-
-saveas(figure3,power_file);
-
-R=corrcoef(transpose(energyMatrix));
+% [RHO,PVAL] = corr(a',b','Type','Spearman');
+R=corr(transpose(energyMatrix),'type','Kendall');
+% R=corrcoef(transpose(energyMatrix),'Spearman');
 % R=corrcoef(transpose(time_power));
 % R=corrcoef(transpose(standardDeviationMatrix));
 for l =1:8
     for m =1:8        
-        graphMatrix(l,m)=R(l,m)>=0.40;
+        graphMatrix(l,m)=R(l,m)>=0.34;
     end
     
 end
@@ -72,7 +77,8 @@ textColors = repmat(R(:) < 0.5,1,3);  %# Choose white or black for the
 %#   the background color
 set(hStrings,{'Color'},num2cell(textColors,2));
 colorbar();
-
+saveas(figure3,power_file);
 saveas(figure1,corr_file)
 saveas(figure2,map_file)
-
+% 
+% clearvars -except newPirArray energyMatrix DCMatrix R
