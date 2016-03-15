@@ -8,13 +8,14 @@ window_size = 64;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 rand_array=[1,2,3,4,5,6,7,8];
 % rand_array=[1,3,4,8,2,5,7,6];
-load('long_tests\pir_data\pir01_03.mat');
-load(file);
+% load('long_tests\pir_data\pir01_03.mat');
+load('pir_19_02_exp.mat');
 combine_data = zeros(8,8);
-combine_data=newPirArray(rand_array(1),:);
-for i =2:8
-combine_data = [combine_data;newPirArray(rand_array(i),:)];
-    end
+% combine_data=newPirArray(rand_array(1),:);
+% for i =2:8
+% combine_data = [combine_data;newPirArray(rand_array(i),:)];
+%     end
+combine_data=newPirArray;
  len=size(combine_data);
 
 for i = 1:8
@@ -22,14 +23,14 @@ for i = 1:8
     for k = 1:overlap_size:len(2)
         if(k+window_size<len(2))
             values=combine_data(i,k:k+window_size-1);
-            time_power(i,count) = sum(values);
-            F = fft(values);
-            pow = F.*conj(F);
-            mean=abs(F(1));
-            total_pow = sum(pow);
-            DCMatrix(i,count)=mean;
-            standardDeviationMatrix(i,count)=std(pow);
-            energyMatrix(i,count)=calc_energy(values);
+%             time_power(i,count) = sum(values);
+%             F = fft(values);
+%             pow = F.*conj(F);
+%             mean=abs(F(1));
+%             total_pow = sum(pow);
+%             DCMatrix(i,count)=mean;
+%             standardDeviationMatrix(i,count)=std(pow);
+            energyMatrix(i,count)= sum(values);
             count = count +1;
         end
     end
@@ -45,12 +46,13 @@ for i = 1:count-1
 end
 
 figure3=figure;
-imagesc(energyMatrix);
+imagesc(filteredMatrix);
 colorbar();
 xlabel('nodeID');
 ylabel('nodeID');
 % [RHO,PVAL] = corr(a',b','Type','Spearman');
-R=correlation_pearson(transpose(energyMatrix));
+R=correlation_pearson(transpose(filteredMatrix));
+% R1=correlation_pearson(transpose(filteredMatrix));
 % R=corrcoef(transpose(energyMatrix),'Spearman');
 % R=corrcoef(transpose(energyMatrix));
 % R=corrcoef(transpose(standardDeviationMatrix));
@@ -60,11 +62,12 @@ for l =1:8
     end
     
 end
-figure1=figure;
-G= graph(graphMatrix);
-plot(G);
-figure2=figure;
-h=imagesc(R);
+% figure1=figure;
+% G= graph(graphMatrix);
+% plot(G);
+% figure2=figure;
+% imagesc(R1);
+h=imagesc(R1);
 xlabel('nodeId');ylabel('nodeId');
 % impixelregion(h);
 textStrings = num2str(R(:),'%0.2f');  %# Create strings from the matrix values
