@@ -4,12 +4,12 @@
 clear standardDeviationMatrix;
 clear total_pow;
 clear energyMatrix;
-window_size = 64;%num_mins min=num_mins*60*10ms
+% window_size = 64;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 rand_array=[1,2,3,4,5,6,7,8];
 % rand_array=[1,3,4,8,2,5,7,6];
-% load('long_tests\pir_data\pir01_03.mat');
-load('pir_19_02_exp.mat');
+
+load(file);
 combine_data = zeros(8,8);
 % combine_data=newPirArray(rand_array(1),:);
 % for i =2:8
@@ -62,12 +62,12 @@ for l =1:8
     end
     
 end
-% figure1=figure;
+figure1=figure;
 % G= graph(graphMatrix);
 % plot(G);
 % figure2=figure;
-% imagesc(R1);
-h=imagesc(R1);
+
+h=imagesc(R);
 xlabel('nodeId');ylabel('nodeId');
 % impixelregion(h);
 textStrings = num2str(R(:),'%0.2f');  %# Create strings from the matrix values
