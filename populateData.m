@@ -1,4 +1,4 @@
-function [ node ] = populateData( light,temp,audio,time,packet_number )
+function [ node ] = populateData( light,temp,audio,voltage,time,packet_number )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
         node(1)=light;
@@ -6,6 +6,7 @@ function [ node ] = populateData( light,temp,audio,time,packet_number )
         node(3)=audio;
         node(4)=time;
         node(5)=packet_number;
+        node(6)=voltage;
 
 end
 
