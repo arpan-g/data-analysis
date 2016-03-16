@@ -1,13 +1,20 @@
+
 %% run all
 clear all;
+window_count = 1;
+for window_size =10:2:128;
+clearvars -except window_size min_threshold window_count;
+
 Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
 folder_name='21_03/';
 [num_files,index]=size(Files);
+min_threshold(window_count,:)=[window_size,-1,1,1];
+
 % file_counter=10;
-for window_size = 10:2:64;
+
     % count_snip=1;
     weka_file=[folder_name,num2str(window_size),'.arff'];
-    fileID = fopen(weka_file,'a');
+    fileID = fopen(weka_file,'w');
     fprintf(fileID,'@relation ''correlation-neig-non-neighbors''\n');
     fprintf(fileID,'@attribute ''correlation'' numeric\n');
     fprintf(fileID,'@attribute ''activity'' {''1'',''0'',''-1''}\n');
@@ -35,12 +42,13 @@ for window_size = 10:2:64;
         %     time_analysis_Short
         %     test_sample
         power_consumption
-        verification_algo
+%         verification_algo
         
         snippet
         %     evaluation_matrix(file_counter,:)=[bestThreshold,falseNegative,falsepositive];
         
     end
+    window_count = window_count+1;
     fclose(fileID);
     
 end
