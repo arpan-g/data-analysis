@@ -1,0 +1,4 @@
+@relation 'correlation-neig-non-neighbors'
+@attribute 'correlation' numeric
+@attribute 'activity' {'1','0','-1'}
+@data

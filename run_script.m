@@ -2,8 +2,8 @@
 %% run all
 clear all;
 window_count = 1;
-for window_size =10:2:128;
-% window_size=44;
+% for window_size =10:2:128;
+window_size=48;
 clearvars -except window_size min_threshold window_count;
 
 Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
@@ -14,12 +14,13 @@ min_threshold(window_count,:)=[window_size,-1,1,1];
 % file_counter=10;
 
     % count_snip=1;
-    weka_file=[folder_name,num2str(window_size),'.arff'];
+    weka_file=[folder_name,'overlaping','.arff'];
     fileID = fopen(weka_file,'w');
     fprintf(fileID,'@relation ''correlation-neig-non-neighbors''\n');
     fprintf(fileID,'@attribute ''correlation'' numeric\n');
     fprintf(fileID,'@attribute ''activity'' {''1'',''0'',''-1''}\n');
     fprintf(fileID,'@data\n');
+    diagonal_count=1;
     for file_counter = 1: num_files
         close all;
         clear time_*;
@@ -43,13 +44,14 @@ min_threshold(window_count,:)=[window_size,-1,1,1];
         %     time_analysis_Short
         %     test_sample
         power_consumption
-%         verification_algo
+        verification_algo
         
-        snippet
-        %     evaluation_matrix(file_counter,:)=[bestThreshold,falseNegative,falsepositive];
+       
+        evaluation_matrix(file_counter,:)=[bestThreshold,falseNegative,falsepositive];
         
     end
+     snippet
     window_count = window_count+1;
     fclose(fileID);
     
-end
+% end

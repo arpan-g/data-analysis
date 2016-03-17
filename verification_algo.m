@@ -136,6 +136,18 @@ for i= 1:8
         end
     end
 end
+for i= 1:8
+    for j = i:8
+        if(optimistic_neighbouring_map(i,j)==-1)
+            if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
+              diagonal(diagonal_count,:)=[graphMatrix(i,j),i,j,bestThreshold,R(i,j)];
+              diagonal_count=diagonal_count+1;
+                
+            end
+        end
+    end
+end
+
 
 
 if(flag==1)
@@ -149,6 +161,7 @@ te=falseNegative+falsepositive;
 % G= graph(graphMatrix,'OmitSelfLoops');
 % plot(G);
 % saveas(figure1,ver_file)
+
 %       s = [1 1 1 2 2 3 3 4 5 5 6 7];
 %       t = [2 4 8 3 7 4 6 5 6 8 7 8];
 %       weights = [10 10 1 10 1 10 1 1 12 12 12 12];
