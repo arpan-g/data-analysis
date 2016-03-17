@@ -3,6 +3,7 @@
 clear all;
 window_count = 1;
 for window_size =10:2:128;
+% window_size=44;
 clearvars -except window_size min_threshold window_count;
 
 Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
@@ -33,10 +34,10 @@ min_threshold(window_count,:)=[window_size,-1,1,1];
         %     map_file = 'test_map.png';
         %     pir_array_file=['07_03/','pir_',Files(file_counter).name(1:end-4),'.mat'];
         
-        %     ver_file=[folder_name,Files(file_counter).name(1:end-4),'_ver.png'];
-        %     power_file=[folder_name,Files(file_counter).name(1:end-4),'_power.png'];
-        %     corr_file = [folder_name,Files(file_counter).name(1:end-4),'_corr.png'];
-        %     map_file  = [folder_name,Files(file_counter).name(1:end-4),'_map.png'];
+            ver_file=[folder_name,Files(file_counter).name(1:end-4),'_ver.png'];
+            power_file=[folder_name,Files(file_counter).name(1:end-4),'_power.png'];
+            corr_file = [folder_name,Files(file_counter).name(1:end-4),'_corr.png'];
+            map_file  = [folder_name,Files(file_counter).name(1:end-4),'_map.png'];
         % file = '16_02_lunch.mat';
         %         pir_array_file=['07_03/','pir_15_03.mat'];
         %     time_analysis_Short

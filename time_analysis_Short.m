@@ -9,7 +9,7 @@ MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load(file);
+load('16_03_1.mat');
 recPAckets=ones(1,8);
 [rows,column] = size(dataArray);
 count=ones(1,8);
