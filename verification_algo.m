@@ -157,9 +157,9 @@ end
 
 te=falseNegative+falsepositive;
 
-% figure1=figure;
-% G= graph(graphMatrix,'OmitSelfLoops');
-% plot(G);
+figure1=figure;
+G= graph(graphMatrix,'OmitSelfLoops');
+plot(G);
 % saveas(figure1,ver_file)
 
 %       s = [1 1 1 2 2 3 3 4 5 5 6 7];
