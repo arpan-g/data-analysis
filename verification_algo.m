@@ -5,28 +5,30 @@ close all;
 te=3;
 minTe=1000;
 neighbouring_map=zeros(8,8);
-neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
+% neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
 
 optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
+optimistic_neighbouring_map=abs(optimistic_neighbouring_map);
+neighbouring_map=optimistic_neighbouring_map;
 bestThreshold=-1;
 
 [rows,columns]=size(neighbouring_map);
 for r = 1:rows
     count =1;
     for c = 1:columns
-        if(neighbouring_map(r,c)~=0)
+        if(neighbouring_map(r,c)==0)
             
-            collect_correlation(r,c)=R(r,c);
-        else
-            collect_correlation(r,c)=1;
+            collect_correlation(count)=R(r,c);
+            count = count+1;
+            
         end
         
-        count = count+1;
+        
     end
 end
 correlation_sorted=sort(R(:));
-threshold_array=sort(collect_correlation(:));
-[corr_row,corr_colum,v] = find(correlation_sorted==threshold_array(1));
+threshold_array=max(collect_correlation(:));
+[corr_row,corr_colum,v] = find(correlation_sorted==threshold_array);
 index=corr_row(end)-1;
 [r,c]=size(correlation_sorted);
 while(te >= 2 && index<r)
@@ -98,21 +100,21 @@ end
 count=1;
 flag=0;
 for i= 1:8
-    for j = 1:8
-        if(neighbouring_map(i,j)==1)
-            if( neighbouring_map(i,j)~=   graphMatrix(i,j));
-                                nonMatchingMatrix(count,1)=i;
-                                nonMatchingMatrix(count,2)=j;
-                                count=count+1;
-                flag=1;
-                %                 break;
-            end
+    for j = i+1:8
+        %         if(neighbouring_map(i,j)==1)
+        if( neighbouring_map(i,j)~=   graphMatrix(i,j));
+            nonMatchingMatrix(count,1)=i;
+            nonMatchingMatrix(count,2)=j;
+            count=count+1;
+            flag=1;
+            %                 break;
+            %             end
         end
     end
 end
 falsepositive=0;
 for i= 1:8
-    for j = 1:8
+    for j = i+1:8
         if(optimistic_neighbouring_map(i,j)==0)
             if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
                 fpMatrix(falsepositive+1,1)=i;
@@ -125,7 +127,7 @@ for i= 1:8
 end
 falseNegative=0;
 for i= 1:8
-    for j = 1:8
+    for j = i+1:8
         if(optimistic_neighbouring_map(i,j)==1)
             if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
                 fnMatrix(count,1)=i;
@@ -137,11 +139,11 @@ for i= 1:8
     end
 end
 for i= 1:8
-    for j = i:8
+    for j = i+1:8
         if(optimistic_neighbouring_map(i,j)==-1)
             if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
-              diagonal(diagonal_count,:)=[graphMatrix(i,j),i,j,bestThreshold,R(i,j)];
-              diagonal_count=diagonal_count+1;
+                diagonal(diagonal_count,:)=[graphMatrix(i,j),i,j,bestThreshold,R(i,j)];
+                diagonal_count=diagonal_count+1;
                 
             end
         end
@@ -150,16 +152,16 @@ end
 
 
 
-if(flag==1)
-    disp('neighbours not matching')
-    nonMatchingMatrix
-end
+% if(flag==1)
+disp('neighbours not matching')
+nonMatchingMatrix
+% end
 
 te=falseNegative+falsepositive;
 
-figure1=figure;
-G= graph(graphMatrix,'OmitSelfLoops');
-plot(G);
+% figure1=figure;
+% G= graph(graphMatrix,'OmitSelfLoops');
+% plot(G);
 % saveas(figure1,ver_file)
 
 %       s = [1 1 1 2 2 3 3 4 5 5 6 7];
