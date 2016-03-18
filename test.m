@@ -1,5 +1,5 @@
 optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
-% optimistic_neighbouring_map=abs(optimistic_neighbouring_map);
+optimistic_neighbouring_map=abs(optimistic_neighbouring_map);
 count = ones(3,1);
 
 for i = 1:8
