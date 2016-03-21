@@ -2,36 +2,44 @@
 %Create a sensor corresponding neighbors map.
 % clearvars -except R;
 close all;
+clear collect_correlation;
+clear correlation_sorted;
 te=3;
 minTe=1000;
 neighbouring_map=zeros(8,8);
-% neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
-
+NO_ONES=10;
+neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
+non_neighboring = -1;
 optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
-optimistic_neighbouring_map=abs(optimistic_neighbouring_map);
-neighbouring_map=optimistic_neighbouring_map;
+% optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
+% neighbouring_map=optimistic_neighbouring_map;
 bestThreshold=-1;
 
 [rows,columns]=size(neighbouring_map);
+count =1;
 for r = 1:rows
-    count =1;
+    %
     for c = 1:columns
-        if(neighbouring_map(r,c)==0)
+        if(neighbouring_map(r,c)==1)
             
             collect_correlation(count)=R(r,c);
             count = count+1;
-            
+        else(neighbouring_map(r,c)==0)
+            non_neighboring = max(R(r,c),non_neighboring);
         end
         
         
     end
 end
 correlation_sorted=sort(R(:));
-threshold_array=max(collect_correlation(:));
+threshold_array=min(collect_correlation(:));
+if(threshold_array>non_neighboring)
+    threshold_array=non_neighboring;
+end
 [corr_row,corr_colum,v] = find(correlation_sorted==threshold_array);
 index=corr_row(end)-1;
 [r,c]=size(correlation_sorted);
-while(te >= 2 && index<r)
+while(index<r)
     graphMatrix=zeros(8,8);
     index = index+1;
     threshold=correlation_sorted(index);
@@ -54,7 +62,7 @@ while(te >= 2 && index<r)
     
     falsepositive=0;
     for i= 1:8
-        for j = 1:8
+        for j = i+1:8
             if(optimistic_neighbouring_map(i,j)==0)
                 if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
                     falsepositive=falsepositive+1;
@@ -64,7 +72,7 @@ while(te >= 2 && index<r)
     end
     falseNegative=0;
     for i= 1:8
-        for j = 1:8
+        for j = i+1:8
             if(optimistic_neighbouring_map(i,j)==1)
                 if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
                     falseNegative=falseNegative+1;
@@ -74,11 +82,11 @@ while(te >= 2 && index<r)
         end
     end
     
-    if(falseNegative+falsepositive<minTe)
+    if(falseNegative/NO_ONES+falsepositive/12<=minTe)
         bestThreshold = max(bestThreshold,threshold);
     end
     
-    minTe=min(falseNegative+falsepositive,minTe);
+    minTe=min(falseNegative/10+falsepositive/12,minTe);
     te=falseNegative+falsepositive;
     if(te==0)
         break;
@@ -138,28 +146,29 @@ for i= 1:8
         end
     end
 end
-for i= 1:8
-    for j = i+1:8
-        if(optimistic_neighbouring_map(i,j)==-1)
-            if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
-                diagonal(diagonal_count,:)=[graphMatrix(i,j),i,j,bestThreshold,R(i,j)];
-                diagonal_count=diagonal_count+1;
-                
-            end
-        end
-    end
-end
+% for i= 1:8
+%     for j = i+1:8
+%         if(optimistic_neighbouring_map(i,j)==-1)
+%             if( optimistic_neighbouring_map(i,j)~=   graphMatrix(i,j));
+%                 diagonal(diagonal_count,:)=[graphMatrix(i,j),i,j,bestThreshold,R(i,j)];
+%                 diagonal_count=diagonal_count+1;
+%
+%             end
+%         end
+%     end
+% end
 
 
 
 % if(flag==1)
-disp('neighbours not matching')
-nonMatchingMatrix
+% disp('neighbours not matching')
+% nonMatchingMatrix
 % end
 
 te=falseNegative+falsepositive;
 
 % figure1=figure;
+% % figure;
 % G= graph(graphMatrix,'OmitSelfLoops');
 % plot(G);
 % saveas(figure1,ver_file)
@@ -172,7 +181,6 @@ te=falseNegative+falsepositive;
 %       G.Edges
 %       G.Nodes
 %       plot(G,'EdgeLabel',G.Edges.Weight)
-
 
 
 
