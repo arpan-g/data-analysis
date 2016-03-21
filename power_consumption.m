@@ -26,15 +26,15 @@ for i = 1:8
     end
 end
 
-newCount=1;
-for i = 1:count-5
-    
+% newCount=1;
+% for i = 1:count-5
+%     
 %         if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
-    if(max(energyMatrix(:,i)>0))
-        filteredMatrix(:,newCount)=energyMatrix(:,i);
-        newCount=newCount+1;
-    end
-end
+% %     if(max(energyMatrix(:,i)>0))
+%         filteredMatrix(:,newCount)=energyMatrix(:,i);
+%         newCount=newCount+1;
+%     end
+% end
 R=correlation_pearson(transpose(energyMatrix));
 %
 % figure3=figure;
