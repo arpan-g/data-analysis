@@ -1,0 +1,3 @@
+for i 1:
+clearvars -except newPirArray
+load(all_data.mat)

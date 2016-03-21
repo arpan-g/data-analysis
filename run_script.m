@@ -2,7 +2,7 @@
 clear all;
 window_count = 1;
 % for window_size =10:2:128;
-window_size=48;
+window_size=36;
 clearvars -except window_size min_threshold window_count best_window;
 
 Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
@@ -40,13 +40,13 @@ for file_counter = 1: num_files
     %         pir_array_file=['07_03/','pir_15_03.mat'];
     %     time_analysis_Short
     %     test_sample
-    power_consumption
+%     power_consumption
 % %     raw_signal_analysis
-    verification_algo
-    stat
+%     verification_algo
+%     stat
 %     test
-%     combine_data
-    evaluation_matrix(file_counter,:)=[bestThreshold,mn,sd,dist];
+    combine_data
+%     evaluation_matrix(file_counter,:)=[bestThreshold,mn,sd,dist];
  
 % break;
 end

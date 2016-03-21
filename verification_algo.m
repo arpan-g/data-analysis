@@ -8,11 +8,11 @@ te=3;
 minTe=1000;
 neighbouring_map=zeros(8,8);
 NO_ONES=10;
-neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
+% neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
 non_neighboring = -1;
 optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
-% optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
-% neighbouring_map=optimistic_neighbouring_map;
+optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
+neighbouring_map=optimistic_neighbouring_map;
 bestThreshold=-1;
 
 [rows,columns]=size(neighbouring_map);
@@ -24,7 +24,7 @@ for r = 1:rows
             
             collect_correlation(count)=R(r,c);
             count = count+1;
-        else(neighbouring_map(r,c)==0)
+        elseif(neighbouring_map(r,c)==0)
             non_neighboring = max(R(r,c),non_neighboring);
         end
         
@@ -86,7 +86,7 @@ while(index<r)
         bestThreshold = max(bestThreshold,threshold);
     end
     
-    minTe=min(falseNegative/10+falsepositive/12,minTe);
+    minTe=min(falseNegative/NO_ONES+falsepositive/12,minTe);
     te=falseNegative+falsepositive;
     if(te==0)
         break;
