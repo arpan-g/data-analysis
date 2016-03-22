@@ -23,7 +23,7 @@ folder_name='images/';
 %     fprintf(fileID,'@data\n');
 randperm(12)
 diagonal_count=1;mega_number=1;
-for file_counter = randperm(12)
+for file_counter = 1:num_files
 %     close all;
 %     clear time_*;
 %     clear pir_array;

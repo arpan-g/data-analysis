@@ -32,7 +32,7 @@ end
 count = 1;
 for i = 1:8
     for j = i+1:8
-        newGraph(i,j)=IDX(count)-1;
+        newGraph(i,j)=IDX(count);
         %           graphMatrix=abs(graphMatrix);
         count = count + 1;
     end
