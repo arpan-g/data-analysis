@@ -41,7 +41,7 @@ for file_counter = randperm(12)
     %         pir_array_file=['07_03/','pir_15_03.mat'];
     %     time_analysis_Short
     %     test_sample
-%     power_consumption
+    power_consumption
 % %     raw_signal_analysis
 %     verification_algo
 %     stat

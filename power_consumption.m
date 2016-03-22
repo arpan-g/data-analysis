@@ -8,7 +8,7 @@ clear energyMatrix;
 clear filteredMatrix;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
-% load('long_tests\pir_data\pir_15_03.mat');
+% load('combined_data\combi.mat');
 % load(file);
 combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
