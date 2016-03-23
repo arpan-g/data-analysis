@@ -12,7 +12,7 @@ optimistic_neighbouring_map=...
     0     0    -1     1     1     0    -1     1;...
     0     0     0     0     1    -1     0     1;...
     0     0     0     0    -1     1     1     0];
-optimistic_neighbouring_map=abs(optimistic_neighbouring_map);
+% optimistic_neighbouring_map=abs(optimistic_neighbouring_map);
 newGraph=zeros(8,8);
 count =1;
 for i = 1:8
@@ -32,6 +32,7 @@ end
 count = 1;
 for i = 1:8
     for j = i+1:8
+        
         newGraph(i,j)=IDX(count);
         %           graphMatrix=abs(graphMatrix);
         count = count + 1;
@@ -64,6 +65,6 @@ for i= 1:8
     end
 end
 te=falseNegative/16+falsepositive/12;
-% G= graph(newGraph);
-% plot(G);
+G= graph(graphMatrix);
+plot(G);
 

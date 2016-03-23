@@ -10,6 +10,7 @@ clearvars -except newPirArray evaluation_matrix counter time_period file_counter
 file = ['combined_data\',Files(file_counter).name];
 load(file);
 power_consumption
+% verification_algo
 clustering_kmean
 evaluation_matrix(counter,:)=[file_counter,time_period,falseNegative,falsepositive,falseNegative/16+falsepositive/12];
 counter=counter+1;
