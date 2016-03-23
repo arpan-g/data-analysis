@@ -4,12 +4,15 @@
 % which the data belongs to. The packet also contains packet number which
 % helps in identifying duplicate packets and also to detect missing
 % packets.
-% clear;
+clear all;
 MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;
 UINT8_MAX_NUM = 256;
-load('17_03.mat');
+% load()
+% load('11_03_no_sync_node.mat');
+% load('11_03_no_sync_node_1.mat');
+load('22_03.mat');
 recPAckets=ones(1,8);
 [rows,column] = size(dataArray);
 count=ones(1,8);

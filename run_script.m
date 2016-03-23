@@ -21,14 +21,14 @@ folder_name='images/';
 %     fprintf(fileID,'@attribute ''correlation'' numeric\n');
 %     fprintf(fileID,'@attribute ''activity'' {''1'',''0'',''-1''}\n');
 %     fprintf(fileID,'@data\n');
-randperm(12)
+% randperm(12)
 diagonal_count=1;mega_number=1;
 for file_counter = 1:num_files
-%     close all;
-%     clear time_*;
-%     clear pir_array;
-%     clear corr_file;
-%     clear map_file
+    close all;
+    clear time_*;
+    clear pir_array;
+    clear corr_file;
+  
     %         file='15_03.mat';
     file = ['long_tests\pir_data\',Files(file_counter).name];
     
@@ -42,18 +42,19 @@ for file_counter = 1:num_files
     %     time_analysis_Short
     %     test_sample
     power_consumption
+%     clustering_kmean
 % %     raw_signal_analysis
 %     verification_algo
 %     stat
 %     test
-    combine_data
-%     evaluation_matrix(file_counter,:)=[bestThreshold,mn,sd,dist];
+%     combine_data
+    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
  
 % break;
 end
-clearvars -except data_combine
-newPirArray = data_combine;
-save('combi_10.mat','newPirArray');
+% clearvars -except data_combine
+% newPirArray = data_combine;
+% save('combi_10.mat','newPirArray');
 % snippet
 %    best_window(window_count,:)=[window_size,min_one,max_zero];
 % window_count = window_count+1;

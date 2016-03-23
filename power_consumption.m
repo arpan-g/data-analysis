@@ -2,14 +2,13 @@
 
 % clc;close all;
 % clear all;
-clear standardDeviationMatrix;
-clear total_pow;
+clear newPirArray;
 clear energyMatrix;
 clear filteredMatrix;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 % load('combined_data\combi.mat');
-% load(file);
+load(file);
 combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
 len=size(combine_data);
@@ -26,16 +25,16 @@ for i = 1:8
     end
 end
 
-% newCount=1;
-% for i = 1:count-5
-%     
-%         if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
-% %     if(max(energyMatrix(:,i)>0))
-%         filteredMatrix(:,newCount)=energyMatrix(:,i);
-%         newCount=newCount+1;
-%     end
-% end
-R=correlation_pearson(transpose(energyMatrix));
+newCount=1;
+for i = 1:count-5
+    
+        if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
+%     if(max(energyMatrix(:,i)>0))
+        filteredMatrix(:,newCount)=energyMatrix(:,i);
+        newCount=newCount+1;
+    end
+end
+R=correlation_pearson(transpose(filteredMatrix));
 %
 % figure3=figure;
 % imagesc(filteredMatrix);
@@ -61,7 +60,7 @@ R=correlation_pearson(transpose(energyMatrix));
 % plot(G);
 % figure2=figure;
 % % % %
-% % figure
+% figure
 % h=imagesc(R);
 % xlabel('nodeId');ylabel('nodeId');
 % % impixelregion(h);
