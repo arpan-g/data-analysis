@@ -1,0 +1,16 @@
+
+%% brute force method
+clear all;
+v=[1,2,3,4,5,6,7,8];
+Files=dir(fullfile('combined_data','*.mat')) ;
+ file = ['combined_data\',Files(1).name];
+ load(file);
+masters=perms(v);
+for i =1:40320
+    combine_data=[newPirArray(masters(i,1),:);newPirArray(masters(i,2),:);newPirArray(masters(i,3),:);...
+        newPirArray(masters(i,4),:);newPirArray(masters(i,5),:);newPirArray(masters(i,6),:);...
+        newPirArray(masters(i,7),:);newPirArray(masters(i,8),:)];
+    power_consumption
+    %         test
+    verification_algo
+end

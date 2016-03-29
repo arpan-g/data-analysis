@@ -1,0 +1,26 @@
+
+clear all;
+
+load('combined_data/combi_1.mat');
+[R,C]=size(newPirArray);
+hour_count=1;
+for hours= 3:3:30
+    sum_error=0;
+    samples = 36000*hours;
+    count_time =1;
+    overlap = samples/2;
+    for data_length = 1:overlap:C
+        if(data_length+samples<C)
+            combine_data = newPirArray(:,data_length:data_length+samples);
+            power_consumption
+            verification_algo
+            sum_error=te+sum_error;
+            count_time=count_time+1;
+            
+        end
+        
+    end
+    evaluation_matrix(hour_count) = sum_error/(count_time-1);
+    hour_count=hour_count+1;
+    
+end
