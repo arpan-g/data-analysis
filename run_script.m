@@ -28,9 +28,18 @@ for file_counter = 1:num_files
     clear time_*;
     clear pir_array;
     clear corr_file;
+    clear newPirArray;
   
     %         file='15_03.mat';
     file = ['long_tests\pir_data\',Files(file_counter).name];
+    load(file);
+   matrix= calculate_last_trigger(newPirArray);
+    if(sum(matrix)==1)
+       [val,index]= max(matrix);
+    else
+        index=-1;
+    end
+    
     
 %     scatter_plot=[folder_name,'scatter_',Files(file_counter).name(1:end-4),'_1.png'];
 %     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
@@ -41,14 +50,14 @@ for file_counter = 1:num_files
     %         pir_array_file=['07_03/','pir_15_03.mat'];
     %     time_analysis_Short
     %     test_sample
-    power_consumption
+%     power_consumption
 %     clustering_kmean
 % %     raw_signal_analysis
 %     verification_algo
 %     stat
 %     test
 %     combine_data
-    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
+    evaluation_matrix(file_counter)=index;
  
 % break;
 end

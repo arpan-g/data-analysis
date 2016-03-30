@@ -2,11 +2,13 @@ function [last_trigger,counter]=calculate_last_trigger(matrix)
 
 [r,c]=size(matrix);
 counter=0;
+flag = 0;
 for column_count = 1:c
     
     if(max(matrix(:,column_count))==0)
         counter=counter+1;
         if(counter==2400)
+            flag=1;
             break
         end
     else
@@ -21,4 +23,7 @@ for column_count = 1:c
     end
     
     
+end
+if(flag==0)
+    last_trigger=ones(1,8)*-1;
 end

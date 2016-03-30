@@ -25,6 +25,11 @@ for column_count = 1:c
     
 
 end
-
+if(flag==0)
+    last_trigger=ones(1,8)*-1;
+end
     
 end
+
+
+
