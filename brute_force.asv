@@ -1,0 +1,35 @@
+
+%% brute force method
+clear all;
+t = cputime;
+v=[1,2,3,4,5,6,7,8];
+Files=dir(fullfile('combined_data','*.mat')) ;
+file = 'long_tests\pir_data\pir01_03.mat';
+load(file);
+masters=perms(v);
+% masters=[8 1 7 2 6 3 5 4];
+combine_data = newPirArray;
+  power_consumption;
+for perm_count =1:40320
+%     combine_data=[newPirArray(masters(perm_count,1),:);newPirArray(masters(perm_count,2),:);newPirArray(masters(perm_count,3),:);...
+%         newPirArray(masters(perm_count,4),:);newPirArray(masters(perm_count,5),:);newPirArray(masters(perm_count,6),:);...
+%         newPirArray(masters(perm_count,7),:);newPirArray(masters(perm_count,8),:)];
+  
+    %         test
+    %     verification_algo
+sum_k=R(masters(perm_count,1),masters(perm_count,2))+R(masters(perm_count,1),masters(perm_count,3))+R(masters(perm_count,1),masters(perm_count,4))+...
+    R(masters(perm_count,2),masters(perm_count,4))+R(masters(perm_count,2),masters(perm_count,3))+R(masters(perm_count,3),masters(perm_count,5))+...
+   R(masters(perm_count,3),masters(perm_count,6))+R(masters(perm_count,3),masters(perm_count,4))+...
+    R(masters(perm_count,4),masters(perm_count,6))+R(masters(perm_count,4),masters(perm_count,5))+R(masters(perm_count,5),masters(perm_count,6))+...
+    R(masters(perm_count,5),masters(perm_count,7))+R(masters(perm_count,5),masters(perm_count,8))+R(masters(perm_count,6),masters(perm_count,8))+...
+    R(masters(perm_count,6),masters(perm_count,7))+R(masters(perm_count,7),masters(perm_count,8));
+
+ 
+ 
+  
+    evaluation_matrix(perm_count)=sum_k;
+end
+total_time=cputime-t;
+for i = corr_colum
+    neighbors(i,:)masters(i,:)
+end

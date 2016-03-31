@@ -11,7 +11,7 @@ NO_ONES=10;
 neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
 non_neighboring = -1;
 optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
-optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
+% optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
 neighbouring_map=optimistic_neighbouring_map;
 bestThreshold=-1;
 
