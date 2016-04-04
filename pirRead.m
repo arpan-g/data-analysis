@@ -1,6 +1,6 @@
 % save('From_1to8_long_route_2','dataArray')
 
-pause(15);
+% pause(15);
 count = 1;
 % string "IxxxxRxLxx\r\n"
 %           I 73   R 114 L 108 

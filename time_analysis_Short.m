@@ -12,7 +12,7 @@ UINT8_MAX_NUM = 256;
 % load()
 % load('11_03_no_sync_node.mat');
 % load('11_03_no_sync_node_1.mat');
-load('22_03.mat');
+load('diag_2.mat');
 recPAckets=ones(1,8);
 [rows,column] = size(dataArray);
 count=ones(1,8);

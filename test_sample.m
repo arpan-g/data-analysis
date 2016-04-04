@@ -355,5 +355,5 @@ imagesc(newPirArray);
 xlabel('time(x0.1s)');
 ylabel('nodeId');
 colorbar();
-save('pir_22_03.mat','newPirArray');
+save('pir_diag_2.mat','newPirArray');
 % clearvars -except newPirArray

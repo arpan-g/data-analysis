@@ -2,14 +2,15 @@
 
 % clc;close all;
 % clear all;
-clear newPirArray;
+% clear newPirArray;
 clear energyMatrix;
 clear filteredMatrix;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
-% load('combined_data\combi.mat');
-load(file);
-combine_data=newPirArray(:,1:time_period);
+% load('long_tests\pir_data\pir_23_03.mat');
+% load(file);
+combine_data=newPirArray;
+% combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
 len=size(combine_data);
 
@@ -25,16 +26,16 @@ for i = 1:8
     end
 end
 
-newCount=1;
-for i = 1:count-5
-    
-        if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
+% newCount=1;
+% for i = 1:count-5
+%     
+%         if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
 %     if(max(energyMatrix(:,i)>0))
-        filteredMatrix(:,newCount)=energyMatrix(:,i);
-        newCount=newCount+1;
-    end
-end
-R=correlation_pearson(transpose(filteredMatrix));
+%         filteredMatrix(:,newCount)=energyMatrix(:,i);
+%         newCount=newCount+1;
+%     end
+% end
+R=correlation_pearson(transpose(energyMatrix));
 %
 % figure3=figure;
 % imagesc(filteredMatrix);

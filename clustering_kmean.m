@@ -3,6 +3,7 @@
 % First step would be to remove the 1's for the same nodes it will
 % mislead the kmean algorithm.
 % clear
+close all;
 NO_ONES=10;
 NO_CLUSTERS=2;
 optimistic_neighbouring_map=...
@@ -21,6 +22,7 @@ count =1;
 for i = 1:8
     for j = i+1:8
         correlation(count)=R(i,j);
+        mapping(count)=optimistic_neighbouring_map(i,j);
         count = count + 1;
     end
 end
@@ -32,6 +34,9 @@ end
 
     IDX=IDX-index;
 % end
+IDX=abs(IDX);
+no_zeros=sum(IDX(:)==0);
+no_ones=sum(IDX(:));
 count = 1;
 for i = 1:8
     for j = i+1:8
@@ -71,6 +76,26 @@ for i= 1:8
     end
 end
 te=falseNegative/NO_ONES+falsepositive/12;
-% G= graph(graphMatrix);
-% plot(G);
+transC=correlation';
+transMap=mapping';
+figure;
+plot(transMap(IDX==0,1),transC(IDX==0,1),'r.','MarkerSize',12)
+
+hold on
+plot(transMap(IDX==1,1),transC(IDX==1,1),'b.','MarkerSize',12)
+% plot(ones(1,2),C(:,1),'kx',...
+%      'MarkerSize',15,'LineWidth',3)
+legend('Non-Neighboring','Neighboring')
+title 'Cluster Assignments'
+xlim([-1.2 1.2]);
+xlabel('class');
+ylabel('çorrelation coefficient');
+hold off
+
+
+figure;
+G= graph(graphMatrix,'OmitSelfLoops');
+plot(G);
+G= graph(graphMatrix);
+plot(G);
 
