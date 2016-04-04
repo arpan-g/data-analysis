@@ -4,7 +4,7 @@ window_count = 1;
 % for window_size =10:2:128;
 window_size=36;
 clearvars -except window_size min_threshold window_count best_window;
-% Files=dir(fullfile('other_data','*.mat')) ;
+% Files=dir(fullfile('join_data','*.mat')) ;
 Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
 % Files=dir(fullfile('march_data','*.mat')) ;
 
@@ -31,7 +31,7 @@ for file_counter = 1:num_files
     clear newPirArray;
   
     %         file='15_03.mat';
-    file = ['long_tests\pir_data/',Files(file_counter).name];
+    file = ['long_tests\pir_data\',Files(file_counter).name];
     load(file);
 %    matrix= calculate_last_trigger(newPirArray);
 %     if(sum(matrix)==1)
@@ -51,14 +51,14 @@ for file_counter = 1:num_files
     %     time_analysis_Short
     %     test_sample
     power_consumption
-    brute_force
-%     clustering_kmean
+%     brute_force
+    clustering_kmean
 % %     raw_signal_analysis
 %     verification_algo
 %     stat
 %     test
 %     combine_data
-    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
+%     evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
  
 % break;
 end

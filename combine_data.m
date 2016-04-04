@@ -1,5 +1,5 @@
 
-load(file);
+% load(file);
 [rw,col]=size(newPirArray);
 for i = 1:col
     data_combine(:,mega_number)=newPirArray(:,i);
