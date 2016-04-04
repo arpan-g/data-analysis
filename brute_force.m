@@ -98,6 +98,6 @@ error_matrix(count)=te;
 break
     count=count+1;
 end
-% G=graph(adjacency_matrix);
-% plot(G);
+G=graph(adjacency_matrix);
+plot(G);
 

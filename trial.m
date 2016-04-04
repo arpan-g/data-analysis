@@ -1,7 +1,7 @@
 %% new data set
 clear all;
 
-fileID = fopen('txt_files\conf.txt','r');
+fileID = fopen('txt_files\complete.txt','r');
 input= textscan(fileID,'%u %u64 %u64 %u','Delimiter',' ');
 sensor_id=input{1};
 start_time=input{2};
@@ -142,4 +142,4 @@ for time= sampling_start : 100:sampling_end
     kimi = kimi+1;
 end
 
-  save('conf.mat','pir_array');
+%   save('complete.mat','pir_array');

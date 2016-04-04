@@ -65,22 +65,22 @@ R=correlation_pearson(transpose(energyMatrix));
 % plot(G);
 % figure2=figure;
 % % % % %
-% % figure
-% h=imagesc(R);
-% xlabel('nodeId');ylabel('nodeId');
-% % impixelregion(h);
-% textStrings = num2str(R(:),'%0.2f');  %# Create strings from the matrix values
-% textStrings = strtrim(cellstr(textStrings));  %# Remove any space padding
-% [x,y] = meshgrid(1:8);   %# Create x and y coordinates for the strings
-% hStrings = text(x(:),y(:),textStrings(:),...      %# Plot the strings
-%     'HorizontalAlignment','center');
-% % midValue = mean(get(gca,'CLim'));  %# Get the middle value of the color range
-% textColors = repmat(R(:) < 0.5,1,3);  %# Choose white or black for the
-% %#   text color of the strings so
-% %#   they can be easily seen over
-% %#   the background color
-% set(hStrings,{'Color'},num2cell(textColors,2));
-% colorbar();
+figure
+h=imagesc(R);
+xlabel('nodeId');ylabel('nodeId');
+% impixelregion(h);
+textStrings = num2str(R(:),'%0.2f');  %# Create strings from the matrix values
+textStrings = strtrim(cellstr(textStrings));  %# Remove any space padding
+[x,y] = meshgrid(1:8);   %# Create x and y coordinates for the strings
+hStrings = text(x(:),y(:),textStrings(:),...      %# Plot the strings
+    'HorizontalAlignment','center');
+% midValue = mean(get(gca,'CLim'));  %# Get the middle value of the color range
+textColors = repmat(R(:) < 0.5,1,3);  %# Choose white or black for the
+%#   text color of the strings so
+%#   they can be easily seen over
+%#   the background color
+set(hStrings,{'Color'},num2cell(textColors,2));
+colorbar();
 % % saveas(figure3,power_file);
 % % saveas(figure1,corr_file)
 % saveas(figure2,'04_04/corr_fire.png')
