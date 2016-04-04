@@ -168,7 +168,11 @@ end
 te=falseNegative/NO_ONES+falsepositive/12;
 
 % figure1=figure;
+<<<<<<< HEAD
 figure;
+=======
+% figure;
+>>>>>>> 227dc789a244dcfb44ab8e6ee452f7edbc30e584
 G= graph(graphMatrix,'OmitSelfLoops');
 plot(G);
 % saveas(figure1,ver_file)

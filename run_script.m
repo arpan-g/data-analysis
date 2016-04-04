@@ -4,11 +4,11 @@ window_count = 1;
 % for window_size =10:2:128;
 window_size=36;
 clearvars -except window_size min_threshold window_count best_window;
-
+% Files=dir(fullfile('other_data','*.mat')) ;
 Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
 % Files=dir(fullfile('march_data','*.mat')) ;
 
-folder_name='images/';
+% folder_name='images/';
 [num_files,index]=size(Files);
 % min_threshold(window_count,:)=[window_size,-1,1,1];
 
@@ -28,9 +28,18 @@ for file_counter = 1:num_files
     clear time_*;
     clear pir_array;
     clear corr_file;
+    clear newPirArray;
   
     %         file='15_03.mat';
-    file = ['long_tests\pir_data\',Files(file_counter).name];
+    file = ['long_tests\pir_data/',Files(file_counter).name];
+    load(file);
+%    matrix= calculate_last_trigger(newPirArray);
+%     if(sum(matrix)==1)
+%        [val,index]= max(matrix);
+%     else
+%         index=-1;
+%     end
+%     
     
 %     scatter_plot=[folder_name,'scatter_',Files(file_counter).name(1:end-4),'_1.png'];
 %     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
@@ -42,6 +51,7 @@ for file_counter = 1:num_files
     %     time_analysis_Short
     %     test_sample
     power_consumption
+    brute_force
 %     clustering_kmean
 % %     raw_signal_analysis
 %     verification_algo
