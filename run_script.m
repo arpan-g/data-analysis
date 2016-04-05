@@ -51,14 +51,14 @@ for file_counter = 1:num_files
     %     time_analysis_Short
     %     test_sample
     power_consumption
-%     brute_force
-    clustering_kmean
+    brute_force
+%     clustering_kmean
 % %     raw_signal_analysis
 %     verification_algo
 %     stat
 %     test
 %     combine_data
-%     evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
+    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
  
 % break;
 end
