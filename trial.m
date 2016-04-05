@@ -142,4 +142,4 @@ for time= sampling_start : 100:sampling_end
     kimi = kimi+1;
 end
 
-  save('conf.mat','pir_array');
+%   save('complete.mat','pir_array');

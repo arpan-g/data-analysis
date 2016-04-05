@@ -3,9 +3,10 @@
 % clc;close all;
 % clear all;
 % clear newPirArray;
+clear combine_data;
 clear energyMatrix;
 clear filteredMatrix;
-window_size = 36;%num_mins min=num_mins*60*10ms
+% window_size = 20;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 
 % load('long_tests\pir_data\pir_23_03.mat');
@@ -40,6 +41,7 @@ for i = 1:count-5
 end
 
 R=correlation_pearson(transpose(energyMatrix));
+
 %
 % figure3=figure;
 % imagesc(filteredMatrix);
@@ -65,7 +67,7 @@ R=correlation_pearson(transpose(energyMatrix));
 % plot(G);
 % figure2=figure;
 % % % % %
-% % figure
+% figure
 % h=imagesc(R);
 % xlabel('nodeId');ylabel('nodeId');
 % % impixelregion(h);
