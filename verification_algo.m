@@ -11,8 +11,8 @@ NO_ONES=10;
 neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
 non_neighboring = -1;
 optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
-optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
-neighbouring_map=optimistic_neighbouring_map;
+% optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
+% neighbouring_map=optimistic_neighbouring_map;
 bestThreshold=-1;
 
 [rows,columns]=size(neighbouring_map);
@@ -171,8 +171,8 @@ te=falseNegative/NO_ONES+falsepositive/12;
 
 % figure;
 
-G= graph(graphMatrix,'OmitSelfLoops');
-plot(G);
+% G= graph(graphMatrix,'OmitSelfLoops');
+% plot(G);
 % saveas(figure1,ver_file)
 
 %       s = [1 1 1 2 2 3 3 4 5 5 6 7];

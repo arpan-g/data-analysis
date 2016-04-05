@@ -1,7 +1,7 @@
 %% new data set
 clear all;
 
-fileID = fopen('txt_files\complete.txt','r');
+fileID = fopen('txt_files\conf.txt','r');
 input= textscan(fileID,'%u %u64 %u64 %u','Delimiter',' ');
 sensor_id=input{1};
 start_time=input{2};
