@@ -6,12 +6,13 @@
 clear combine_data;
 clear energyMatrix;
 clear filteredMatrix;
-% window_size = 20;%num_mins min=num_mins*60*10ms
+% time_period=33*36000;
+window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 
 % load('long_tests\pir_data\pir_23_03.mat');
 % load(file);
-combine_data=newPirArray;
+combine_data=newPirArray;%(:,1:1296000);
 % combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
 
@@ -30,15 +31,15 @@ for i = 1:8
     end
 end
 
-newCount=1;
-for i = 1:count-5
-    
-%         if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
-    if(max(energyMatrix(:,i)>0))
-        filteredMatrix(:,newCount)=energyMatrix(:,i);
-        newCount=newCount+1;
-    end
-end
+% newCount=1;
+% for i = 1:count-5
+%     
+% %         if(max(energyMatrix(:,i)+energyMatrix(:,i+1)+energyMatrix(:,i+2)+energyMatrix(:,i+3))>0)
+%     if(max(energyMatrix(:,i)>0))
+%         filteredMatrix(:,newCount)=energyMatrix(:,i);
+%         newCount=newCount+1;
+%     end
+% end
 
 R=correlation_pearson(transpose(energyMatrix));
 
@@ -63,10 +64,10 @@ R=correlation_pearson(transpose(energyMatrix));
 % 
 % end
 % figure1=figure;
-% G= graph(graphMatrix);
-% plot(G);
-% figure2=figure;
-% % % % %
+% % G= graph(graphMatrix);
+% % plot(G);
+% % figure2=figure;
+% % % % % %
 % figure
 % h=imagesc(R);
 % xlabel('nodeId');ylabel('nodeId');
@@ -83,8 +84,9 @@ R=correlation_pearson(transpose(energyMatrix));
 % %#   the background color
 % set(hStrings,{'Color'},num2cell(textColors,2));
 % colorbar();
-% % saveas(figure3,power_file);
-% % saveas(figure1,corr_file)
+% % % % saveas(figure3,power_file);
+% saveas(figure1,ppl)
 % saveas(figure2,'04_04/corr_fire.png')
 %
 % clearvars -except newPirArray energyMatrix DCMatrix R
+% clear newPirArray;

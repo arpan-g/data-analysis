@@ -351,9 +351,9 @@ end
 % y = [1,8];
 unnewPirArray=[sample_pir(1,:);sample_pir(3,:);sample_pir(5,:);sample_pir(7,:);sample_pir(9,:);sample_pir(11,:);sample_pir(13,:);sample_pir(15,:)];
 newPirArray=[spike_removal(sample_pir(1,:));spike_removal(sample_pir(3,:));spike_removal(sample_pir(5,:));spike_removal(sample_pir(7,:));spike_removal(sample_pir(9,:));spike_removal(sample_pir(11,:));spike_removal(sample_pir(13,:));spike_removal(sample_pir(15,:))];
-imagesc(newPirArray);
-xlabel('time(x0.1s)');
-ylabel('nodeId');
-colorbar();
-save('pir_diag_2.mat','newPirArray');
+% imagesc(newPirArray);
+% xlabel('time(x0.1s)');
+% ylabel('nodeId');
+% colorbar();
+save(ppl,'newPirArray');
 % clearvars -except newPirArray

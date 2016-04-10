@@ -4,7 +4,7 @@
 % which the data belongs to. The packet also contains packet number which
 % helps in identifying duplicate packets and also to detect missing
 % packets.
-clear all;
+% clear all;
 MAC_ID =2;
 LAST_BYTE_TIME=14;
 PACKET_COUNT = 6;

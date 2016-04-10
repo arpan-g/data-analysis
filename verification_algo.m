@@ -100,11 +100,11 @@ for l =1:8
     end
     
 end
-for i= 1:8
-    for j = 1:8
-        graphMatrix(i,j)=   graphMatrix(i,j) & graphMatrix(j,i);
-    end
-end
+% for i= 1:8
+%     for j = 1:8
+%         graphMatrix(i,j)=   graphMatrix(i,j) & graphMatrix(j,i);
+%     end
+% end
 count=1;
 flag=0;
 for i= 1:8
@@ -170,10 +170,11 @@ te=falseNegative/NO_ONES+falsepositive/12;
 % figure1=figure;
 
 % figure;
-
-% G= graph(graphMatrix,'OmitSelfLoops');
+% graphMatrix=graphMatrix.*R;
+G= graph(graphMatrix,'OmitSelfLoops');
 % plot(G);
-% saveas(figure1,ver_file)
+
+% saveas(figure1,'entrie_data.png')
 
 %       s = [1 1 1 2 2 3 3 4 5 5 6 7];
 %       t = [2 4 8 3 7 4 6 5 6 8 7 8];

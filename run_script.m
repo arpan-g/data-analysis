@@ -1,19 +1,24 @@
 %% run all
-% clear all;
+clear all;
 window_count = 1;
 % for window_size =10:2:128;
 % window_size=36;
 % clearvars -except window_size min_threshold window_count best_window;
 % Files=dir(fullfile('join_data','*.mat')) ;
-Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
-% Files=dir(fullfile('march_data','*.mat')) ;
+% folder_name='combined_data\';
+folder_name='long_tests\pir_data\';
+% folder_name='join_data\';
+% folder_name='ashish_data\';
+Files=dir(fullfile(folder_name,'*.mat')) ;
+% Files=dir(fullfile('ashish_data','*.mat')) ;
+% Files=dir(fullfile('ashish_data','*.mat')) ;
 
 % folder_name='images/';
 [num_files,index]=size(Files);
 % min_threshold(window_count,:)=[window_size,-1,1,1];
 
 % file_counter=10;
-
+% folder_name='ashish_data/';
 % count_snip=1;
 %     weka_file=[folder_name,'overlaping','.arff'];
 %     fileID = fopen(weka_file,'w');
@@ -23,60 +28,55 @@ Files=dir(fullfile('long_tests\pir_data','*.mat')) ;
 %     fprintf(fileID,'@data\n');
 % randperm(12)
 diagonal_count=1;mega_number=1;
-% for file_counter = 1:num_files
-%     close all;
-%     clear time_*;
-%     clear pir_array;
-%     clear corr_file;
-%     clear newPirArray;
-%
-%         file='15_03.mat';
-%     file = ['long_tests\pir_data\',Files(file_counter).name];
-%     load(file);
-%    matrix= calculate_last_trigger(newPirArray);
-%     if(sum(matrix)==1)
-%        [val,index]= max(matrix);
-%     else
-%         index=-1;
-%     end
-%
-
-%     scatter_plot=[folder_name,'scatter_',Files(file_counter).name(1:end-4),'_1.png'];
-%     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
-%     power_file=[folder_name,'power_',Files(file_counter).name(1:end-4),'.png'];
-%     corr_file = [folder_name,Files(file_counter).name(1:end-4),'_corr.png'];
-%     map_file  = [folder_name,Files(file_counter).name(1:end-4),'_map.png'];
-% file = '16_02_lunch.mat';
-%         pir_array_file=['07_03/','pir_15_03.mat'];
-%     time_analysis_Short
-%     test_sample
-file_counter=1;
-for window_size= 10:2:60
+for file_counter = 1:num_files
+    close all;
+    clear time_*;
+    clear pir_array;
+    clear corr_file;
+    clear newPirArray;
+    clear dataArray;
+    %
+    %         file='15_03.mat';
+    file = [folder_name,Files(file_counter).name];
+    load(file);
+    %    matrix= calculate_last_trigger(newPirArray);
+    %     if(sum(matrix)==1)
+    %        [val,index]= max(matrix);
+    %     else
+    %         index=-1;
+    %     end
+    %
+    
+    %         ppl=[folder_name,'pir_',Files(file_counter).name(1:end-4),'.mat'];
+    %     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
+    %     power_file=[folder_name,'power_',Files(file_counter).name(1:end-4),'.png'];
+    %         corr_file = [folder_name,Files(file_counter).name(1:end-4),'_corr.png'];
+    %     map_file  = [folder_name,Files(file_counter).name(1:end-4),'_map.png'];
+    % file = '16_02_lunch.mat';
+    %         pir_array_file=['07_03/','pir_15_03.mat'];
+    %         time_analysis_Short
+    %         test_sample
     power_consumption
-<<<<<<< HEAD
-    brute_force
-%     clustering_kmean
-% %     raw_signal_analysis
-%     verification_algo
-%     stat
-%     test
-%     combine_data
-    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te];
- 
-% break;
-=======
-    %     brute_force
+    
+    %             brute_force
     %     clustering_kmean
-    % %     raw_signal_analysis
+    %     raw_signal_analysis
     verification_algo
+            assign_diagonal
     %     stat
     %     test
-    %     combine_data
-        evaluation_matrix(file_counter,:)=[bestThreshold,window_size,falseNegative,falsepositive,te];
-    file_counter=file_counter+1;
+    %         combine_data
+    
+    
+    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te*100,fd,numedges(G)];
+    %     new_adjacency_matrix
+    
     % break;
->>>>>>> c394af749017d5895d88adfea9cea1ea354e84e7
+    
 end
+% clear newPirArray;
+% newPirArray=data_combine;
+% save('pir_08_04.mat','newPirArray');
 % clearvars -except data_combine
 % newPirArray = data_combine;
 % save('combi_10.mat','newPirArray');

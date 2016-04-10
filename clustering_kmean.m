@@ -96,6 +96,6 @@ hold off
 figure;
 G= graph(graphMatrix,'OmitSelfLoops');
 plot(G);
-G= graph(graphMatrix);
-plot(G);
+% G= graph(graphMatrix);
+% plot(G);
 

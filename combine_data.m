@@ -1,4 +1,4 @@
-
+% []
 % load(file);
 [rw,col]=size(newPirArray);
 for i = 1:col
