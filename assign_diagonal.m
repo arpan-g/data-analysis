@@ -8,6 +8,8 @@
 adjaceny_matrix=double(graphMatrix);
 [rows,columns]=size(adjaceny_matrix);
 new_adjacency_matrix=adjaceny_matrix;
+clear orders_var
+% clear new_adjacency_matrix;
 fd=0;
 
 count = 1;
@@ -23,85 +25,84 @@ for i = 1:columns
     end
 end
 if(count~=1)
+    same_neighbors_list=unique(same_neighbors_list,'rows');
     [r,c]=size(same_neighbors_list);
+%     orders=[1 2 3 4;
+%         3, 4 , 5 , 6;
+%         5,6,7,8];
+    count_i=1;
     for i = 1:r
-        num_neighbors = sum(adjaceny_matrix(same_neighbors_list(i,1),:));
-        [corr_row,corr_column,v] = find(adjaceny_matrix(same_neighbors_list(i,1),:)==1);
-        
-        neighbors=setxor(corr_column,same_neighbors_list(i,:));
-        if(num_neighbors==4)
+        for row_iterator = 1:r
+            [corr_row,corr_column,v] = find(adjaceny_matrix(same_neighbors_list(i,1),:)==1);
             
-            for j = 1:2
-                index=same_neighbors_list(i,j);
-                diff=R(index,neighbors(1))-R(index,neighbors(2));
-%                 if(abs(diff)>0.02)
-                    if(diff>0)
-                        new_adjacency_matrix(index,neighbors(2))=diff;
-%                         new_adjacency_matrix(neighbors(2),index)=diff;
-                    else
-                        new_adjacency_matrix(index,neighbors(1))=diff;
-%                         new_adjacency_matrix(neighbors(1),index)=diff;
-                    end
-                end
-%             end
-            
-            j=1;
-        elseif (num_neighbors==6)
-            for row_iterator = 1:r
-                zone=intersect(neighbors,same_neighbors_list(row_iterator,:));
-                if(~isempty(zone)&&length(zone(:))>1)
-                    for j = 1:2
-                        index=same_neighbors_list(i,j);
-                        %                     zone
-                        diff=R(index,zone(1))-R(index,zone(2));
-%                         if(abs(diff)>0.02)
-                            if(diff>0)
-                                new_adjacency_matrix(index,zone(2))=diff;
-%                                 new_adjacency_matrix(zone(2),index)=diff;
-                            else
-                                new_adjacency_matrix(index,zone(1))=diff;
-%                                 new_adjacency_matrix(zone(1),index)=diff;
-                            end
-%                         end
-                    end
-                end
+            neighbors=setxor(corr_column,same_neighbors_list(i,:));
+            zone=intersect(neighbors,same_neighbors_list(row_iterator,:));
+            if(~isempty(zone)&&length(zone(:))>1)
+                orders_var(count_i,:)=[same_neighbors_list(i,:),zone];
+                count_i=count_i+1;
                 
             end
-            
+        end
+    end
+   
+%     orders
+if(count_i>1)
+%      orders_var
+    [r_order,r_column]=size(orders_var);
+    for ya_iterate=1:r_order
+        %                 order=[same_neighbors_list(i,:),zone];
+        order=orders_var(ya_iterate,:);
+        a= getDiagonal(order,R);
+        kimi = 1;
+        for order_i = order
+            arpan=1;
+            for order_j = order
+                if(a(kimi,arpan)==0.5)
+                    new_adjacency_matrix(order_i,order_j)=  a(kimi,arpan);
+                    
+                end
+                arpan=arpan+1;
+            end
+            %             new_adjacency_matrix
+            kimi=kimi+1;
         end
         
+        
+        
+        
     end
-%     squares=[1 2  3 4; 3 4 5 6 ; 5 6 7 8];
-%     for square_iterator = 1:3
-%         square = squares(square_iterator,:);
-%         for node_iterator = square
-%             for yai = square
-%                 if(new_adjacency_matrix(node_iterator,yai)
-%             end
-%         end
-    
-    refrence_matrix=[1,1,1,0.5,0,0,0,0; ...
-        1,1,0.5,1,0,0,0,0; ...
-        1,0.5,1,1,1,0.5,0,0; ...
-        0.5,1,1,1,0.5,1,0,0; ...
-        0,0,1,0.5,1,1,1,0.5; ...
-        0,0,0.5,1,1,1,0.5,1; ...
-        0,0,0,0,1,0.5,1,1; ...
-        0,0,0,0,0.5,1,1,1];
-    
-    fd=0;
-%     for i = 1:8
-%         for j = i+1:8
-%             if(new_adjacency_matrix(i,j)==0.5)
-%                 if(~(new_adjacency_matrix(i,j)==refrence_matrix(i,j)))
-%                     fd=fd+1;
-%                 end
-%             end
-%         end
-%     end
-%     
+    %
+    %
+    %         end
+    %     end
 end
+end
+
+
+
+refrence_matrix=[1,1,1,0.5,0,0,0,0; ...
+    1,1,0.5,1,0,0,0,0; ...
+    1,0.5,1,1,1,0.5,0,0; ...
+    0.5,1,1,1,0.5,1,0,0; ...
+    0,0,1,0.5,1,1,1,0.5; ...
+    0,0,0.5,1,1,1,0.5,1; ...
+    0,0,0,0,1,0.5,1,1; ...
+    0,0,0,0,0.5,1,1,1];
+
+fd=0;diag_c=0;
+for i = 1:8
+    for j = i+1:8
+        if(new_adjacency_matrix(i,j)==0.5)
+            diag_c=diag_c+1;
+            if(~(new_adjacency_matrix(i,j)==refrence_matrix(i,j)))
+                fd=fd+1;
+            end
+        end
+    end
+end
+
+
 
 % G=graph(adjaceny_matrix,'OmitSelfLoops');
 % plot(G);
-new_adjacency_matrix
+% new_adjacency_matrix

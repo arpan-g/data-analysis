@@ -3,10 +3,10 @@
 % clc;close all;
 % clear all;
 % clear newPirArray;
-clear combine_data;
+% clear combine_data;
 clear energyMatrix;
 clear filteredMatrix;
-% time_period=33*36000;
+time_period=33*36000;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 

@@ -12,7 +12,7 @@ folder_name='long_tests\pir_data\';
 Files=dir(fullfile(folder_name,'*.mat')) ;
 % Files=dir(fullfile('ashish_data','*.mat')) ;
 % Files=dir(fullfile('ashish_data','*.mat')) ;
-
+total_c=0;
 % folder_name='images/';
 [num_files,index]=size(Files);
 % min_threshold(window_count,:)=[window_size,-1,1,1];
@@ -27,6 +27,7 @@ Files=dir(fullfile(folder_name,'*.mat')) ;
 %     fprintf(fileID,'@attribute ''activity'' {''1'',''0'',''-1''}\n');
 %     fprintf(fileID,'@data\n');
 % randperm(12)
+% file = 'pir_eight_seven.mat';
 diagonal_count=1;mega_number=1;
 for file_counter = 1:num_files
     close all;
@@ -39,6 +40,8 @@ for file_counter = 1:num_files
     %         file='15_03.mat';
     file = [folder_name,Files(file_counter).name];
     load(file);
+%     [r,c]=size(newPirArray);
+%     total_c=total_c+c;
     %    matrix= calculate_last_trigger(newPirArray);
     %     if(sum(matrix)==1)
     %        [val,index]= max(matrix);
@@ -54,8 +57,8 @@ for file_counter = 1:num_files
     %     map_file  = [folder_name,Files(file_counter).name(1:end-4),'_map.png'];
     % file = '16_02_lunch.mat';
     %         pir_array_file=['07_03/','pir_15_03.mat'];
-    %         time_analysis_Short
-    %         test_sample
+%             time_analysis_Short
+%             test_sample
     power_consumption
     
     %             brute_force
@@ -65,10 +68,10 @@ for file_counter = 1:num_files
             assign_diagonal
     %     stat
     %     test
-    %         combine_data
+%             combine_data
     
     
-    evaluation_matrix(file_counter,:)=[falseNegative,falsepositive,te*100,fd,numedges(G)];
+    evaluation_matrix(file_counter,:)=[bestThreshold,falseNegative,falsepositive,te*100,fd,numedges(G),diag_c];
     %     new_adjacency_matrix
     
     % break;
@@ -76,7 +79,7 @@ for file_counter = 1:num_files
 end
 % clear newPirArray;
 % newPirArray=data_combine;
-% save('pir_08_04.mat','newPirArray');
+% save('pir_eight_seven.mat','newPirArray');
 % clearvars -except data_combine
 % newPirArray = data_combine;
 % save('combi_10.mat','newPirArray');
