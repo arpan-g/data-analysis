@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="SHIFT_JIS" standalone="no"?>
+<!DOCTYPE sanac PUBLIC "sanac" "sanac.dtd">
+<sanac frame="CADLIVE" frameInfo="2.14">
+<model name="HSP13_0421" modelInfo="heat shock response model13">
+<panel size="1600" magnification="100"/>
+<listOfCompartments numberOfCompartments="2">
+<compartment name="environment" volume="" R="255" G="255" B="255">
+<subCompartment id="1" cat="Square" cx="-100" cy="-100" l="-1" h="80" w="80"/>
+</compartment>
+<compartment name="cytoplasm" volume="" R="224" G="224" B="255">
+<subCompartment id="2" cat="Circle" cx="804" cy="772" l="708" h="-4" w="1416"/>
+</compartment>
+</listOfCompartments>
+<listOfSpecies numberOfSpecies="29">
+<Specie specieID="1" name="s70" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="2" name="RNAP" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="3" name="s32" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="4" name="FtsH" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="5" name="DnaK" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="6" name="Protein" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="7" name="Protein-f" compartment="cytoplasm">
+<specieAttribute specieClass="protein" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="8" name="Enhancer(s32)" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_enhancer" massBalance="on" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="9" name="Enhancer(HSP)" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_enhancer" massBalance="on" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="10" name="D" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_others" massBalance="off" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="11" name="mRNA(s32)" compartment="cytoplasm">
+<specieAttribute specieClass="RNA" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="12" name="mRNA(DnaK)" compartment="cytoplasm">
+<specieAttribute specieClass="RNA" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="13" name="mRNA(FtsH)" compartment="cytoplasm">
+<specieAttribute specieClass="RNA" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="14" name="mRNA(Protein)" compartment="cytoplasm">
+<specieAttribute specieClass="RNA" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="15" name="Gene(s32)" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_gene" massBalance="off" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="16" name="Gene(DnaK)" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_gene" massBalance="off" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="17" name="Gene(FtsH)" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_gene" massBalance="off" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="18" name="Gene(Protein)" compartment="cytoplasm">
+<specieAttribute specieClass="DNA_gene" massBalance="off" totalAmount="constant" decomposition="off" initialAmount="" isVisible="true"/>
+</Specie>
+<Specie specieID="20" name="s70:RNAP" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="1" name="s70" compartment="cytoplasm" stoichiometry="1" cx="633" cy="481"/>
+<specieReference specieID="2" name="RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="616"/>
+</listOfElements>
+</Specie>
+<Specie specieID="22" name="Enhancer(s32):s70:RNAP" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="8" name="Enhancer(s32)" compartment="cytoplasm" stoichiometry="1" cx="687" cy="442"/>
+<specieReference specieID="20" name="s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="546"/>
+</listOfElements>
+</Specie>
+<Specie specieID="23" name="RNAP:s32" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="2" name="RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="616"/>
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616"/>
+</listOfElements>
+</Specie>
+<Specie specieID="24" name="Enhancer(HSP):RNAP:s32" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="9" name="Enhancer(HSP)" compartment="cytoplasm" stoichiometry="1" cx="756" cy="753"/>
+<specieReference specieID="23" name="RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="616"/>
+</listOfElements>
+</Specie>
+<Specie specieID="25" name="s32:DnaK" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616"/>
+<specieReference specieID="5" name="DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="794"/>
+</listOfElements>
+</Specie>
+<Specie specieID="28" name="s32:FtsH" compartment="cytoplasm">
+<specieAttribute specieClass="modifier_complex" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="false"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616"/>
+<specieReference specieID="4" name="FtsH" compartment="cytoplasm" stoichiometry="1" cx="1036" cy="724"/>
+</listOfElements>
+</Specie>
+<Specie specieID="29" name="Protein:DnaK" compartment="cytoplasm">
+<specieAttribute specieClass="modifier_complex" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="false"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="6" name="Protein" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="543"/>
+<specieReference specieID="5" name="DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="794"/>
+</listOfElements>
+</Specie>
+<Specie specieID="30" name="D:s70:RNAP" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="10" name="D" compartment="cytoplasm" stoichiometry="1" cx="592" cy="749"/>
+<specieReference specieID="20" name="s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="546"/>
+</listOfElements>
+</Specie>
+<Specie specieID="31" name="D:RNAP:s32" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="10" name="D" compartment="cytoplasm" stoichiometry="1" cx="592" cy="749"/>
+<specieReference specieID="23" name="RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="616"/>
+</listOfElements>
+</Specie>
+<Specie specieID="32" name="RNAP:D" compartment="cytoplasm">
+<specieAttribute specieClass="complex" massBalance="off" totalAmount="variable" decomposition="on" initialAmount="" isVisible="true"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="2" name="RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="616"/>
+<specieReference specieID="10" name="D" compartment="cytoplasm" stoichiometry="1" cx="592" cy="749"/>
+</listOfElements>
+</Specie>
+<Specie specieID="34" name="s32:DnaK:FtsH" compartment="cytoplasm">
+<specieAttribute specieClass="modifier_complex" massBalance="on" totalAmount="variable" decomposition="on" initialAmount="" isVisible="false"/>
+<listOfElements numberOfElements="2">
+<specieReference specieID="25" name="s32:DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="616"/>
+<specieReference specieID="4" name="FtsH" compartment="cytoplasm" stoichiometry="1" cx="1036" cy="724"/>
+</listOfElements>
+</Specie>
+</listOfSpecies>
+<listOfReactions layer="gene" numberOfReactions="8">
+<Reaction reactionID="10" groupID="4" reactionType="transcription" isConvertible="true" reactionName="#10" isVisible="true" modifierReactionEquation="Enhancer(s32):s70:RNAP -&gt;&gt; Gene(s32) -&gt; mRNA(s32)">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="15" name="Gene(s32)" compartment="cytoplasm" stoichiometry="1" cx="770" cy="530"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="11" name="mRNA(s32)" compartment="cytoplasm" stoichiometry="1" cx="886" cy="516"/>
+</listOfProducts>
+<listOfModifiers numberOfModifiers="1">
+<modifierSpecieReference specieID="22" name="Enhancer(s32):s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="687" cy="544" modifierType="activator" isTotal="true">
+<lineLocation index="0" x1="687" y1="544" x2="826" y2="516" connectSegmentPoint="0">
+<segmentStatus counter="1" x="786" y="484"/>
+</lineLocation>
+</modifierSpecieReference>
+</listOfModifiers>
+<lineLocation index="0" x1="792" y1="516" x2="886" y2="516" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="17" groupID="5" reactionType="transcription" isConvertible="true" reactionName="#17" isVisible="true" modifierReactionEquation="Enhancer(HSP):RNAP:s32 -&gt;&gt; Gene(DnaK) -&gt; mRNA(DnaK)">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="16" name="Gene(DnaK)" compartment="cytoplasm" stoichiometry="1" cx="836" cy="807"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="12" name="mRNA(DnaK)" compartment="cytoplasm" stoichiometry="1" cx="956" cy="793"/>
+</listOfProducts>
+<listOfModifiers numberOfModifiers="1">
+<modifierSpecieReference specieID="24" name="Enhancer(HSP):RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="687" modifierType="activator" isTotal="true">
+<lineLocation index="0" x1="757" y1="687" x2="894" y2="793" connectSegmentPoint="0"/>
+</modifierSpecieReference>
+</listOfModifiers>
+<lineLocation index="0" x1="858" y1="793" x2="956" y2="793" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="16" groupID="6" reactionType="transcription" isConvertible="true" reactionName="#16" isVisible="true" modifierReactionEquation="Enhancer(HSP):RNAP:s32 -&gt;&gt; Gene(FtsH) -&gt; mRNA(FtsH)">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="17" name="Gene(FtsH)" compartment="cytoplasm" stoichiometry="1" cx="873" cy="737"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="13" name="mRNA(FtsH)" compartment="cytoplasm" stoichiometry="1" cx="950" cy="723"/>
+</listOfProducts>
+<listOfModifiers numberOfModifiers="1">
+<modifierSpecieReference specieID="24" name="Enhancer(HSP):RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="687" modifierType="activator" isTotal="true">
+<lineLocation index="0" x1="757" y1="687" x2="910" y2="723" connectSegmentPoint="0">
+<segmentStatus counter="1" x="832" y="682"/>
+</lineLocation>
+</modifierSpecieReference>
+</listOfModifiers>
+<lineLocation index="0" x1="895" y1="723" x2="950" y2="723" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="7" groupID="7" reactionType="transcription" isConvertible="true" reactionName="#7" isVisible="true" modifierReactionEquation="Gene(Protein) -&gt; mRNA(Protein)">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="18" name="Gene(Protein)" compartment="cytoplasm" stoichiometry="1" cx="1188" cy="778"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="14" name="mRNA(Protein)" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="719"/>
+</listOfProducts>
+<lineLocation index="0" x1="1210" y1="764" x2="1209" y2="719" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="12" groupID="12" reactionType="translation" isConvertible="true" reactionName="#12" isVisible="true" modifierReactionEquation="mRNA(s32) -&gt; s32">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="11" name="mRNA(s32)" compartment="cytoplasm" stoichiometry="1" cx="886" cy="516"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616"/>
+</listOfProducts>
+<lineLocation index="0" x1="886" y1="516" x2="886" y2="616" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="18" groupID="18" reactionType="translation" isConvertible="true" reactionName="#18" isVisible="true" modifierReactionEquation="mRNA(FtsH) -&gt; FtsH">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="13" name="mRNA(FtsH)" compartment="cytoplasm" stoichiometry="1" cx="950" cy="723"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="4" name="FtsH" compartment="cytoplasm" stoichiometry="1" cx="1036" cy="724"/>
+</listOfProducts>
+<lineLocation index="0" x1="950" y1="723" x2="1036" y2="724" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="19" groupID="19" reactionType="translation" isConvertible="true" reactionName="#19" isVisible="true" modifierReactionEquation="mRNA(DnaK) -&gt; DnaK">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="12" name="mRNA(DnaK)" compartment="cytoplasm" stoichiometry="1" cx="956" cy="793"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="5" name="DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="794"/>
+</listOfProducts>
+<lineLocation index="0" x1="956" y1="793" x2="1080" y2="794" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="28" groupID="28" reactionType="translation" isConvertible="true" reactionName="#28" isVisible="true" modifierReactionEquation="mRNA(Protein) -&gt; Protein-f">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="14" name="mRNA(Protein)" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="719"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="7" name="Protein-f" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="646"/>
+</listOfProducts>
+<lineLocation index="0" x1="1209" y1="719" x2="1209" y2="646" connectSegmentPoint="0"/>
+</Reaction>
+</listOfReactions>
+<listOfReactions layer="protein" numberOfReactions="12">
+<Reaction reactionID="8" groupID="8" reactionType="binding" isConvertible="true" reactionName="#8" isVisible="true" modifierReactionEquation="s70 + RNAP &lt;-&gt; s70:RNAP">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="1" name="s70" compartment="cytoplasm" stoichiometry="1" cx="633" cy="481">
+<lineLocation index="0" x1="633" y1="546" x2="633" y2="481" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="2" name="RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="616">
+<lineLocation index="0" x1="633" y1="546" x2="633" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="20" name="s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="546"/>
+</listOfProducts>
+<multiArmsReaction cx="633" cy="546"/>
+</Reaction>
+<Reaction reactionID="13" groupID="13" reactionType="binding" isConvertible="true" reactionName="#13" isVisible="true" modifierReactionEquation="Enhancer(s32) + s70:RNAP &lt;-&gt; Enhancer(s32):s70:RNAP">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="8" name="Enhancer(s32)" compartment="cytoplasm" stoichiometry="1" cx="687" cy="442">
+<lineLocation index="0" x1="687" y1="544" x2="687" y2="442" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="20" name="s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="546">
+<lineLocation index="0" x1="687" y1="544" x2="633" y2="546" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="22" name="Enhancer(s32):s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="687" cy="544"/>
+</listOfProducts>
+<multiArmsReaction cx="687" cy="544"/>
+</Reaction>
+<Reaction reactionID="14" groupID="14" reactionType="binding" isConvertible="true" reactionName="#14" isVisible="true" modifierReactionEquation="RNAP + s32 &lt;-&gt; RNAP:s32">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="2" name="RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="616">
+<lineLocation index="0" x1="757" y1="616" x2="633" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616">
+<lineLocation index="0" x1="757" y1="616" x2="886" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="23" name="RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="616"/>
+</listOfProducts>
+<multiArmsReaction cx="757" cy="616"/>
+</Reaction>
+<Reaction reactionID="15" groupID="15" reactionType="binding" isConvertible="true" reactionName="#15" isVisible="true" modifierReactionEquation="Enhancer(HSP) + RNAP:s32 &lt;-&gt; Enhancer(HSP):RNAP:s32">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="9" name="Enhancer(HSP)" compartment="cytoplasm" stoichiometry="1" cx="756" cy="753">
+<lineLocation index="0" x1="757" y1="687" x2="756" y2="753" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="23" name="RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="616">
+<lineLocation index="0" x1="757" y1="687" x2="757" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="24" name="Enhancer(HSP):RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="687"/>
+</listOfProducts>
+<multiArmsReaction cx="757" cy="687"/>
+</Reaction>
+<Reaction reactionID="20" groupID="20" reactionType="binding" isConvertible="true" reactionName="#20" isVisible="true" modifierReactionEquation="s32 + DnaK &lt;-&gt; s32:DnaK">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616">
+<lineLocation index="0" x1="1080" y1="616" x2="886" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="5" name="DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="794">
+<lineLocation index="0" x1="1080" y1="616" x2="1080" y2="794" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="25" name="s32:DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="616"/>
+</listOfProducts>
+<multiArmsReaction cx="1080" cy="616"/>
+</Reaction>
+<Reaction reactionID="27" groupID="26" reactionType="degradation" isConvertible="true" reactionName="#27" isVisible="true" modifierReactionEquation="FtsH -() s32 -&gt; &amp;">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="3" name="s32" compartment="cytoplasm" stoichiometry="1" cx="886" cy="616"/>
+</listOfReactants>
+<listOfModifiers numberOfModifiers="1">
+<modifierSpecieReference specieID="4" name="FtsH" compartment="cytoplasm" stoichiometry="1" cx="1036" cy="724" modifierType="enzyme" isTotal="true">
+<lineLocation index="0" x1="1036" y1="724" x2="886" y2="644" connectSegmentPoint="0"/>
+</modifierSpecieReference>
+</listOfModifiers>
+<modifierComplex>
+<specieReference specieID="28" name="s32:FtsH" compartment="cytoplasm" stoichiometry="1" cx="-1" cy="-1"/>
+</modifierComplex>
+<lineLocation index="0" x1="886" y1="616" x2="886" y2="681" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="29" groupID="29" reactionType="irreversible_conversion" isConvertible="true" reactionName="#29" isVisible="true" modifierReactionEquation="Protein-f &gt; Protein">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="7" name="Protein-f" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="646"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="6" name="Protein" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="543"/>
+</listOfProducts>
+<lineLocation index="0" x1="1209" y1="646" x2="1209" y2="543" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="34" groupID="30" reactionType="irreversible_conversion" isConvertible="true" reactionName="#34" isVisible="true" modifierReactionEquation="DnaK -() Protein &gt; Protein-f">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="6" name="Protein" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="543"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="7" name="Protein-f" compartment="cytoplasm" stoichiometry="1" cx="1209" cy="646"/>
+</listOfProducts>
+<listOfModifiers numberOfModifiers="1">
+<modifierSpecieReference specieID="5" name="DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="794" modifierType="enzyme" isTotal="true">
+<lineLocation index="0" x1="1080" y1="794" x2="1202" y2="580" connectSegmentPoint="0">
+<segmentStatus counter="1" x="1129" y="794"/>
+<segmentStatus counter="2" x="1129" y="579"/>
+</lineLocation>
+</modifierSpecieReference>
+</listOfModifiers>
+<modifierComplex>
+<specieReference specieID="29" name="Protein:DnaK" compartment="cytoplasm" stoichiometry="1" cx="-1" cy="-1"/>
+</modifierComplex>
+<lineLocation index="0" x1="1209" y1="543" x2="1209" y2="646" connectSegmentPoint="0"/>
+</Reaction>
+<Reaction reactionID="35" groupID="35" reactionType="binding" isConvertible="true" reactionName="#35" isVisible="true" modifierReactionEquation="D + s70:RNAP &lt;-&gt; D:s70:RNAP">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="10" name="D" compartment="cytoplasm" stoichiometry="1" cx="592" cy="749">
+<lineLocation index="0" x1="561" y1="550" x2="592" y2="749" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="20" name="s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="546">
+<lineLocation index="0" x1="561" y1="550" x2="633" y2="546" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="30" name="D:s70:RNAP" compartment="cytoplasm" stoichiometry="1" cx="561" cy="550"/>
+</listOfProducts>
+<multiArmsReaction cx="561" cy="550"/>
+</Reaction>
+<Reaction reactionID="36" groupID="36" reactionType="binding" isConvertible="true" reactionName="#36" isVisible="true" modifierReactionEquation="D + RNAP:s32 &lt;-&gt; D:RNAP:s32">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="10" name="D" compartment="cytoplasm" stoichiometry="1" cx="592" cy="749">
+<lineLocation index="0" x1="656" y1="669" x2="592" y2="749" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="23" name="RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="757" cy="616">
+<lineLocation index="0" x1="656" y1="669" x2="757" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="31" name="D:RNAP:s32" compartment="cytoplasm" stoichiometry="1" cx="656" cy="669"/>
+</listOfProducts>
+<multiArmsReaction cx="656" cy="669"/>
+</Reaction>
+<Reaction reactionID="37" groupID="37" reactionType="binding" isConvertible="true" reactionName="#37" isVisible="true" modifierReactionEquation="RNAP + D &lt;-&gt; RNAP:D">
+<listOfReactants numberOfReactants="2">
+<specieReference specieID="2" name="RNAP" compartment="cytoplasm" stoichiometry="1" cx="633" cy="616">
+<lineLocation index="0" x1="617" y1="661" x2="633" y2="616" connectSegmentPoint="0"/>
+</specieReference>
+<specieReference specieID="10" name="D" compartment="cytoplasm" stoichiometry="1" cx="592" cy="749">
+<lineLocation index="0" x1="617" y1="661" x2="592" y2="749" connectSegmentPoint="0"/>
+</specieReference>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="32" name="RNAP:D" compartment="cytoplasm" stoichiometry="1" cx="617" cy="661"/>
+</listOfProducts>
+<multiArmsReaction cx="617" cy="661"/>
+</Reaction>
+<Reaction reactionID="22" groupID="39" reactionType="irreversible_conversion" isConvertible="true" reactionName="#22" isVisible="true" modifierReactionEquation="FtsH -() s32:DnaK &gt; DnaK">
+<listOfReactants numberOfReactants="1">
+<specieReference specieID="25" name="s32:DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="616"/>
+</listOfReactants>
+<listOfProducts numberOfProducts="1">
+<specieReference specieID="5" name="DnaK" compartment="cytoplasm" stoichiometry="1" cx="1080" cy="794"/>
+</listOfProducts>
+<listOfModifiers numberOfModifiers="1">
+<modifierSpecieReference specieID="4" name="FtsH" compartment="cytoplasm" stoichiometry="1" cx="1036" cy="724" modifierType="enzyme" isTotal="true">
+<lineLocation index="0" x1="1036" y1="724" x2="1104" y2="703" connectSegmentPoint="1">
+<segmentStatus counter="1" x="1054" y="674"/>
+</lineLocation>
+</modifierSpecieReference>
+</listOfModifiers>
+<modifierComplex>
+<specieReference specieID="34" name="s32:DnaK:FtsH" compartment="cytoplasm" stoichiometry="1" cx="-1" cy="-1"/>
+</modifierComplex>
+<lineLocation index="0" x1="1080" y1="616" x2="1080" y2="794" connectSegmentPoint="0">
+<segmentStatus counter="1" x="1117" y="663"/>
+</lineLocation>
+</Reaction>
+</listOfReactions>
+</model>
+</sanac>

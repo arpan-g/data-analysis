@@ -1,0 +1,109 @@
+<!ELEMENT sanac (model)>
+<!ATTLIST sanac frame CDATA #REQUIRED>
+<!ATTLIST sanac frameInfo CDATA #REQUIRED>
+<!ELEMENT model (panel?, listOfCompartments, listOfSpecieClasses?, listOfSpecies, listOfReactions+, listOfWhiteBoxes?)>
+<!ATTLIST model name CDATA #REQUIRED>
+<!ATTLIST model modelInfo CDATA #IMPLIED>
+<!ELEMENT panel EMPTY>
+<!ATTLIST panel size CDATA #IMPLIED>
+<!ATTLIST panel magnification CDATA #IMPLIED>
+<!ELEMENT listOfCompartments (compartment+)>
+<!ATTLIST listOfCompartments numberOfCompartments CDATA "1">
+<!ELEMENT compartment (subCompartment+)>
+<!ATTLIST compartment name CDATA #REQUIRED>
+<!ATTLIST compartment volume CDATA #IMPLIED>
+<!ATTLIST compartment R CDATA #IMPLIED>
+<!ATTLIST compartment G CDATA #IMPLIED>
+<!ATTLIST compartment B CDATA #IMPLIED>
+<!ELEMENT subCompartment EMPTY>
+<!ATTLIST subCompartment id CDATA #REQUIRED>
+<!ATTLIST subCompartment cat CDATA #IMPLIED>
+<!ATTLIST subCompartment cx CDATA #IMPLIED>
+<!ATTLIST subCompartment cy CDATA #IMPLIED>
+<!ATTLIST subCompartment l CDATA #IMPLIED>
+<!ATTLIST subCompartment h CDATA #IMPLIED>
+<!ATTLIST subCompartment w CDATA #IMPLIED>
+<!ELEMENT listOfSpecieClasses (specieClass+)>
+<!ELEMENT specieClass EMPTY>
+<!ATTLIST specieClass R CDATA #IMPLIED>
+<!ATTLIST specieClass G CDATA #IMPLIED>
+<!ATTLIST specieClass B CDATA #IMPLIED>
+<!ELEMENT listOfSpecies (Specie+)>
+<!ATTLIST listOfSpecies numberOfSpecies CDATA "1">
+<!ELEMENT Specie (specieAttribute, listOfElements?)>
+<!ATTLIST Specie specieID CDATA #REQUIRED>
+<!ATTLIST Specie name CDATA #REQUIRED>
+<!ATTLIST Specie compartment CDATA #REQUIRED>
+<!ELEMENT specieAttribute EMPTY>
+<!ATTLIST specieAttribute specieClass CDATA #REQUIRED>
+<!ATTLIST specieAttribute massBalance (on|off) "on">
+<!ATTLIST specieAttribute totalAmount (variable|constant) "variable">
+<!ATTLIST specieAttribute decomposition (on|off) "on">
+<!ATTLIST specieAttribute initialAmount CDATA #IMPLIED>
+<!ATTLIST specieAttribute isVisible (true|false) "true">
+<!ELEMENT listOfElements (specieReference+)>
+<!ATTLIST listOfElements numberOfElements CDATA "2">
+<!ELEMENT specieReference (lineLocation?)>
+<!ATTLIST specieReference specieID CDATA #REQUIRED>
+<!ATTLIST specieReference name CDATA #REQUIRED>
+<!ATTLIST specieReference compartment CDATA #REQUIRED>
+<!ATTLIST specieReference stoichiometry CDATA "1">
+<!ATTLIST specieReference cx CDATA #IMPLIED>
+<!ATTLIST specieReference cy CDATA #IMPLIED>
+<!ELEMENT lineLocation (segmentStatus*)>
+<!ATTLIST lineLocation x1 CDATA #IMPLIED>
+<!ATTLIST lineLocation x2 CDATA #IMPLIED>
+<!ATTLIST lineLocation y1 CDATA #IMPLIED>
+<!ATTLIST lineLocation y2 CDATA #IMPLIED>
+<!ATTLIST lineLocation connectSegmentPoint CDATA #IMPLIED>
+<!ELEMENT segmentStatus EMPTY>
+<!ATTLIST segmentStatus counter CDATA #IMPLIED>
+<!ATTLIST segmentStatus x CDATA #IMPLIED>
+<!ATTLIST segmentStatus y CDATA #IMPLIED>
+<!ELEMENT listOfReactions (Reaction+)>
+<!ATTLIST listOfReactions layer (gene0|gene1|gene_other|protein|metabolic) "gene0">
+<!ATTLIST listOfReactions numberOfReactions CDATA "1">
+<!ELEMENT Reaction (listOfReactants, listOfProducts?, listOfModifiers?, modifierComplex?, lineLocation?, multiArmsReaction?)>
+<!ATTLIST Reaction reactionID CDATA #REQUIRED>
+<!ATTLIST Reaction groupID CDATA #REQUIRED>
+<!ATTLIST Reaction reactionType CDATA #REQUIRED>
+<!ATTLIST Reaction isConvertible (true|false) "true">
+<!ATTLIST Reaction reactionName CDATA #REQUIRED>
+<!ATTLIST Reaction isVisible (true|false) "true">
+<!ATTLIST Reaction modifierReactionEquation CDATA #REQUIRED>
+<!ELEMENT listOfReactants (specieReference*, reactionReference?)>
+<!ATTLIST listOfReactants numberOfReactants CDATA "1">
+<!ELEMENT reactionReference EMPTY>
+<!ATTLIST reactionReference reactionID CDATA #REQUIRED>
+<!ATTLIST reactionReference reactionName CDATA #REQUIRED>
+<!ELEMENT listOfProducts (specieReference+)>
+<!ATTLIST listOfProducts numberOfProducts CDATA "1">
+<!ELEMENT listOfModifiers (modifierSpecieReference)>
+<!ATTLIST listOfModifiers numberOfModifiers CDATA "1">
+<!ELEMENT modifierSpecieReference (lineLocation?)>
+<!ATTLIST modifierSpecieReference specieID CDATA #REQUIRED>
+<!ATTLIST modifierSpecieReference name CDATA #REQUIRED>
+<!ATTLIST modifierSpecieReference compartment CDATA #REQUIRED>
+<!ATTLIST modifierSpecieReference stoichiometry CDATA "1">
+<!ATTLIST modifierSpecieReference modifierType (enzyme|activator|inhibitor) #REQUIRED>
+<!ATTLIST modifierSpecieReference isTotal CDATA #REQUIRED>
+<!ATTLIST modifierSpecieReference cx CDATA #IMPLIED>
+<!ATTLIST modifierSpecieReference cy CDATA #IMPLIED>
+<!ELEMENT modifierComplex (specieReference)>
+<!ELEMENT multiArmsReaction EMPTY>
+<!ATTLIST multiArmsReaction cx CDATA #IMPLIED>
+<!ATTLIST multiArmsReaction cy CDATA #IMPLIED>
+<!ELEMENT listOfWhiteBoxes (whitebox+)>
+<!ATTLIST listOfWhiteBoxes numberOfWhiteBoxes CDATA #REQUIRED>
+<!ELEMENT whiteboxes (storedSpecie*, storedReaction*, storedModifier*, storedWhitebox*)>
+<!ATTLIST whiteboxes whiteboxID CDATA #REQUIRED>
+<!ATTLIST whiteboxes isCompression (true|false) "true">
+<!ELEMENT storedSpecie EMPTY>
+<!ATTLIST storedSpecie specieID CDATA #REQUIRED>
+<!ATTLIST storedSpecie reactionID CDATA #REQUIRED>
+<!ELEMENT storedReaction EMPTY>
+<!ATTLIST storedReaction reactionID CDATA #REQUIRED>
+<!ELEMENT storedModifier EMPTY>
+<!ATTLIST storedModifier reactionID CDATA #REQUIRED>
+<!ELEMENT storedWhitebox EMPTY>
+<!ATTLIST storedWhitebox whiteboxID CDATA #REQUIRED>

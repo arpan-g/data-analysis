@@ -169,10 +169,10 @@ te=falseNegative/NO_ONES+falsepositive/12;
 
 % figure1=figure;
 
-% figure;
-% graphMatrix=graphMatrix.*R;
+figure;
+% graphMatrix=graphMatrix;
 G= graph(graphMatrix,'OmitSelfLoops');
-% plot(G);
+plot(G);
 
 % saveas(figure1,'entrie_data.png')
 

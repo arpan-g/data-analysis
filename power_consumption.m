@@ -1,7 +1,7 @@
 % num_mins=12;
 
 % clc;close all;
-% clear all;
+clear all;
 % clear newPirArray;
 % clear combine_data;
 clear energyMatrix;
@@ -10,9 +10,9 @@ time_period=33*36000;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 
-% load('long_tests\pir_data\pir_23_03.mat');
+load('join_data\324001.mat');
 % load(file);
-combine_data=newPirArray;%(:,1:1296000);
+% combine_data=newPirArray;%(:,1:1296000);
 % combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
 

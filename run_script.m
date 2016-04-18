@@ -40,8 +40,8 @@ for file_counter = 1:num_files
     %         file='15_03.mat';
     file = [folder_name,Files(file_counter).name];
     load(file);
-%     [r,c]=size(newPirArray);
-%     total_c=total_c+c;
+    %     [r,c]=size(newPirArray);
+    %     total_c=total_c+c;
     %    matrix= calculate_last_trigger(newPirArray);
     %     if(sum(matrix)==1)
     %        [val,index]= max(matrix);
@@ -50,36 +50,36 @@ for file_counter = 1:num_files
     %     end
     %
     
-    %         ppl=[folder_name,'pir_',Files(file_counter).name(1:end-4),'.mat'];
+    %             ppl=[folder_name,'pir_',Files(file_counter).name(1:end-4),'.mat'];
     %     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
     %     power_file=[folder_name,'power_',Files(file_counter).name(1:end-4),'.png'];
     %         corr_file = [folder_name,Files(file_counter).name(1:end-4),'_corr.png'];
     %     map_file  = [folder_name,Files(file_counter).name(1:end-4),'_map.png'];
     % file = '16_02_lunch.mat';
     %         pir_array_file=['07_03/','pir_15_03.mat'];
-%             time_analysis_Short
-%             test_sample
-    power_consumption
+    %             time_analysis_Short
+    %             test_sample
+    %     power_consumption
     
     %             brute_force
     %     clustering_kmean
     %     raw_signal_analysis
-    verification_algo
-            assign_diagonal
+    %     verification_algo
+    %             assign_diagonal
     %     stat
     %     test
-%             combine_data
+    combine_data
     
     
-    evaluation_matrix(file_counter,:)=[bestThreshold,falseNegative,falsepositive,te*100,fd,numedges(G),diag_c];
+    %     evaluation_matrix(file_counter,:)=[bestThreshold,falseNegative,falsepositive,te*100,fd,numedges(G),diag_c];
     %     new_adjacency_matrix
     
     % break;
     
 end
-% clear newPirArray;
-% newPirArray=data_combine;
-% save('pir_eight_seven.mat','newPirArray');
+clear newPirArray;
+newPirArray=data_combine;
+save('huge_data.mat','newPirArray');
 % clearvars -except data_combine
 % newPirArray = data_combine;
 % save('combi_10.mat','newPirArray');
