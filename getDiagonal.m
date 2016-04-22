@@ -25,8 +25,8 @@ for i = 1:4
     [val,index]=min(correlation_matrix(i,:));
     [val_check,index_check]= min(correlation_matrix(index,:));
     if(index_check==i)
-        adj_matrix(index,i)=0.5;
-        adj_matrix(i,index)= 0.5;
+        adj_matrix(index,i)= 1.5;
+        adj_matrix(i,index)= 1.5;
     else
         ambiguity(i)=1;
     end
@@ -34,18 +34,18 @@ end
 
 for i = 1:4
     if(sum(ambiguity(:))<4)
-        [corr_row,corr_column,v]=find(adj_matrix==0.5);
+        [corr_row,corr_column,v]=find(adj_matrix==1.5);
         rest_nodes=setdiff([1 2 3 4],[corr_row(1),corr_column(1)]);
-        adj_matrix(rest_nodes(1),rest_nodes(2))=0.5;
-        adj_matrix(rest_nodes(2),rest_nodes(1))=0.5;
+        adj_matrix(rest_nodes(1),rest_nodes(2))=1.5;
+        adj_matrix(rest_nodes(2),rest_nodes(1))=1.5;
     end
 end
 for i = 1:4
     if(sum(ambiguity(:))==4)
-        [corr_row,corr_column,v]=find(adj_matrix==0.5);
+        [corr_row,corr_column,v]=find(adj_matrix==1.5);
         rest_nodes=setdiff([1 2 3 4],[corr_row(1),corr_column(1)]);
-        adj_matrix(rest_nodes(1),rest_nodes(2))=0.5;
-        adj_matrix(rest_nodes(2),rest_nodes(1))=0.5;
+        adj_matrix(rest_nodes(1),rest_nodes(2))=1.5;
+        adj_matrix(rest_nodes(2),rest_nodes(1))=1.5;
     end
 end
 

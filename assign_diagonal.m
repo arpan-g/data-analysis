@@ -11,6 +11,9 @@ new_adjacency_matrix=adjaceny_matrix;
 clear orders_var
 % clear new_adjacency_matrix;
 fd=0;
+for i = 1:8
+adjaceny_matrix(i,i)=1;
+end
 
 count = 1;
 for i = 1:columns
@@ -57,7 +60,7 @@ if(count_i>1)
         for order_i = order
             arpan=1;
             for order_j = order
-                if(a(kimi,arpan)==0.5)
+                if(a(kimi,arpan)==1.5)
                     new_adjacency_matrix(order_i,order_j)=  a(kimi,arpan);
                     
                 end
@@ -92,7 +95,7 @@ refrence_matrix=[1,1,1,0.5,0,0,0,0; ...
 fd=0;diag_c=0;
 for i = 1:8
     for j = i+1:8
-        if(new_adjacency_matrix(i,j)==0.5)
+        if(new_adjacency_matrix(i,j)==1.5)
             diag_c=diag_c+1;
             if(~(new_adjacency_matrix(i,j)==refrence_matrix(i,j)))
                 fd=fd+1;
@@ -103,6 +106,6 @@ end
 
 
 
-% G=graph(adjaceny_matrix,'OmitSelfLoops');
-% plot(G);
+G=graph(adjaceny_matrix,'OmitSelfLoops');
+plot(G);
 % new_adjacency_matrix
