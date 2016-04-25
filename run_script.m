@@ -59,22 +59,23 @@ for file_counter = 1:num_files
     %         pir_array_file=['07_03/','pir_15_03.mat'];
     %             time_analysis_Short
     %             test_sample
-        power_consumption
-%         max_spamming_tree_euclidean
-        tree2grid2
+    power_consumption
+    %         max_spamming_tree_euclidean
+    %         tree2grid2
     
-    %             brute_force
+    brute_force
     %     clustering_kmean
     %     raw_signal_analysis
     %     verification_algo
     %             assign_diagonal
     %     stat
     %     test
-%     combine_data
+    %     combine_data
     
     
-        evaluation_matrix(file_counter,:)=arrangement;
-        index_matrix(file_counter)=ind;
+    evaluation_matrix(file_counter,:)=error;
+    
+    index_matrix(file_counter,:)=arrangement;
     %     new_adjacency_matrix
     
     % break;
