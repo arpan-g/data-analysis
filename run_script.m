@@ -1,5 +1,7 @@
 %% run all
 clear all;
+for runs=1:20
+
 window_count = 1;
 % for window_size =10:2:128;
 % window_size=36;
@@ -73,12 +75,13 @@ for file_counter = 1:num_files
     %     combine_data
     
     
-    evaluation_matrix(file_counter,:)=error;
-    index_matrix(file_counter,:)=arrangement;
+    evaluation_matrix(file_counter,runs)=error;
+%     index_matrix(file_counter,:)=arrangement;
     %     new_adjacency_matrix
     
     % break;
     
+end
 end
 % clear newPirArray;
 % newPirArray=data_combine;

@@ -10,7 +10,7 @@ for counter=1:n-1
         if(visited(i)==1)
             for j = 1:n
                 if(visited(j)==0)
-                    if(min>distance_matrix(i,j))
+                    if(min>=distance_matrix(i,j))
                         u=i;
                         v=j;
                         min=distance_matrix(i,j);

@@ -36,7 +36,9 @@ end
 [val_s,ind_s]=sort(sum_r,'descend');
 for i = ind_s
     if(isempty( intersect(sensor_map,sensor_indicies(i))))
-        sensor_map=[sensor_map,sensor_indicies(i)];
+        if(sensor_node_visited(sensor_indicies(i))==0)
+            sensor_map=[sensor_map,sensor_indicies(i)];
+        end
     end
 end
 
