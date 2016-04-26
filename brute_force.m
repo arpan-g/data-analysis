@@ -123,6 +123,6 @@ for config_iterator=1 :4
     end
 end
 [error,ind]=min(error_matrix);
-arrangement=config(ind,:);
+arrangement=masters(corr_colum(1),:);
 
 

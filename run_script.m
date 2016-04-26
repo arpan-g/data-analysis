@@ -61,9 +61,9 @@ for file_counter = 1:num_files
     %             test_sample
     power_consumption
     %         max_spamming_tree_euclidean
-    %         tree2grid2
+            tree2grid
     
-    brute_force
+%     brute_force
     %     clustering_kmean
     %     raw_signal_analysis
     %     verification_algo
@@ -74,7 +74,6 @@ for file_counter = 1:num_files
     
     
     evaluation_matrix(file_counter,:)=error;
-    
     index_matrix(file_counter,:)=arrangement;
     %     new_adjacency_matrix
     
