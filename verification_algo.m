@@ -170,8 +170,9 @@ te=falseNegative/NO_ONES+falsepositive/12;
 % figure1=figure;
 
 figure;
-% graphMatrix=graphMatrix;
+graphMatrix=remove_diagonal(graphMatrix,R);
 G= graph(graphMatrix,'OmitSelfLoops');
+
 plot(G);
 
 % saveas(figure1,'entrie_data.png')

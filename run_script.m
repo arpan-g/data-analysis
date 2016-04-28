@@ -1,14 +1,14 @@
 %% run all
 clear all;
-for runs=1:20
+% for runs=1:20
 
 window_count = 1;
 % for window_size =10:2:128;
 % window_size=36;
 % clearvars -except window_size min_threshold window_count best_window;
 % Files=dir(fullfile('join_data','*.mat')) ;
-folder_name='combined_data\';
-% folder_name='long_tests\pir_data\';
+% folder_name='combined_data\';
+folder_name='long_tests\pir_data\';
 % folder_name='join_data\';
 % folder_name='ashish_data\';
 Files=dir(fullfile(folder_name,'*.mat')) ;
@@ -62,8 +62,10 @@ for file_counter = 1:num_files
     %             time_analysis_Short
     %             test_sample
     power_consumption
+    clustering_kmean
+    grid_cordinates
     %         max_spamming_tree_euclidean
-            tree2grid
+%             tree2grid
     
 %     brute_force
     %     clustering_kmean
@@ -75,14 +77,14 @@ for file_counter = 1:num_files
     %     combine_data
     
     
-    evaluation_matrix(file_counter,runs)=error;
+    evaluation_matrix(file_counter,:)=error;
 %     index_matrix(file_counter,:)=arrangement;
     %     new_adjacency_matrix
     
     % break;
     
 end
-end
+% end
 % clear newPirArray;
 % newPirArray=data_combine;
 % save('huge_data.mat','newPirArray');
