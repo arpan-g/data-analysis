@@ -1,12 +1,12 @@
-function [new_s_g]=matchTree(s_n_s,s_n_e,s_g)
+function [new_s_g,accepted_solution]=matchTree(s_n_s,s_n_e,s_g)
 % write a recursive function
 % s_g
 [num_nodes,~]=size(s_g);
 if(length((nonzeros(s_g(:))))==num_nodes)
-if(length(unique(nonzeros(s_g(:))))==num_nodes)
-    new_s_g=s_g;
-    return
-end
+    if(length(unique(nonzeros(s_g(:))))==num_nodes)
+        new_s_g=s_g;
+        return
+    end
 end
 
 %new_s_g new sensor to grid matching matrix
@@ -21,10 +21,10 @@ if ~isempty(e)
     return
 end
 if(length((nonzeros(new_s_g(:))))==num_nodes)
-%     s_g=new_s_g;
-if(length(unique(nonzeros(new_s_g(:))))==num_nodes)
-    return
-end
+    %     s_g=new_s_g;
+    if(length(unique(nonzeros(new_s_g(:))))==num_nodes)
+        return
+    end
 end
 single_ladies=[];
 
@@ -35,6 +35,7 @@ for i_single_ladies = 1:num_nodes
 end
 
 % recursive code
+count=1;
 if(length(nonzeros(new_s_g(:)))>num_nodes)
     for m_i=1:num_nodes-1
         possible_nodes=nonzeros(new_s_g(s_n_e(m_i),:) );
@@ -47,17 +48,31 @@ if(length(nonzeros(new_s_g(:)))>num_nodes)
                 end
                 new_s_g(s_n_e(m_i),:)=0;
                 new_s_g(s_n_e(m_i),1)=possible_nodes(m_j);
-                new_s_g= (matchTree(s_n_s,s_n_e,new_s_g));
-                if(length(nonzeros(new_s_g(:)))==num_nodes)
-                    return
+                new_s_g_dup= (matchTree(s_n_s,s_n_e,new_s_g));
+                if(length((nonzeros(new_s_g_dup(:))))==num_nodes)
+                    if(length(unique(nonzeros(new_s_g_dup(:))))==num_nodes)
+                        if(length(unique(nonzeros(new_s_g_dup(:,1))))==num_nodes)
+                        
+%                         accepted_solution(count,:)=new_s_g_dup(:,1)';
+                        new_s_g_dup(:,1)'
+%                         count=count+1;
+%                         return
+                    end
+                    end
                 end
             end
         end
     end
-    
+    %  if(length((nonzeros(new_s_g(:))))==num_nodes)
+    %     if(length(unique(nonzeros(new_s_g(:))))==num_nodes)
+    %        new_s_g(1,:)'
+    %         return
+    %     end
+    % end
     
 end
-new_s_g
+
+
 end
 %-----------------------------%
 function[func_new_s_g,func_s,func_e]=candidates(s_s,s_e,new_s_g)
@@ -97,7 +112,7 @@ for i = 1:num_tree_nodes
 end
 
 for i = 1: num_tree_nodes
-    %get mapings of the start node 
+    %get mapings of the start node
     non_zero_values= nonzeros(func_new_s_g(s_s(i),:));
     possible_values=[];
     %if end node is already assigned to a node
@@ -106,7 +121,7 @@ for i = 1: num_tree_nodes
     end
     if(~isempty(non_zero_values))
         for j = 1:length(non_zero_values)
-            [r,c,v]=find(a_m(non_zero_values(j),:));
+            [~,c,~]=find(a_m(non_zero_values(j),:));
             possible_values=union(possible_values,c);
         end
     end
@@ -120,12 +135,12 @@ for i = 1: num_tree_nodes
         a_m(:,possible_values)=0;
     end
     length_possible_values=length(possible_values);
-    possible_values(:)
+    %     possible_values(:)
     func_new_s_g(s_e(i),:)=[possible_values(:)',zeros(1,num_nodes-length_possible_values)];
     if(length(possible_values)==1)
         for k = 1:num_nodes
             if(k~=s_e(i))
-                [d_r,d_c,d_v]=find(func_new_s_g(k,:)==possible_values);
+                [~,d_c,~]=find(func_new_s_g(k,:)==possible_values);
                 if(~isempty(d_c))
                     func_new_s_g(k,d_c)=0;
                     after_delete=nonzeros(func_new_s_g(k,:));
@@ -145,7 +160,7 @@ end
 end
 function [new_s_g]=filter_single_ladies(new_s_g)
 single_ladies=[];
-[r,c]=size(new_s_g);
+[r,~]=size(new_s_g);
 for i_single_ladies = 1:r
     if(length(nonzeros(new_s_g(i_single_ladies,:)))==1)
         single_ladies=[single_ladies,new_s_g(i_single_ladies,1)];
@@ -159,7 +174,7 @@ for i_filter = 1:r
     common_elements=intersect(temp,single_ladies);
     if(~isempty(common_elements ))
         for common_iterator = 1:length(common_elements)
-            [r_,c_,v_]=find(new_s_g(i_filter,:)==common_elements(common_iterator));
+            [~,c_,~]=find(new_s_g(i_filter,:)==common_elements(common_iterator));
             new_s_g(i_filter,c_)=0;
         end
         after_delete= nonzeros(new_s_g(i_filter,:));
