@@ -1,5 +1,5 @@
 %% Tree2Grid2
-% clear all;
+clear all;
 num_rows=4;
 num_cols=2;
 n=num_rows*num_cols;
@@ -19,8 +19,11 @@ for i = 1:n
     end
 end
 power_consumption
-[node_s,node_e]=prims(R,6,8);
-generateIsoMetricGraphs(node_s,node_e,6,n);
+[node_s,node_e]=prims(R*-1,1,8);
+s_g_map=zeros(8,8);
+s_g_map(1,1)=1;
+a=matchTree(node_s,node_e,s_g_map);
+% generateIsoMetricGraphs(node_s,node_e,6,n);
 for k=1:n
     % for k=2
     copy_r=R;
