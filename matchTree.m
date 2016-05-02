@@ -1,6 +1,7 @@
 function [new_s_g,accepted_solution]=matchTree(s_n_s,s_n_e,s_g)
 % write a recursive function
 % s_g
+
 [num_nodes,~]=size(s_g);
 if(length((nonzeros(s_g(:))))==num_nodes)
     if(length(unique(nonzeros(s_g(:))))==num_nodes)
@@ -35,7 +36,9 @@ for i_single_ladies = 1:num_nodes
 end
 
 % recursive code
-count=1;
+% file='test.txt';
+% fileID_local = fopen(file,'a');
+% count=1;
 if(length(nonzeros(new_s_g(:)))>num_nodes)
     for m_i=1:num_nodes-1
         possible_nodes=nonzeros(new_s_g(s_n_e(m_i),:) );
@@ -52,12 +55,13 @@ if(length(nonzeros(new_s_g(:)))>num_nodes)
                 if(length((nonzeros(new_s_g_dup(:))))==num_nodes)
                     if(length(unique(nonzeros(new_s_g_dup(:))))==num_nodes)
                         if(length(unique(nonzeros(new_s_g_dup(:,1))))==num_nodes)
-                        
-%                         accepted_solution(count,:)=new_s_g_dup(:,1)';
-                        new_s_g_dup(:,1)'
-%                         count=count+1;
-%                         return
-                    end
+                            
+                            %                         accepted_solution(count,:)=new_s_g_dup(:,1)';
+%                             writter(new_s_g_dup(:,1)');
+%                             new_s_g_dup(:,1)'
+                            %                         count=count+1;
+                            %                         return
+                        end
                     end
                 end
             end
@@ -69,6 +73,7 @@ if(length(nonzeros(new_s_g(:)))>num_nodes)
     %         return
     %     end
     % end
+%     fclose(fileID_local);
     
 end
 
