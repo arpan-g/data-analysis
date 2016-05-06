@@ -1,0 +1,25 @@
+WSU Smart Workplace Testbed
+
+Description
+
+This dataset contains sensor events collected in the WSU smart workplace
+testbed.  The data was collected over four months time while students
+performed their normal work routines in the environment.
+
+Sensor layouts
+
+The sensor layout of the apartment is shown in the file LabSensorsLayout.jpg.
+The sensors can be categorized by:
+
+   M02..M45:  motion sensors
+   D01:       door sensor
+   L45..L64:  light controllers
+
+Papers
+
+All use of the data must cite the WSU smart home project.  Additional details
+about this dataset are given the paper listed below
+(available at http://eecs.wsu.edu/~cook/pubs/cs10.pdf).
+
+D. Cook, A. Crandall, G. Singla, and B. Thomas.  Detection of social
+interaction in smart spaces, Journal of Cybernetics and Systems, 2010.

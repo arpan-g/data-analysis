@@ -17,13 +17,13 @@ optimistic_neighbouring_map=...
     0     0     0     0    -1     1     1     0];
 % optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
 
-
-newGraph=zeros(8,8);
+[r,c]=size(R);
+newGraph=zeros(r,c);
 count =1;
-for i = 1:8
-    for j = i+1:8
+for i = 1:r
+    for j = i+1:r
         correlation(count)=R(i,j);
-        mapping(count)=optimistic_neighbouring_map(i,j);
+%         mapping(count)=optimistic_neighbouring_map(i,j);
         count = count + 1;
     end
 end
@@ -39,8 +39,8 @@ IDX=abs(IDX);
 no_zeros=sum(IDX(:)==0);
 no_ones=sum(IDX(:));
 count = 1;
-for i = 1:8
-    for j = i+1:8
+for i = 1:r
+    for j = i+1:r
         if(IDX(count)==0)
         newGraph(i,j)=0;
         else

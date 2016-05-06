@@ -1,13 +1,11 @@
-function [new_s_g,accepted_solution]=matchTree(s_n_s,s_n_e,s_g)
+function [new_s_g]=matchTree(s_n_s,s_n_e,s_g)
 % write a recursive function
 % s_g
 
 [num_nodes,~]=size(s_g);
-if(length((nonzeros(s_g(:))))==num_nodes)
-    if(length(unique(nonzeros(s_g(:))))==num_nodes)
-        new_s_g=s_g;
-        return
-    end
+if(iscomplete(s_g))
+    new_s_g=s_g;
+    return
 end
 
 %new_s_g new sensor to grid matching matrix
@@ -21,24 +19,13 @@ end
 if ~isempty(e)
     return
 end
-if(length((nonzeros(new_s_g(:))))==num_nodes)
-    %     s_g=new_s_g;
-    if(length(unique(nonzeros(new_s_g(:))))==num_nodes)
-        return
-    end
-end
-single_ladies=[];
-
-for i_single_ladies = 1:num_nodes
-    if(length(nonzeros(new_s_g(i_single_ladies,:)))==1)
-        single_ladies=[single_ladies,new_s_g(i_single_ladies,1)];
-    end
+if(iscomplete(new_s_g))
+    return
 end
 
+single_ladies=compute_single_ladies(new_s_g);
 % recursive code
-% file='test.txt';
-% fileID_local = fopen(file,'a');
-% count=1;
+
 if(length(nonzeros(new_s_g(:)))>num_nodes)
     for m_i=1:num_nodes-1
         possible_nodes=nonzeros(new_s_g(s_n_e(m_i),:) );
@@ -50,30 +37,25 @@ if(length(nonzeros(new_s_g(:)))>num_nodes)
                     continue;
                 end
                 new_s_g(s_n_e(m_i),:)=0;
-                new_s_g(s_n_e(m_i),1)=possible_nodes(m_j);
-                new_s_g_dup= (matchTree(s_n_s,s_n_e,new_s_g));
-                if(length((nonzeros(new_s_g_dup(:))))==num_nodes)
-                    if(length(unique(nonzeros(new_s_g_dup(:))))==num_nodes)
-                        if(length(unique(nonzeros(new_s_g_dup(:,1))))==num_nodes)
-                            
-                            %                         accepted_solution(count,:)=new_s_g_dup(:,1)';
-%                             writter(new_s_g_dup(:,1)');
-%                             new_s_g_dup(:,1)'
-                            %                         count=count+1;
-                            %                         return
-                        end
-                    end
+                if(~areNeighbors(new_s_g(s_n_s(m_i),1),possible_nodes(m_j)))
+                    continue;
                 end
+                new_s_g(s_n_e(m_i),1)=possible_nodes(m_j);
+                single_ladies=compute_single_ladies(new_s_g);
+                new_s_g_dup= matchTree(s_n_s,s_n_e,new_s_g);
+                
+                if(iscomplete(new_s_g_dup)&&isValid(new_s_g_dup(:,1)',s_n_s,s_n_e))
+                    %                     accepted_solution(count,:)=new_s_g_dup(:,1)';
+                    writter(new_s_g_dup(:,1)');
+%                     new_s_g_dup(:,1)'
+                    %                     count=count+1;
+                    %                     return
+                end
+                
             end
         end
     end
-    %  if(length((nonzeros(new_s_g(:))))==num_nodes)
-    %     if(length(unique(nonzeros(new_s_g(:))))==num_nodes)
-    %        new_s_g(1,:)'
-    %         return
-    %     end
-    % end
-%     fclose(fileID_local);
+    
     
 end
 
@@ -85,28 +67,33 @@ func_s=[];
 func_e=[];
 func_new_s_g=filter_single_ladies(new_s_g);
 [num_nodes,~]=size(new_s_g);
-if(length(unique(nonzeros(func_new_s_g(:))))==num_nodes)
+if(iscomplete(func_new_s_g))
     
     return
 end
-a_m=...
-    [0,1,1,zeros(1,5);...
-    1,0,0,1,zeros(1,4);...
-    1,0,0,1,1,0,0,0;...
-    0,1,1,0,0,1,0,0;...
-    0,0,1,0,0,1,1,0;...
-    0,0,0,1,1,0,0,1;...
-    0,0,0,0,1,0,0,1;...
-    0,0,0,0,0,1,1,0];
-
 % a_m=...
 %     [0,1,1,zeros(1,5);...
 %     1,0,0,1,zeros(1,4);...
 %     1,0,0,1,1,0,0,0;...
 %     0,1,1,0,0,1,0,0;...
+%     0,0,1,0,0,1,1,0;...
+%     0,0,0,1,1,0,0,1;...
 %     0,0,0,0,1,0,0,1;...
 %     0,0,0,0,0,1,1,0];
 % a_m=[0,1,1,0,0,0;1,0,0,1,0,0;1,0,0,1,1,0;0,1,1,0,0,1;0,0,1,0,0,1;0,0,0,1,1,0];
+a_m=...
+[0,1,0,1,1,0,0,0,0,0,0,0;...
+ 1,0,1,1,1,1,0,0,0,0,0,0;...
+ 0,1,0,0,1,1,0,0,0,0,0,0;...
+ 1,1,0,0,1,0,1,1,0,0,0,0;...
+ 1,1,1,1,0,1,1,1,1,0,0,0;...
+ 0,1,1,0,1,0,0,1,1,0,0,0;...
+ 0,0,0,1,1,0,0,1,0,1,1,0;...
+ 0,0,0,1,1,1,1,0,1,1,1,1;...
+ 0,0,0,0,1,1,0,1,0,0,1,1;...
+ 0,0,0,0,0,0,1,1,0,0,1,0;...
+ 0,0,0,0,0,0,1,1,1,1,0,1;...
+ 0,0,0,0,0,0,0,1,1,0,1,0];
 
 num_tree_nodes=length(s_s);
 for i = 1:num_tree_nodes
@@ -140,7 +127,6 @@ for i = 1: num_tree_nodes
         a_m(:,possible_values)=0;
     end
     length_possible_values=length(possible_values);
-    %     possible_values(:)
     func_new_s_g(s_e(i),:)=[possible_values(:)',zeros(1,num_nodes-length_possible_values)];
     if(length(possible_values)==1)
         for k = 1:num_nodes
@@ -164,13 +150,9 @@ end
 
 end
 function [new_s_g]=filter_single_ladies(new_s_g)
-single_ladies=[];
+single_ladies=compute_single_ladies(new_s_g);
 [r,~]=size(new_s_g);
-for i_single_ladies = 1:r
-    if(length(nonzeros(new_s_g(i_single_ladies,:)))==1)
-        single_ladies=[single_ladies,new_s_g(i_single_ladies,1)];
-    end
-end
+
 for i_filter = 1:r
     temp=nonzeros(new_s_g(i_filter,:));
     if(length(temp)==1)
@@ -186,5 +168,107 @@ for i_filter = 1:r
         new_s_g(i_filter,:)= [after_delete(:)',zeros(1,r-length(after_delete))];
     end
 end
+end
+
+function [single_nodes]=compute_single_ladies(sensor2grid_map)
+single_nodes=[];
+[num_nodes,~]=size(sensor2grid_map);
+for i_iterate = 1:num_nodes
+    if(length(nonzeros(sensor2grid_map(i_iterate,:)))==1)
+        
+        single_nodes=[single_nodes,sensor2grid_map(i_iterate,1)];
+        
+    end
+end
+single_nodes=unique(single_nodes);
+
+end
+
+function [bool] =iscomplete(s_g)
+[~,num_nodes]=size(s_g);
+bool=0;
+if(length((nonzeros(s_g(:))))==num_nodes)
+    if(length(unique(nonzeros(s_g(:))))==num_nodes)
+        if(length(unique(nonzeros(s_g(:,1))))==num_nodes)
+            bool=1;
+        end
+    end
+end
+end
+
+function [bool]=isValid(s_g,s_s,s_e)
+% a_m=...
+%     [0,1,1,zeros(1,5);...
+%     1,0,0,1,zeros(1,4);...
+%     1,0,0,1,1,0,0,0;...
+%     0,1,1,0,0,1,0,0;...
+%     0,0,1,0,0,1,1,0;...
+%     0,0,0,1,1,0,0,1;...
+%     0,0,0,0,1,0,0,1;...
+%     0,0,0,0,0,1,1,0];
+% a_m=[0,1,1,0,0,0;1,0,0,1,0,0;1,0,0,1,1,0;0,1,1,0,0,1;0,0,1,0,0,1;0,0,0,1,1,0];
+% a_m=...
+% [0,1,0,1,0,0,0,0,0,0,0,0;...
+%  1,0,0,0,1,0,0,0,0,0,0,0;...
+%  0,1,0,0,0,1,0,0,0,0,0,0;...
+%  1,0,0,0,1,0,1,0,0,0,0,0;...
+%  0,1,0,1,0,1,0,1,0,0,0,0;...
+%  0,0,1,0,1,0,0,0,1,0,0,0;...
+%  0,0,0,1,0,0,0,1,0,1,0,0;...
+%  0,0,0,0,1,0,1,0,1,0,1,0;...
+%  0,0,0,0,0,1,0,1,0,0,0,1;...
+%  0,0,0,0,0,0,1,0,0,0,1,0;...
+%  0,0,0,0,0,0,0,1,0,1,0,1;...
+%  0,0,0,0,0,0,0,0,1,0,1,0];
+a_m=...
+[0,1,0,1,1,0,0,0,0,0,0,0;...
+ 1,0,1,1,1,1,0,0,0,0,0,0;...
+ 0,1,0,0,1,1,0,0,0,0,0,0;...
+ 1,1,0,0,1,0,1,1,0,0,0,0;...
+ 1,1,1,1,0,1,1,1,1,0,0,0;...
+ 0,1,1,0,1,0,0,1,1,0,0,0;...
+ 0,0,0,1,1,0,0,1,0,1,1,0;...
+ 0,0,0,1,1,1,1,0,1,1,1,1;...
+ 0,0,0,0,1,1,0,1,0,0,1,1;...
+ 0,0,0,0,0,0,1,1,0,0,1,0;...
+ 0,0,0,0,0,0,1,1,1,1,0,1;...
+ 0,0,0,0,0,0,0,1,1,0,1,0];
+bool=1;
+for i = 1:length(s_s)
+    
+    grid_tree_mapping_s(i)=s_g(s_s(i));
+    grid_tree_mapping_e(i)=s_g(s_e(i));
+    
+end
+
+for i = 1:length(s_s)
+    if(a_m(grid_tree_mapping_s(i),grid_tree_mapping_e(i))~=1)
+        bool=0;
+        return
+    end
+    
+end
+
+
+end
+function[bool]=areNeighbors(nodeA,nodeB)
+bool=0;
+a_m=...
+[0,1,0,1,1,0,0,0,0,0,0,0;...
+ 1,0,1,1,1,1,0,0,0,0,0,0;...
+ 0,1,0,0,1,1,0,0,0,0,0,0;...
+ 1,1,0,0,1,0,1,1,0,0,0,0;...
+ 1,1,1,1,0,1,1,1,1,0,0,0;...
+ 0,1,1,0,1,0,0,1,1,0,0,0;...
+ 0,0,0,1,1,0,0,1,0,1,1,0;...
+ 0,0,0,1,1,1,1,0,1,1,1,1;...
+ 0,0,0,0,1,1,0,1,0,0,1,1;...
+ 0,0,0,0,0,0,1,1,0,0,1,0;...
+ 0,0,0,0,0,0,1,1,1,1,0,1;...
+ 0,0,0,0,0,0,0,1,1,0,1,0];
+if(nodeA==0||nodeB==0)
+    return;
+end
+bool=a_m(nodeA,nodeB);
 
 end

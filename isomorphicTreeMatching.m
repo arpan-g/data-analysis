@@ -1,7 +1,7 @@
-clear all;
+% clear all;
 % power_consumption
-num_rows=4;
-num_cols=2;
+num_rows=3;
+num_cols=4;
 n=num_rows*num_cols;
 % count = 1;
 % for i = 1:num_rows
@@ -18,15 +18,16 @@ n=num_rows*num_cols;
 %         distance_measure(i,j)=distance_euclidean(sensor_cordinates(i,:),sensor_cordinates(j,:));
 %     end
 % end
-power_consumption
-[node_s,node_e]=prims(R*-1,1,8);
-s_g_map=zeros(8,8);
+% power_consumption
+[node_s,node_e]=prims(R*-1,1,n);
+s_g_map=zeros(n,n);
 max_sum=calculate_correlation_sum(node_s,node_e,R);
 profile on
-for i=1:n
+% for i=1:n
+i=1;
 s_g_map(node_s(1),1)=i;
 a=matchTree(node_s,node_e,s_g_map);
-end
+% end
 profile viewer
 readFile
 mapping=tree;
@@ -43,12 +44,13 @@ end
 % end
 [v,index]=max(sum_r);
 arrangement=mapping(index,:);
-config=[1,2,3,4,5,6,7,8;2,1,4,3,6,5,8,7;8,7,6,5,4,3,2,1;7,8,5,6,3,4,1,2];
-error_matrix=zeros(4,1);
-
-% masters(corr_colum(1),:)
+% config=[1,2,3,4,5,6,7,8;2,1,4,3,6,5,8,7;8,7,6,5,4,3,2,1;7,8,5,6,3,4,1,2];
+config=[1,2,3,4,5,6,7,8,9,10,11,12;3,2,1,6,5,4,9,8,7,12,11,10;10,11,12,7,8,9,4,5,6,1,2,3;12,11,10,9,8,7,6,5,4,3,2,1];
+% error_matrix=zeros(4,1);
+% 
+% % masters(corr_colum(1),:)
 for config_iterator=1 :4
-    for error_iterator =1:8
+    for error_iterator =1:12
         
         
         if(config(config_iterator,error_iterator)~=arrangement(error_iterator))

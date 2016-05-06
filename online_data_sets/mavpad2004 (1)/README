@@ -1,0 +1,33 @@
+MavPad 2004 data set
+
+Description
+
+These datasets represent sensor events collected in the MavPad testbed
+during 2004 while a single resident was living in the apartment.
+
+File format
+
+There is one sensor event on each line of the files.  The event syntax is
+Date Time AM/PM zone number state level source info
+
+Sensor layouts
+
+The file MavPad-Mapping.pdf describes the smart apartment testbed.  This file is excerpted
+from the document:
+
+   G. Michael Youngblood. Automating Inhabitant Interactions in Home and Workplace Environments through Data-driven Generation of Hierarchical Partially-observable Markov Decision Processes. Doctoral Dissertation. The University of Texas at Arlington. August 2005.
+
+Data files
+
+7-10-2004-raw.data  7-14-2004-raw.data  7-18-2004-raw.data  7-22-2004-raw.data
+7-11-2004-raw.data  7-15-2004-raw.data  7-19-2004-raw.data  7-23-2004-raw.data
+7-12-2004-raw.data  7-16-2004-raw.data  7-20-2004-raw.data  7-24-2004-raw.data
+7-13-2004-raw.data  7-17-2004-raw.data  7-21-2004-raw.data  7-25-2004-raw.data
+
+Papers
+
+All use of the data must cite the MavHome project.
+
+G. M. Youngblood and D. Cook, Data mining for hierarchical
+model creation, IEEE Transactions on Systems, Man, and
+Cybernetics, Part C, 37(4):561-572, 2007.
