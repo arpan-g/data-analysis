@@ -189,15 +189,19 @@ end
 function [bool]=isValid(s_g,s_s,s_e,a_m)
 bool=1;
 for i = 1:length(s_s)
-   
-	 if(a_m(s_g(s_s(i)),s_g(s_e(i))~=1))
+    
+    grid_tree_mapping_s(i)=s_g(s_s(i));
+    grid_tree_mapping_e(i)=s_g(s_e(i));
+    
+end
+
+for i = 1:length(s_s)
+    if(a_m(grid_tree_mapping_s(i),grid_tree_mapping_e(i))~=1)
         bool=0;
         return
     end
     
 end
-
-
 
 
 end

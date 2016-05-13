@@ -29,7 +29,7 @@ for k=1:n
         copy_r(i,i)=0;
     end
     %     to itterate over all nodes as root
-    [node_s,node_e]=prims(distance_measure,k,n);
+    [node_s,node_e]=prims_random(distance_measure,k,n);
     count=1;
     number_mapping=zeros(1,2);
     % [a,b]=calculate_maximum(copy_r,2);

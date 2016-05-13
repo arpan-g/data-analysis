@@ -64,7 +64,7 @@ R=correlation_pearson(transpose(energyMatrix));
 %     end
 % 
 % end
-figure1=figure;
+% figure1=figure;
 % G= graph(graphMatrix);
 % plot(G);
 % figure2=figure;
@@ -75,7 +75,7 @@ xlabel('nodeId');ylabel('nodeId');
 impixelregion(h);
 textStrings = num2str(R(:),'%0.2f');  %# Create strings from the matrix values
 textStrings = strtrim(cellstr(textStrings));  %# Remove any space padding
-[x,y] = meshgrid(1:12);   %# Create x and y coordinates for the strings
+[x,y] = meshgrid(1:len(1));   %# Create x and y coordinates for the strings
 hStrings = text(x(:),y(:),textStrings(:),...      %# Plot the strings
     'HorizontalAlignment','center');
 midValue = mean(get(gca,'CLim'));  %# Get the middle value of the color range

@@ -3,10 +3,20 @@ file='test.txt';
 % FListOpen=fopen('all');
 
 % if(~ismember(file,FListOpen))
-    fileID_local = fopen(file,'a');
+fileID_local = fopen(file,'a');
 % end
-% fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d\n',a);
-fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n',a);
+len=length(a);
+if(len==6)
+    fprintf(fileID_local,'%d,%d,%d,%d,%d,%d\n',a); %6
+elseif(len==8)
+    fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d\n',a); %8
+elseif(len==12)
+    fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n',a); %12
+elseif(len==16)
+    fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n',a); %16
+elseif(len==23)
+    fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n',a);%23
+end
 fclose(fileID_local);
 
 

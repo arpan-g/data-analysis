@@ -9,12 +9,13 @@ clear end_time;
 sensor_id=input{1};
 start_time=input{2};
 end_time = input{3};
-sensor_array=[15,22,27,16,23,28,17,24,29,18,25,30];
+sensor_array=[21,14,27,22,15,28,23,16,29,24,17,11,30,31,32,25,18,12,13,6,5,4,10];
 % sensor_array=[];
+len=length(sensor_array);
 [r,c]=size(sensor_id);
-count=ones(1,12);
+count=ones(1,len);
 for elements = 1:r
-    if(end_time(elements)==0)
+    if(end_time(elements)==0||start_time(elements)==0)
         continue;
     end
     switch sensor_id(elements)
@@ -66,17 +67,62 @@ for elements = 1:r
             node12(count(12),1)=start_time(elements);
             node12(count(12),2)=end_time(elements);
             count(12)=count(12)+1;
+            %new entry
+        case sensor_array(13)
+            node13(count(13),1)=start_time(elements);
+            node13(count(13),2)=end_time(elements);
+            count(13)=count(13)+1;
+        case sensor_array(14)
+            node14(count(14),1)=start_time(elements);
+            node14(count(14),2)=end_time(elements);
+            count(14)=count(14)+1;
+        case sensor_array(15)
+            node15(count(15),1)=start_time(elements);
+            node15(count(15),2)=end_time(elements);
+            count(15)=count(15)+1;
+        case sensor_array(16)
+            node16(count(16),1)=start_time(elements);
+            node16(count(16),2)=end_time(elements);
+            count(16)=count(16)+1;
+        case sensor_array(17)
+            node17(count(17),1)=start_time(elements);
+            node17(count(17),2)=end_time(elements);
+            count(17)=count(17)+1;
+        case sensor_array(18)
+            node18(count(18),1)=start_time(elements);
+            node18(count(18),2)=end_time(elements);
+            count(18)=count(18)+1;
+        case sensor_array(19)
+            node19(count(19),1)=start_time(elements);
+            node19(count(19),2)=end_time(elements);
+            count(19)=count(19)+1;
+        case sensor_array(20)
+            node20(count(20),1)=start_time(elements);
+            node20(count(20),2)=end_time(elements);
+            count(20)=count(20)+1;
+        case sensor_array(21)
+            node21(count(21),1)=start_time(elements);
+            node21(count(21),2)=end_time(elements);
+            count(21)=count(21)+1;
+        case sensor_array(22)
+            node22(count(22),1)=start_time(elements);
+            node22(count(22),2)=end_time(elements);
+            count(22)=count(22)+1;
+        case sensor_array(23)
+            node23(count(23),1)=start_time(elements);
+            node23(count(23),2)=end_time(elements);
+            count(23)=count(23)+1;
     end
     
     
 end
 
-sampling_start=min([node1(1,1),node2(1,1),node3(1,1),node4(1,1),node5(1,1),node6(1,1),node7(1,1),node8(1,1),node9(1,1),node10(1,1),node11(1,1),node12(1,1)]);
-sampling_end=max([node1(end,2),node2(end,1),node3(end,1),node4(end,1),node5(end,1),node6(end,1),node7(end,1),node8(end,1),node9(end,1),node10(end,1),node11(end,1),node12(end,1)]);
+sampling_start=min([node1(1,1),node2(1,1),node3(1,1),node4(1,1),node5(1,1),node6(1,1),node7(1,1),node8(1,1),node9(1,1),node10(1,1),node11(1,1),node12(1,1),node13(1,1),node14(1,1),node15(1,1),node16(1,1),node17(1,1),node18(1,1),node19(1,1),node20(1,1),node21(1,1),node22(1,1),node23(1,1)]);
+sampling_end=max([node1(end,2),node2(end,1),node3(end,1),node4(end,1),node5(end,1),node6(end,1),node7(end,1),node8(end,1),node9(end,1),node10(end,1),node11(end,1),node12(end,1),node13(end,1),node14(end,1),node15(end,1),node16(end,1),node17(end,1),node18(end,1),node19(end,1),node20(end,1),node21(end,1),node22(end,1),node23(end,1)]);
 max_count = count-1;
 
 kimi = 1;
-count=ones(1,12);
+count=ones(1,len);
 for time= sampling_start : 100:sampling_end
     
     
@@ -141,6 +187,64 @@ for time= sampling_start : 100:sampling_end
     else
         pir_array(12,kimi)=0;
     end
+    %new entry
+    if (time>node13(count(13),1)&&time<node13(count(13),2))
+        pir_array(13,kimi)=1;
+    else
+        pir_array(13,kimi)=0;
+    end
+    if (time>node14(count(14),1)&&time<node14(count(14),2))
+        pir_array(14,kimi)=1;
+    else
+        pir_array(14,kimi)=0;
+    end
+    if (time>node15(count(15),1)&&time<node15(count(15),2))
+        pir_array(15,kimi)=1;
+    else
+        pir_array(15,kimi)=0;
+    end
+    if (time>node16(count(16),1)&&time<node16(count(16),2))
+        pir_array(16,kimi)=1;
+    else
+        pir_array(16,kimi)=0;
+    end
+    if (time>node17(count(17),1)&&time<node17(count(17),2))
+        pir_array(17,kimi)=1;
+    else
+        pir_array(17,kimi)=0;
+    end
+    if (time>node18(count(18),1)&&time<node18(count(18),2))
+        pir_array(18,kimi)=1;
+    else
+        pir_array(18,kimi)=0;
+    end
+    if (time>node19(count(19),1)&&time<node19(count(19),2))
+        pir_array(19,kimi)=1;
+    else
+        pir_array(19,kimi)=0;
+    end
+    if (time>node20(count(20),1)&&time<node20(count(20),2))
+        pir_array(20,kimi)=1;
+    else
+        pir_array(20,kimi)=0;
+    end
+    if (time>node21(count(21),1)&&time<node21(count(21),2))
+        pir_array(21,kimi)=1;
+    else
+        pir_array(21,kimi)=0;
+    end
+    if (time>node22(count(22),1)&&time<node22(count(22),2))
+        pir_array(22,kimi)=1;
+    else
+        pir_array(22,kimi)=0;
+    end
+    if (time>node23(count(23),1)&&time<node23(count(23),2))
+        pir_array(23,kimi)=1;
+    else
+        pir_array(23,kimi)=0;
+    end
+    
+    %     new entry
     if(time>node1(count(1),2))
         if(count(1)<max_count(1))
             count(1)=count(1)+1;
@@ -201,7 +305,67 @@ for time= sampling_start : 100:sampling_end
             count(12)=count(12)+1;
         end
     end
+    %new entry
+    if(time>node13(count(13),2))
+        if(count(13)<max_count(13))
+            count(13)=count(13)+1;
+        end
+    end
+    if(time>node14(count(14),2))
+        if(count(14)<max_count(14))
+            count(14)=count(14)+1;
+        end
+    end
+    if(time>node15(count(15),2))
+        if(count(15)<max_count(15))
+            count(15)=count(15)+1;
+        end
+    end
+    if(time>node16(count(16),2))
+        if(count(16)<max_count(16))
+            count(16)=count(16)+1;
+        end
+    end
+     if(time>node17(count(17),2))
+        if(count(17)<max_count(17))
+            count(17)=count(17)+1;
+        end
+     end
+     if(time>node18(count(18),2))
+        if(count(18)<max_count(18))
+            count(18)=count(18)+1;
+        end
+     end
+     if(time>node19(count(19),2))
+        if(count(19)<max_count(19))
+            count(19)=count(19)+1;
+        end
+     end
+     if(time>node20(count(20),2))
+        if(count(20)<max_count(20))
+            count(20)=count(20)+1;
+        end
+     end
+     if(time>node21(count(21),2))
+        if(count(21)<max_count(21))
+            count(21)=count(21)+1;
+        end
+     end
+    
+     if(time>node22(count(22),2))
+        if(count(22)<max_count(22))
+            count(22)=count(22)+1;
+        end
+     end
+    
+     
+     if(time>node23(count(23),2))
+        if(count(23)<max_count(23))
+            count(23)=count(23)+1;
+        end
+     end
+    
     kimi = kimi+1;
 end
 
-  save('washington_1.mat','pir_array');
+% save('washington_1.mat','pir_array');

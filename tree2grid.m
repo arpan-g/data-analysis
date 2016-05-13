@@ -1,5 +1,5 @@
 %% Tree2Grid2
-clear all;
+% clear all;
 num_rows=4;
 num_cols=2;
 n=num_rows*num_cols;
