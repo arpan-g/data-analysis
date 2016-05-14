@@ -70,17 +70,18 @@ end
 %     end
 % end
 % power_consumption
-root=1;n=23;
+% root=1;n=23;
+root=1;
 [node_s,node_e]=prims(R*-1,root,n);
 s_g_map=zeros(n,n);
 max_sum=calculate_correlation_sum(node_s,node_e,R);
-% profile on
+profile on
 for i=1:n
-    % i=1;
+%     i=1;
     s_g_map(node_s(1),1)=i;
     matchTree(node_s,node_e,s_g_map,1);
 end
-% profile viewer
+profile viewer
 readFile
 mapping=tree;
 [r,c]=size(mapping);

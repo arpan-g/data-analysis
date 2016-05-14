@@ -3,13 +3,15 @@
 %% brute force method
 % clear all;
 % t = cputime;
-num_nodes=8;
+num_nodes=23;
 v=1:num_nodes;
 % Files=dir(fullfile('combined_data','*.mat')) ;
 % file = 'long_tests\pir_data\pir01_03.mat';
 % load(file);
 % NO_ONES=10;
+profile on
 masters=perms(v);
+a_m=getAdjacencyMatrix();
 % neighbouring_map=[1,1,1,zeros(1,5);1,1,0,1,zeros(1,4);1,0,1,1,1,0,0,0;0,1,1,1,0,1,0,0;0,0,1,0,1,1,1,0;0,0,0,1,1,1,0,1;0,0,0,0,1,0,1,1;0,0,0,0,0,1,1,1];
 % % optimistic_neighbouring_map=[ 1     1     1     -1     0     0     0     0;    1     1     -1     1     0     0     0     0;    1     -1     1     1     1     -1     0     0;    -1     1     1     1     -1     1     0     0;    0     0     1     -1     1     1     1     -1;    0     0     -1     1     1     1     -1     1;    0     0     0     0     1     -1     1     1;    0     0     0     0     -1     1     1     1];
 % % optimistic_neighbouring_map=abs(optimistic_neighbouring_map);NO_ONES=16;
@@ -39,21 +41,20 @@ for perm_count =1:factorial(num_nodes)
     % sum_k = sum();
     
     
-    sum_k=R(masters(perm_count,1),masters(perm_count,2))+R(masters(perm_count,1),masters(perm_count,3))+...
-        R(masters(perm_count,2),masters(perm_count,4))+...
-        +R(masters(perm_count,3),masters(perm_count,5))+R(masters(perm_count,3),masters(perm_count,4))+...
-        R(masters(perm_count,4),masters(perm_count,6))+R(masters(perm_count,5),masters(perm_count,6))+...
-        R(masters(perm_count,5),masters(perm_count,7))+R(masters(perm_count,6),masters(perm_count,8))+...
-        R(masters(perm_count,7),masters(perm_count,8));
+%     sum_k=R(masters(perm_count,1),masters(perm_count,2))+R(masters(perm_count,1),masters(perm_count,3))+...
+%         R(masters(perm_count,2),masters(perm_count,4))+...
+%         +R(masters(perm_count,3),masters(perm_count,5))+R(masters(perm_count,3),masters(perm_count,4))+...
+%         R(masters(perm_count,4),masters(perm_count,6))+R(masters(perm_count,5),masters(perm_count,6))+...
+%         R(masters(perm_count,5),masters(perm_count,7))+R(masters(perm_count,6),masters(perm_count,8))+...
+%         R(masters(perm_count,7),masters(perm_count,8));
     %
-    
-    
+    sum_k=calculate_correlation_sum_grid(mapping(perm_count,:),R,a_m);
     count_matrix(perm_count)=sum_k;
 end
 maximum_sum=max(count_matrix);
 [corr_row,corr_colum,v] = find(count_matrix==maximum_sum);
 
-
+profile viewer
 % total_time=cputime-t;
 count=1;
 
