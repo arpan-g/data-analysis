@@ -6,7 +6,7 @@ folder_name='txt_files\ai_lab\';
 clear newPirArray;
 clear node*;
 clear pir_array
-file_counter=1;
+file_counter=36;
 %       file = [folder_name,Files(file_counter).name];
 file=[folder_name,'aiLab_4_11.txt'];
 trial

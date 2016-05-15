@@ -21,7 +21,7 @@ end
 %s any singular matrix found
 %e any cell without a match found
 
-[new_s_g,s,e]=candidates(s_n_s,s_n_e,s_g,a_m);
+[new_s_g                                                                                                                      ,s,e]=candidates(s_n_s,s_n_e,s_g,a_m);
 % new_s_g
 while(~isempty(s)&&isempty(e))
     [new_s_g,s,e]= candidates(s_n_s,s_n_e,new_s_g,a_m);
