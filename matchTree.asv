@@ -1,4 +1,4 @@
-function []=matchTree(s_n_s,s_n_e,s_g,edge_to_iterate,a_m)
+function []=matchTree(s_n_s,s_n_e,s_g,edge_to_iterate)
 % write a recursive function
 % s_g
 
@@ -10,7 +10,8 @@ if(iscomplete(s_g))
     %     new_s_g=s_g;
     return
 end
-
+a_m=getAdjacencyMatrix();
+% a_m=[0,1,1,0,0,0;1,0,0,1,0,0;1,0,0,1,1,0;0,1,1,0,0,1;0,0,1,0,0,1;0,0,0,1,1,0];
 %new_s_g new sensor to grid matching matrix
 %s any singular matrix found
 %e any cell without a match found

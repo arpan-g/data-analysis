@@ -79,7 +79,7 @@ profile on
 for i=1:n
 %     i=1;
     s_g_map(node_s(1),1)=i;
-    matchTree(node_s,node_e,s_g_map,1);
+    matchTree(node_s,node_e,s_g_map,1,a_m);
 end
 profile viewer
 readFile
