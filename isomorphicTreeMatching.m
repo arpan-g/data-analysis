@@ -1,5 +1,5 @@
 % clear all;
-% power_consumption
+power_consumption
 
 [n,~]=size(R);
 % if(n==6)
@@ -73,13 +73,13 @@ end
 % root=1;n=23;
 root=1;
 [node_s,node_e]=prims(R*-1,root,n);
-s_g_map=zeros(n,n);
+s_g_map=zeros(n,1);
 max_sum=calculate_correlation_sum(node_s,node_e,R);
 profile on
 for i=1:n
 %     i=1;
     s_g_map(node_s(1),1)=i;
-                                                  matchTree(node_s,node_e,s_g_map,1);
+    matchTree(node_s,node_e,s_g_map,1);
 end
 profile viewer
 readFile

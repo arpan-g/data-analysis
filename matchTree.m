@@ -1,73 +1,50 @@
-function [new_s_g]=matchTree(s_n_s,s_n_e,s_g,edge_to_iterate)
+function []=matchTree(s_n_s,s_n_e,s_g,edge_to_iterate)
 % write a recursive function
 % s_g
 
 
-[num_nodes,~]=size(s_g);
+num_nodes=numel(s_g);
+new_s_g=s_g;
 
+if(iscomplete(s_g))
+    %     new_s_g=s_g;
+    return
+end
 a_m=getAdjacencyMatrix();
 % a_m=[0,1,1,0,0,0;1,0,0,1,0,0;1,0,0,1,1,0;0,1,1,0,0,1;0,0,1,0,0,1;0,0,0,1,1,0];
-if(edge_to_iterate>num_nodes-1)
-    new_s_g=s_g;
-    
-    return
-end
-if(iscomplete(s_g))
-    new_s_g=s_g;
-    return
-end
-
 %new_s_g new sensor to grid matching matrix
 %s any singular matrix found
 %e any cell without a match found
 
-[new_s_g                                                                                                                      ,s,e]=candidates(s_n_s,s_n_e,s_g,a_m);
-% new_s_g
-while(~isempty(s)&&isempty(e))
-    [new_s_g,s,e]= candidates(s_n_s,s_n_e,new_s_g,a_m);
-    %     new_s_g
-end
-if ~isempty(e)
-    return
-end
-if(iscomplete(new_s_g))
-    return
-end
-
-% single_ladies=compute_single_ladies(new_s_g);
 % recursive code
 
-% if(length(nonzeros(new_s_g(:)))>num_nodes)
-%     for m_i=1:num_nodes-1
-m_i=edge_to_iterate;
-possible_nodes=nonzeros(new_s_g(s_n_e(m_i),:) );
+
+possible_nodes=calculate_possible_nodes(new_s_g(s_n_s(edge_to_iterate)),new_s_g,a_m);
 len_pos_nodes=numel(possible_nodes);
+if(len_pos_nodes==0)
+    
+    return
+end
+
 %     if(length(possible_nodes)>1)
 for m_j=1:len_pos_nodes
     
-    %             if(~isempty(intersect(single_ladies,possible_nodes(m_j))))
-    %                 continue;
-    %             end
-    if(~areNeighbors(new_s_g(s_n_s(m_i),1),possible_nodes(m_j),a_m))
-        continue;
+    
+    new_s_g(s_n_e(edge_to_iterate))=possible_nodes(m_j);
+    
+    if(edge_to_iterate<num_nodes)
+        matchTree(s_n_s,s_n_e,new_s_g,edge_to_iterate+1);
     end
-    new_s_g(s_n_e(m_i),:)=0;
+    new_s_g_dup=new_s_g;
     
-    new_s_g(s_n_e(m_i),1)=possible_nodes(m_j);
-%     single_ladies=compute_single_ladies(new_s_g);
-    new_s_g_dup= matchTree(s_n_s,s_n_e,new_s_g,edge_to_iterate+1);
-    
-    if(iscomplete(new_s_g_dup)&&isValid(new_s_g_dup(:,1)',s_n_s,s_n_e,a_m))
-        %                     accepted_solution(count,:)=new_s_g_dup(:,1)';
-        writter(new_s_g_dup(:,1)');
-        %                 new_s_g_dup(:,1)'
-        %                     count=count+1;
-        %                     return
+    if(iscomplete(new_s_g_dup)&&isValid(new_s_g_dup',s_n_s,s_n_e,a_m))
+%         new_s_g_dup'
+        writter(new_s_g_dup');
+        
     end
     
 end
-%     end
-%     end
+
 
 
 end
@@ -181,15 +158,14 @@ end
 
 
 function [bool] =iscomplete(s_g)
-[~,num_nodes]=size(s_g);
+num_nodes=numel(s_g);
 bool=0;
 sort_array=sort(nonzeros(s_g(:)));
-if(numel(sort_array)==num_nodes)
-    if(numel(unique_custom(sort_array))==num_nodes)
-        if(numel(unique_custom(sort(nonzeros(s_g(:,1)))))==num_nodes)
-            bool=1;
-        end
-    end
+
+if(numel(unique_custom(sort_array))==num_nodes)
+    
+    bool=1;
+    
 end
 end
 
@@ -219,12 +195,16 @@ unique_ele = s_g([true;diff(s_g(:))>0]);
 end
 
 function [union_ele] =union_custom(a,b)
-if(isempty(a)&&isempty(b))
-    union_ele=[];
-    return
-end
 combine=[a,b];
 sort_combine=sort(combine);
 union_ele=unique_custom(sort_combine);
 
 end
+
+function [possible_nodes]=calculate_possible_nodes(start_edge,taken_nodes,a_m)
+
+first_possible_nodes=find(a_m(start_edge,:));
+possible_nodes=setdiff(first_possible_nodes,taken_nodes);
+% possible_nodes
+end
+
