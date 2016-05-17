@@ -17,8 +17,13 @@ end
 
 % recursive code
 
-
-possible_nodes=calculate_possible_nodes(new_s_g(s_n_s(edge_to_iterate)),new_s_g,a_m);
+edge_node=s_n_e(edge_to_iterate);
+if(edge_to_iterate< num_nodes-2)
+    edge_node_num_leaf_nodes=numel(find(s_n_s(edge_to_iterate+1:end)==edge_node));
+else
+    edge_node_num_leaf_nodes=0;
+end
+possible_nodes=calculate_possible_nodes(new_s_g(s_n_s(edge_to_iterate)),new_s_g,a_m,edge_node_num_leaf_nodes);
 len_pos_nodes=numel(possible_nodes);
 if(len_pos_nodes==0)
     
@@ -37,7 +42,7 @@ for m_j=1:len_pos_nodes
     new_s_g_dup=new_s_g;
     
     if(iscomplete(new_s_g_dup)&&isValid(new_s_g_dup',s_n_s,s_n_e,a_m))
-%         new_s_g_dup'
+        %         new_s_g_dup'
         writter(new_s_g_dup');
         
     end
@@ -51,109 +56,10 @@ end
 
 % end
 %-----------------------------%
-function[func_new_s_g,func_s,func_e]=candidates(s_s,s_e,new_s_g,a_m)
-func_s=[];
-func_e=[];
-func_new_s_g=filter_single_ladies(new_s_g);
-[num_nodes,~]=size(new_s_g);
-if(iscomplete(func_new_s_g))
-    
-    return
-end
 
 
-num_tree_nodes=numel(s_s);
-for i = 1:num_tree_nodes
-    if(numel(nonzeros(func_new_s_g(i,:)))==1)
-        %     a_m(i,:)=0;
-        a_m(:,func_new_s_g(i,1))=0;
-    end
-end
 
-for i = 1: num_tree_nodes
-    %if end node is already assigned to a node
-    if(numel(nonzeros(func_new_s_g(s_e(i),:)))==1)
-        continue;
-    end
-    %get mapings of the start node
-    non_zero_values= nonzeros(func_new_s_g(s_s(i),:));
-    possible_values=[];
-    
-    
-    if(~isempty(non_zero_values))
-        non_zero_values_length=numel(non_zero_values);
-        for j = 1:non_zero_values_length
-            [~,c,~]=find(a_m(non_zero_values(j),:));
-            possible_values=union_custom(possible_values,c);
-        end
-    end
-    
-    if(isempty(possible_values))
-        func_e=s_e(i);
-        return
-        
-    elseif(numel(possible_values)==1)
-        func_s=possible_values;
-        a_m(:,possible_values)=0;
-    end
-    length_possible_values=numel(possible_values);
-    func_new_s_g(s_e(i),:)=[possible_values(:)',zeros(1,num_nodes-length_possible_values)];
-    if(numel(possible_values)==1)
-        for k = 1:num_nodes
-            if(k~=s_e(i))
-                [~,d_c,~]=find(func_new_s_g(k,:)==possible_values);
-                if(~isempty(d_c))
-                    func_new_s_g(k,d_c)=0;
-                    after_delete=nonzeros(func_new_s_g(k,:));
-                    if(isempty(after_delete))
-                        func_e=k;
-                    end
-                    func_new_s_g(k,:)=[after_delete(:)',zeros(1,num_nodes-numel(after_delete))];
-                end
-            end
-        end
-    end
-    
-    
-    
-end
 
-end
-function [new_s_g]=filter_single_ladies(new_s_g)
-single_ladies=compute_single_ladies(new_s_g);
-[r,~]=size(new_s_g);
-
-for i_filter = 1:r
-    temp=nonzeros(new_s_g(i_filter,:));
-    if(numel(temp)==1)
-        continue
-    end
-    common_elements=temp(ismember(temp,single_ladies));
-    if(~isempty(common_elements ))
-        length_common_elements=numel(common_elements);
-        for common_iterator = 1:length_common_elements
-            [~,c_,~]=find(new_s_g(i_filter,:)==common_elements(common_iterator));
-            new_s_g(i_filter,c_)=0;
-        end
-        after_delete= nonzeros(new_s_g(i_filter,:));
-        new_s_g(i_filter,:)= [after_delete(:)',zeros(1,r-numel(after_delete))];
-    end
-end
-end
-
-function [single_nodes]=compute_single_ladies(sensor2grid_map)
-single_nodes=[];
-[num_nodes,~]=size(sensor2grid_map);
-for i_iterate = 1:num_nodes
-    if(numel(nonzeros(sensor2grid_map(i_iterate,:)))==1)
-        
-        single_nodes=[single_nodes,sensor2grid_map(i_iterate,1)];
-        
-    end
-end
-% single_nodes=unique(single_nodes);
-
-end
 
 
 function [bool] =iscomplete(s_g)
@@ -200,10 +106,17 @@ union_ele=unique_custom(sort_combine);
 
 end
 
-function [possible_nodes]=calculate_possible_nodes(start_edge,taken_nodes,a_m)
-
-first_possible_nodes=find(a_m(start_edge,:));
-possible_nodes=setdiff(first_possible_nodes,taken_nodes);
-% possible_nodes
+function [possible_nodes]=calculate_possible_nodes(start_edge,taken_nodes,a_m,num_leaf_nodes)
+local_a_m=a_m;
+possible_nodes=[];
+local_a_m(:,nonzeros(taken_nodes))=0;
+first_possible_nodes=find(local_a_m(start_edge,:));
+for i = first_possible_nodes
+    if(numel(nonzeros(local_a_m(i,:)))>=num_leaf_nodes)
+        possible_nodes=[possible_nodes,i];
+    end
+end
+% possible_nodes=setdiff(first_possible_nodes,taken_nodes);
+% possible_nodeso
 end
 

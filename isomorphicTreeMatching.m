@@ -1,5 +1,5 @@
 % clear all;
-power_consumption
+% power_consumption
 
 [n,~]=size(R);
 % if(n==6)
@@ -50,6 +50,7 @@ power_consumption
 % end
 % 
 a_m=getAdjacencyMatrix();
+%  a_m=[0,1,1,0,0,0;1,0,0,1,0,0;1,0,0,1,1,0;0,1,1,0,0,1;0,0,1,0,0,1;0,0,0,1,1,0];
 root=round(rand*n);
 if(root==0)
     root=1;
@@ -70,17 +71,19 @@ end
 %     end
 % end
 % power_consumption
-% root=1;n=23;
+% root=1;n=43;
 root=1;
 [node_s,node_e]=prims(R*-1,root,n);
 s_g_map=zeros(n,1);
 max_sum=calculate_correlation_sum(node_s,node_e,R);
 profile on
+% tic;
 for i=1:n
 %     i=1;
     s_g_map(node_s(1),1)=i;
     matchTree(node_s,node_e,s_g_map,1,a_m);
 end
+% toc;
 profile viewer
 readFile
 mapping=tree;

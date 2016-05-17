@@ -190,7 +190,7 @@ function [bool]=isValid(s_g,s_s,s_e,a_m)
 bool=1;
 for i = 1:length(s_s)
    
-	 if(a_m(s_g(s_s(i)),s_g(s_e(i))~=1)
+	 if(a_m(s_g(s_s(i)),s_g(s_e(i))~=1))
         bool=0;
         return
     end
