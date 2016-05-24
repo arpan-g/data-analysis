@@ -31,10 +31,11 @@ if(len_pos_nodes==0)
 end
 
 %     if(length(possible_nodes)>1)
+index=s_n_e(edge_to_iterate);
 for m_j=1:len_pos_nodes
     
     
-    new_s_g(s_n_e(edge_to_iterate))=possible_nodes(m_j);
+    new_s_g(index)=possible_nodes(m_j);
     
     if(edge_to_iterate<num_nodes)
         matchTree(s_n_s,s_n_e,new_s_g,edge_to_iterate+1,a_m);
@@ -86,25 +87,12 @@ for i = 1:length_s_s
 end
 end
 
-function[bool]=areNeighbors(nodeA,nodeB,a_m)
-bool=0;
-if(nodeA==0||nodeB==0)
-    return;
-end
-bool=a_m(nodeA,nodeB);
 
-end
 
 function [unique_ele] =unique_custom(s_g)
 unique_ele = s_g([true;diff(s_g(:))>0]);
 end
 
-function [union_ele] =union_custom(a,b)
-combine=[a,b];
-sort_combine=sort(combine);
-union_ele=unique_custom(sort_combine);
-
-end
 
 function [possible_nodes]=calculate_possible_nodes(start_edge,taken_nodes,a_m,num_leaf_nodes)
 local_a_m=a_m;
@@ -116,7 +104,6 @@ for i = first_possible_nodes
         possible_nodes=[possible_nodes,i];
     end
 end
-% possible_nodes=setdiff(first_possible_nodes,taken_nodes);
-% possible_nodeso
+
 end
 

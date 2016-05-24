@@ -1,4 +1,13 @@
-function[a_m]=remove_diagonal(graphMatrix,R)
+function[a_m]=remove_diagonal(graphMatrix,correlation_matrix,map)
+[r,c]=size(correlation_matrix);
+R=zeros(r,c);
+for i = 1:r
+    for j = 1:c
+    R(i,j)=correlation_matrix(map(i),map(j));
+    end
+end
+
+
 adjaceny_matrix=double(graphMatrix);
 [rows,columns]=size(adjaceny_matrix);
 a_m=adjaceny_matrix;
@@ -21,7 +30,7 @@ for i = 1:columns
 end
 if(count~=1)
     same_neighbors_list=unique(same_neighbors_list,'rows');
-    [r,c]=size(same_neighbors_list);
+    [r,~]=size(same_neighbors_list);
     for i = 1:r
         node=same_neighbors_list(i,:);
         rectangle_nodes=find(adjaceny_matrix(node(1),:)==1);

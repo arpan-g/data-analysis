@@ -3,12 +3,23 @@ function[sum_r]=calculate_correlation_sum_grid(map,R,a_m)
 
 sum_r=0;
 [r,~]=size(a_m);
+%     a_m=...
+%         [0,1,1,zeros(1,5);...
+%         1,0,0,1,zeros(1,4);...
+%         1,0,0,1,1,0,0,0;...
+%         0,1,1,0,0,1,0,0;...
+%         0,0,1,0,0,1,1,0;...
+%         0,0,0,1,1,0,0,1;...
+%         0,0,0,0,1,0,0,1;...
+%         0,0,0,0,0,1,1,0];
 
 for r_i = 1:r
     for r_j = r_i+1:r
-        sensor_a=find(map==r_i);
-        sensor_b=find(map==r_j);
-        sum_r=sum_r + R(sensor_a,sensor_b)*a_m(r_i,r_j);
+        if(a_m(r_i,r_j)==1)
+        sensor_a=map(r_i);
+        sensor_b=map(r_j);
+        sum_r=sum_r + R(sensor_a,sensor_b);
+        end
     end
 end
 
