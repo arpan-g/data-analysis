@@ -52,7 +52,7 @@ fclose(fileID_local);
 % a_m=getAdjacencyMatrix();
 %  a_m=[0,1,1,0,0,0;1,0,0,1,0,0;1,0,0,1,1,0;0,1,1,0,0,1;0,0,1,0,0,1;0,0,0,1,1,0];
 
-% tic;
+tic;
 % R = power_consumption('combined_data\combi_4.mat');
 R = power_consumption('txt_files\ai_lab\ai_lab_44_4_11_ori.mat');
 [n,~]=size(R);
@@ -68,24 +68,30 @@ max_sum=calculate_correlation_sum(node_s,node_e,R);
 
 
 sensor_cordinates=readCoordinates('wsu_ai_lab.txt');
+sensor_cordinates=sensor_cordinates*0.4;
 % sensor_cordinates=readCoordinates('HTC34_Coordinates.txt');
 % n=43;
 distance_measure=zeros(n);
+a_m=zeros(n,n);
 for i = 1:n
     for j = 1:n
         if(i~=j)
-        distance_measure(i,j)=distance_euclidean(sensor_cordinates(i,:),sensor_cordinates(j,:));
+        val=isWithInsquare(sensor_cordinates(i,:),sensor_cordinates(j,:),4*0.3);
+        a_m(i,j)=val;
+%         a_m(j,i)=val;
         else
-            distance_measure(i,j) = 999;
+            a_m(i,i) = 0;
         end
     end
 end
-radius = computePIRRadius(3,41);
-a_m=zeros(n,n);
- a_m(distance_measure<(2*radius))=1;
+% radius = computePIRRadius(3,41);
+
+%  a_m(distance_measure<(2*radius))=1;
 % a_m(distance_measure<=(4*sqrt(2)*0.3048))=1;
 a_m(16,10)=1;
 a_m(10,16)=1;
+a_m(40,42)=1;
+a_m(42,40)=1;
 % power_consumption
 % root=1;n=43; 
 % root=1;
