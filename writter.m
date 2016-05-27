@@ -1,5 +1,5 @@
 function []= writter(a)
-file='test.txt';
+file='test_trial.txt';
 % FListOpen=fopen('all');
 
 % if(~ismember(file,FListOpen))

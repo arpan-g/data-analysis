@@ -16,4 +16,4 @@ while(inside_count<c)
     inside_count=inside_count+1;
     
 end
-save([folder_name,'\ai_lab_',file_counter,'.mat'],'newPirArray');
+save([folder_name,'\ai_lab_',num2str(file_counter),'.mat'],'newPirArray');

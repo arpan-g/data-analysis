@@ -28,6 +28,7 @@ a_m(distance_measure<2*radius)=1;
 
 for perm_count =1:factorial(n)
     sum_k=calculate_correlation_sum_grid(masters(perm_count,:),R,a_m);
+    sum_k=R()
     count_matrix(perm_count)=sum_k;
 end
 maximum_sum=max(count_matrix);
