@@ -55,7 +55,7 @@ for i = 1:lenMP1
                         arrangement(count,:)=a;
                         count=count+1;
                         max=sum_k;
-                    
+                        
                     elseif(abs(max-sum_k)<0.000001)
                         arrangement(count,:)=a;
                         count=count+1;
@@ -99,14 +99,14 @@ for i = 1:lenMP5
                         +R(a(37),a(40))+R(a(38),a(39))+R(a(38),a(41))+R(a(38),a(42))+R(a(39),a(40))...
                         +R(a(39),a(41))+R(a(39),a(42))+R(a(39),a(43))+R(a(40),a(42))+R(a(40),a(43))...
                         +R(a(41),a(42))+R(a(42),a(43));
-                       if(max<sum_k)
+                    if(max<sum_k)
                         count=1;
                         arrangement=zeros(1,n);
                         arrangement(count,:)=a;
                         count=count+1;
                         max=sum_k;
-                    end
-                    if(abs(max-sum_k)<0.000001)
+                        
+                    elseif(abs(max-sum_k)<0.000001)
                         arrangement(count,:)=a;
                         count=count+1;
                     end
