@@ -70,6 +70,7 @@ R=correlation_pearson(transpose(energyMatrix));
 % plot(G);
 % figure2=figure;
 % % % % %
+% len=size(R);
 % figure
 % h=imagesc(R);
 % xlabel('nodeId');ylabel('nodeId');

@@ -4,8 +4,8 @@ clear all;
 
 window_count = 1;
 
-% folder_name='join_data\';
-folder_name='combined_data\';
+folder_name='join_data\';
+% folder_name='combined_data\';
 
 Files=dir(fullfile(folder_name,'*.mat')) ;
 
@@ -17,7 +17,7 @@ Files=dir(fullfile(folder_name,'*.mat')) ;
 
 
 diagonal_count=1;mega_number=1;
-for go_again = 1:11
+% for go_again = 1:11
 for file_counter = 1:num_files
     close all;
     clear time_*;
@@ -61,12 +61,12 @@ for file_counter = 1:num_files
     %             assign_diagonal
     %     stat
     %     test
-%             combine_data
+            combine_data
 %         isomorphicTreeMatching
-    brute_force
+%     brute_force
     
-    evaluation_matrix(file_counter,go_again)=error;
+%     evaluation_matrix(file_counter,go_again)=error;
     
     
 end
-end
+% end
