@@ -70,3 +70,6 @@ for file_counter = 1:num_files
     
 end
 % end
+clear newPirArray;
+newPirArray=data_combine;
+save('txt_files\ai_lab\ai_lab_grid_43_combine.mat','newPirArray')

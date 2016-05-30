@@ -5,15 +5,19 @@ fclose(fileID_local);
 
 
 tic;
+name='ai_lab_46';
+%  R = power_consumption(['C:\arpan\Thesis\data_analysis\data-analysis\WSU\',name,'.mat']);
 
-R = power_consumption('txt_files\ai_lab\ai_lab_44_4_11_ori.mat');
+R = power_consumption('txt_files\ai_lab\ai_lab_grid_43_combine.mat');
+% R = power_consumption('WSU\ai_lab_69.mat');
 [n,~]=size(R);
 root=round(rand*n);
 if(root==0)
     root=1;
 end
-root=1;
+% root=1;
 [node_s,node_e]=prims(R*-1,root,n);
+plot_tree(node_s,node_e);
 % plot_tree(node_s,node_e);
 %
 % max_sum=calculate_correlation_sum(node_s,node_e,R);
@@ -26,7 +30,7 @@ root=1;
 % sensor_cordinates=readCoordinates('HTC34_Coordinates.txt');
 % % n=43;
 % distance_measure=zeros(n);
-% a_m=zeros(n,n);
+a_m=zeros(n,n);
 % for i = 1:n
 %     for j = 1:n
 %         if(i~=j)
@@ -70,7 +74,6 @@ sum(b)
 tic
 s_g_map=zeros(n,1);
 for i=1:n
-    %     i=1;
     s_g_map(node_s(1),1)=i;
     matchTree(node_s,node_e,s_g_map,1,a_m);
     i
@@ -81,24 +84,19 @@ readFile
 mapping=tree;
 [r,c]=size(mapping);
 sum_r=zeros(r,1);
-
 for i=1:r
-    
-    sum_r(i)=  calculate_correlation_sum_grid(mapping(i,:),R,a_m);
-    
- 
-       
+    sum_r(i)=  calculate_correlation_sum_grid(mapping(i,:),R,a_m);     
 end
 % mapping_all(i,:)=mapping;
 
 [v,index_temp]=max(sum_r);
-for i = 1:r
-    if(sum_r(i)==v)
-        i
-    end
-end
+% for i = 1:r
+%     if(sum_r(i)==v)
+%         i
+%     end
+% end
 
-index=sum_r;
+% index=sum_r;
 arrangement=mapping((sum_r==v),:);
 
 % [num_mappings,~]=size(mapping);

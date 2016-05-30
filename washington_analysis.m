@@ -1,9 +1,9 @@
 clear all
-folder_name='WSU\';
+folder_name='kyoto\';
 Files=dir(fullfile(folder_name,'*.txt')) ;
 [num_files,~]=size(Files);
-% for file_counter = 38:num_files
-file_counter=84;
+for file_counter = 2:num_files
+% file_counter=28;
 clear newPirArray;
 clear node*;
 clear pir_array
@@ -14,5 +14,5 @@ trial
 shorten_filtern
 beep
 
-% end
+end
 

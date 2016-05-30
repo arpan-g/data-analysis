@@ -8,14 +8,15 @@ function[R]=power_consumption(file)
 clear energyMatrix;
 clear filteredMatrix;
 time_period=20*36000;
-window_size = 36;%num_mins min=num_mins*60*10ms
+window_size = 40;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 % load('combined_data\combi.mat')
 % load('txt_files\ai_lab\ai_lab_44.mat');
 load(file);
-% combine_data=newPirArray(:,1:720000);
+% combine_data=newPirArray(:,1:252740);
 % combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
+% index=[27,22,15,28,23,16,29,24,17,30,25,18];
 combine_data=newPirArray;
 % combine_data = pir_array;
 
