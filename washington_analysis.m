@@ -1,8 +1,8 @@
 clear all
-folder_name='kyoto\';
+folder_name='ai_lab_jan\';
 Files=dir(fullfile(folder_name,'*.txt')) ;
 [num_files,~]=size(Files);
-for file_counter = 2:num_files
+for file_counter = 1:num_files
 % file_counter=28;
 clear newPirArray;
 clear node*;

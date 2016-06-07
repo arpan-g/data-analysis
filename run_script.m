@@ -4,8 +4,9 @@ clear all;
 
 window_count = 1;
 
-folder_name='join_data\';
+% folder_name='C:\arpan\Thesis\data_analysis\data-analysis\WSU\';
 % folder_name='combined_data\';
+ folder_name='join_data\';
 
 Files=dir(fullfile(folder_name,'*.mat')) ;
 
@@ -38,7 +39,7 @@ for file_counter = 1:num_files
     %         index=-1;
     %     end
     %
-    
+   name= Files(file_counter).name(1:end-4);
     %             ppl=[folder_name,'pir_',Files(file_counter).name(1:end-4),'.mat'];
     %     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
     %     power_file=[folder_name,'power_',Files(file_counter).name(1:end-4),'.png'];
@@ -62,14 +63,15 @@ for file_counter = 1:num_files
     %     stat
     %     test
             combine_data
+% bar_plot
 %         isomorphicTreeMatching
 %     brute_force
     
-%     evaluation_matrix(file_counter,go_again)=error;
+%     evaluation_matrix(file_counter)=error;
     
     
 end
 % end
 clear newPirArray;
 newPirArray=data_combine;
-save('txt_files\ai_lab\ai_lab_grid_43_combine.mat','newPirArray')
+save('txt_files\ai_lab\ai_lab_grid_43_58n83_reduce.mat','newPirArray')

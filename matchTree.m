@@ -6,16 +6,7 @@ function []=matchTree(s_n_s,s_n_e,s_g,edge_to_iterate,a_m)
 num_nodes=numel(s_g);
 new_s_g=s_g;
 
-if(iscomplete(s_g))
-    %     new_s_g=s_g;
-    return
-end
 
-%new_s_g new sensor to grid matching matrix
-%s any singular matrix found
-%e any cell without a match found
-
-% recursive code
 
 edge_node=s_n_e(edge_to_iterate);
 if(edge_to_iterate< num_nodes-2)
@@ -30,14 +21,14 @@ if(len_pos_nodes==0)
     return
 end
 
-%     if(length(possible_nodes)>1)
+
 index=s_n_e(edge_to_iterate);
 for m_j=1:len_pos_nodes
     
     
     new_s_g(index)=possible_nodes(m_j);
     
-    if(edge_to_iterate<num_nodes)
+    if(edge_to_iterate<num_nodes-1)
         matchTree(s_n_s,s_n_e,new_s_g,edge_to_iterate+1,a_m);
     end
     new_s_g_dup=new_s_g;
@@ -55,7 +46,7 @@ end
 end
 
 
-% end
+
 %-----------------------------%
 
 

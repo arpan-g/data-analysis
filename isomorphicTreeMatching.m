@@ -8,67 +8,44 @@ tic;
 name='ai_lab_46';
 %  R = power_consumption(['C:\arpan\Thesis\data_analysis\data-analysis\WSU\',name,'.mat']);
 
-R = power_consumption('txt_files\ai_lab\ai_lab_grid_43_combine.mat');
+R = power_consumption('txt_files\ai_lab\ai_lab_grid_43_58n83.mat');
 % R = power_consumption('WSU\ai_lab_69.mat');
 [n,~]=size(R);
 root=round(rand*n);
 if(root==0)
     root=1;
 end
-% root=1;
+% root=35;
 [node_s,node_e]=prims(R*-1,root,n);
-plot_tree(node_s,node_e);
+% plot_tree(node_s,node_e);
 % plot_tree(node_s,node_e);
 %
 % max_sum=calculate_correlation_sum(node_s,node_e,R);
 % R = power_consumption('combined_data\combi_7.mat');
 %
-% n=43;
+n=43;
 % sensor_cordinates=readCoordinates('wsu_4X3.txt');
-% sensor_cordinates=readCoordinates('wsu_ai_lab.txt');
-% sensor_cordinates=sensor_cordinates*0.4;
+sensor_cordinates=readCoordinates('wsu_ai_lab.txt');
+sensor_cordinates=sensor_cordinates*0.4;
 % sensor_cordinates=readCoordinates('HTC34_Coordinates.txt');
 % % n=43;
 % distance_measure=zeros(n);
 a_m=zeros(n,n);
-% for i = 1:n
-%     for j = 1:n
-%         if(i~=j)
-%                     val=isWithInsquare(sensor_cordinates(i,:),sensor_cordinates(j,:),4*0.3);
-%                     a_m(i,j)=val;
-%     %         a_m(j,i)=val;
-% %             distance_measure(i,j)=distance_euclidean(sensor_cordinates(i,:),sensor_cordinates(j,:));
-%         else
-% %             distance_measure(i,i) = 999;
-%         end
-%     end
-% end
-% radius = computePIRRadius(3,41);
-%
-% a_m(distance_measure<(2*radius))=1;
-% for i = 1:n
-%     for j = 1:n
-%         inv_distance_measure(i,j)=1/distance_measure(i,j);
-%     end
-% end
-% a_m(distance_measure<=(4*sqrt(2)*0.3048))=1;
-% a_m(20,34)=0;
-% a_m(32,40)=0;
-% a_m(40,32)=0;
-% a_m(20,33)=0;
-% a_m(34,20)=0;
-% a_m(33,20)=0;
-% a_m(16,10)=1;
-% a_m(10,16)=1;
-% a_m(40,42)=1;
-% a_m(42,40)=1;
-% a_m(3,10)=0;
-% a_m(10,3)=0;
-% power_consumption
-% root=1;n=43;
-% root=1;
+for i = 1:n
+    for j = 1:n
+        if(i~=j)
+                    val=isWithInsquare(sensor_cordinates(i,:),sensor_cordinates(j,:),4*0.3);
+                    a_m(i,j)=val;
+    %         a_m(j,i)=val;
+            distance_measure(i,j)=distance_euclidean(sensor_cordinates(i,:),sensor_cordinates(j,:));
+        else
+            distance_measure(i,i) = 999;
+        end
+    end
+end
+
 a_m=getAdjacencyMatrix();
-% profile on
+
 test_a_m
 sum(b)
 tic
@@ -79,7 +56,7 @@ for i=1:n
     i
 end
 toc
-% profile viewer
+
 readFile
 mapping=tree;
 [r,c]=size(mapping);
@@ -97,7 +74,9 @@ end
 % end
 
 % index=sum_r;
-arrangement=mapping((sum_r==v),:);
+
+arrangement=mapping((abs(sum_r-v))<0.0001,:);
+new_arr=compute_weighted_arrangement(arrangement,a_m,distance_measure,R);
 
 % [num_mappings,~]=size(mapping);
 % sum_r_i=zeros(num_mappings,1);
