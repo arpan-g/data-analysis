@@ -3,9 +3,8 @@ n=numel(s);
 full_matrix=zeros(n+1,n+1);
 % w=zeros(1,n);
 for i = 1:n
-    full_matrix(s(i),e(i))=1;
-  
-    %     w(i)=R(s(i),e(i));
+    full_matrix(s(i),e(i))=1;  
+%         w(i)=R(s(i),e(i));
 end
 % ids={'S1','S2','S3','S4','S5','S6','S7','S8'};
 % ids={'.','_',',','','*','/','.','`'};

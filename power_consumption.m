@@ -8,8 +8,8 @@ overlap_size = window_size/2;
 load(file);
 % combine_data=newPirArray(:,1:time_period);
 % combine_data=data_combine;
-% index=[33,34,35,36];
-combine_data=newPirArray;%(index,:);
+index=[27,22,15,28,23,16,29,24,17,30,25,18];
+combine_data=newPirArray;
 % combine_data=newPirArray(index,:);
 
 

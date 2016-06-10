@@ -4,7 +4,7 @@ fileID_local = fopen(file_txt,'w');
 fclose(fileID_local);
 
 
-tic;
+% tic;
 
  R = power_consumption('combined_data\combi_4.mat');
 
@@ -38,8 +38,9 @@ a_m(distance_measure<(2*radius))=1;
 % profile on
 test_a_m
 sum(b)
-tic
+
 s_g_map=zeros(n,1);
+tic
 for i=1:n
     s_g_map(node_s(1),1)=i;
     matchTree(node_s,node_e,s_g_map,1,a_m);
