@@ -1,15 +1,16 @@
-function[R]=power_consumption(file)
+function[R]=power_consumption(file,start_time,end_time)
 % num_mins=12;
 clear energyMatrix;
 clear filteredMatrix;
-time_period=20*36000;
+clear newPirArray;
+% time_period=t*36000;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 load(file);
-% combine_data=newPirArray(:,1:time_period);
+combine_data=newPirArray(:,start_time:end_time);
 % combine_data=data_combine;
-index=[27,22,15,28,23,16,29,24,17,30,25,18];
-combine_data=newPirArray;
+% index=[27,22,15,28,23,16,29,24,17,30,25,18];
+% combine_data=newPirArray;
 % combine_data=newPirArray(index,:);
 
 
@@ -59,12 +60,12 @@ R=correlation_pearson(transpose(energyMatrix));
 %     end
 % 
 % end
-% figure1=figure;
-% G= graph(graphMatrix);
-% plot(G);
-% figure2=figure;
+% figure;
+% imagesc(energyMatrix);
+% % plot(G);
+% % figure2=figure;
 % % % % %
-% len=size(R);
+% % len=size(R);
 % figure
 % h=imagesc(R);
 % xlabel('nodeId');ylabel('nodeId');

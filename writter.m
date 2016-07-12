@@ -10,6 +10,8 @@ if(len==6)
     fprintf(fileID_local,'%d,%d,%d,%d,%d,%d\n',a); %6
 elseif(len==8)
     fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d\n',a); %8
+    elseif(len==9)
+    fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d,%d\n',a); %9
 elseif(len==12)
     fprintf(fileID_local,'%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n',a); %12
 elseif(len==16)

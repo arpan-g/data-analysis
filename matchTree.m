@@ -10,6 +10,7 @@ new_s_g=s_g;
 
 edge_node=s_n_e(edge_to_iterate);
 if(edge_to_iterate< num_nodes-2)
+    % calculate degree of the node 
     edge_node_num_leaf_nodes=numel(find(s_n_s(edge_to_iterate+1:end)==edge_node));
 else
     edge_node_num_leaf_nodes=0;

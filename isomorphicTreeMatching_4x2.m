@@ -1,4 +1,4 @@
-clear all;
+% clear all;
 file_txt='test.txt';
 fileID_local = fopen(file_txt,'w');
 fclose(fileID_local);
@@ -6,7 +6,7 @@ fclose(fileID_local);
 
 % tic;
 
- R = power_consumption('combined_data\combi_4.mat');
+ R = power_consumption(file,start_time*36000,end_time*36000);
 
 
 

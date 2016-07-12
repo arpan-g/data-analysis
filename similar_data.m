@@ -13,6 +13,10 @@ for i = 1:length(2)
     end
     
 end
+y=y*y;
+p1=sum(a);
+p2=sum(b);
+y=y/(p1*p2);
 
 
 end

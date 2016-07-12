@@ -79,23 +79,23 @@ graphMatrix=newGraph+newGraph';
 % end
 % te=falseNegative/NO_ONES+falsepositive/12;
 % transC=correlation';
-% transMap=mapping';
-% figure;
-% plot(transMap(IDX==0,1),transC(IDX==0,1),'r.','MarkerSize',12)
-% 
-% hold on
-% plot(transMap(IDX==1,1),transC(IDX==1,1),'b.','MarkerSize',12)
-% % plot(ones(1,2),C(:,1),'kx',...
-% %      'MarkerSize',15,'LineWidth',3)
-% legend('Non-Neighboring','Neighboring')
-% title 'Cluster Assignments'
-% xlim([-1.2 1.2]);
-% xlabel('class');
-% ylabel('çorrelation coefficient');
-% hold off
-% 
-% 
-% figure;
+transMap=graphMatrix';
+figure;
+plot(transMap(IDX==0,1),transC(IDX==0,1),'r.','MarkerSize',12)
+
+hold on
+plot(transMap(IDX==1,1),transC(IDX==1,1),'b.','MarkerSize',12)
+% plot(ones(1,2),C(:,1),'kx',...
+%      'MarkerSize',15,'LineWidth',3)
+legend('Non-Neighboring','Neighboring')
+title 'Cluster Assignments'
+xlim([-1.2 1.2]);
+xlabel('class');
+ylabel('çorrelation coefficient');
+hold off
+
+
+figure;
 G= graph(graphMatrix,'OmitSelfLoops');
 plot(G);
 G= graph(graphMatrix);

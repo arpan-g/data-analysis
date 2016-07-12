@@ -54,7 +54,7 @@ plot(G);
 figure;
 h=imagesc(corr_matrix);
 xlabel('nodeId');ylabel('nodeId');
-% impixelregion(h);
+% impixelregion(h);   
 textStrings = num2str(corr_matrix(:),'%0.2f');  %# Create strings from the matrix values
 textStrings = strtrim(cellstr(textStrings));  %# Remove any space padding
 [x,y] = meshgrid(1:8);   %# Create x and y coordinates for the strings

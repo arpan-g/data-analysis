@@ -17,6 +17,7 @@ bestThreshold=-1;
 
 [rows,columns]=size(neighbouring_map);
 count =1;
+R=power_consumption(file,window_size);
 for r = 1:rows
     %
     for c = 1:columns
@@ -165,15 +166,16 @@ end
 % nonMatchingMatrix
 % end
 
-te=falseNegative/NO_ONES+falsepositive/12;
+% te=falseNegative/NO_ONES+falsepositive/12;
+error=falseNegative+falsepositive;
 
 % figure1=figure;
 
-figure;
-graphMatrix=remove_diagonal(graphMatrix,R);
-G= graph(graphMatrix,'OmitSelfLoops');
+% figure;
+% graphMatrix=remove_diagonal(graphMatrix,R);
+% G= graph(graphMatrix,'OmitSelfLoops');
 
-plot(G);
+% plot(G);
 
 % saveas(figure1,'entrie_data.png')
 
