@@ -28,14 +28,14 @@ for m_j=1:len_pos_nodes
     
     
     new_s_g(index)=possible_nodes(m_j);
-    
+%      writter(new_s_g');
     if(edge_to_iterate<num_nodes-1)
         matchTree(s_n_s,s_n_e,new_s_g,edge_to_iterate+1,a_m);
     end
     new_s_g_dup=new_s_g;
-    
+%     
     if(iscomplete(new_s_g_dup)&&isValid(new_s_g_dup',s_n_s,s_n_e,a_m))
-        %         new_s_g_dup'
+%                 new_s_g_dup'
         writter(new_s_g_dup');
         
     end

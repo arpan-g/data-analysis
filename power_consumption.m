@@ -1,4 +1,4 @@
-function[R]=power_consumption(file,start_time,end_time)
+function[R]=power_consumption(file)
 % num_mins=12;
 clear energyMatrix;
 clear filteredMatrix;
@@ -7,10 +7,11 @@ clear newPirArray;
 window_size = 36;%num_mins min=num_mins*60*10ms
 overlap_size = window_size/2;
 load(file);
-combine_data=newPirArray(:,start_time:end_time);
+% combine_data=newPirArray(:,start_time*36000+1:end_time*36000);
+% combine_data=newPirArray(:,1:8*36000);
 % combine_data=data_combine;
 % index=[27,22,15,28,23,16,29,24,17,30,25,18];
-% combine_data=newPirArray;
+combine_data=newPirArray;
 % combine_data=newPirArray(index,:);
 
 
@@ -27,7 +28,7 @@ for i = 1:len(1)
         end
     end
 end
-
+% 
 % newCount=1;
 % for i = 1:count-5
 %     

@@ -1,4 +1,4 @@
-clear all;
+% clear all;
 file_txt='test.txt';
 fileID_local = fopen(file_txt,'w');
 fclose(fileID_local);
@@ -8,7 +8,7 @@ tic;
 % 45
 
 
-R = power_consumption('WSU_4x3\ai_lab_76.mat');
+R = power_consumption(file);
 % R = power_consumption('WSU\ai_lab_69.mat');
 [n,~]=size(R);
 root=round(rand*n);

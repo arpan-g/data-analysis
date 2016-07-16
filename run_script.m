@@ -5,7 +5,7 @@ clear all;
 window_count = 1;
 
 % folder_name='C:\arpan\Thesis\data_analysis\data-analysis\WSU\';
-folder_name='C:\arpan\Thesis\data_analysis\data-analysis\temp\';
+folder_name='C:\arpan\Thesis\data_analysis\data-analysis\split_files\';
 % folder_name='join_data\';
 % folder_name='long_tests\pir_data\';
 
@@ -19,6 +19,7 @@ Files=dir(fullfile(folder_name,'*.mat')) ;
 
 
 diagonal_count=1;mega_number=1;
+evaluation_matrix=[];
 % for go_again = 1:11
 for file_counter = 1:num_files
     count_window=1;
@@ -46,11 +47,11 @@ for file_counter = 1:num_files
     %     end
     %
     %     file_counter=4;
-%     value=7;
-%     name= Files(file_counter).name(1:end-4);
-        ppl=[folder_name,'pir_',Files(file_counter).name(1:end-4),'.mat'];
+    %     value=7;
+    %     name= Files(file_counter).name(1:end-4);
+    ppl=[folder_name,'pir_',Files(file_counter).name(1:end-4),'.mat'];
     %     energy=[folder_name,Files(file_counter).name(1:end-4),'_energy','.png'];
-%     analog=[folder_name,Files(file_counter).name(1:end-7),'_rssi','.png'];
+    %     analog=[folder_name,Files(file_counter).name(1:end-7),'_rssi','.png'];
     %     heatMap=[folder_name,Files(file_counter).name(1:end-6),'_heatMap_light','.png'];
     %     ver_file=[folder_name,'ver_',Files(file_counter).name(1:end-4),'.png'];
     %     power_file=[folder_name,'power_',Files(file_counter).name(1:end-4),'.png'];
@@ -74,19 +75,22 @@ for file_counter = 1:num_files
     %             assign_diagonal
     %     stat
     %     test
-                combine_data
+    %                 combine_data
     % bar_plot
     %         isomorphicTreeMatching
+    isomorphicTreeMatching_4x3
     %     brute_force
     %     ppt
-%     time_analysis_Short
-%     test_sample
+    %     time_analysis_Short
+    %     test_sample
     
     
-%     memsic_analysis
-%     plot_memsic
+    %     memsic_analysis
+    %     plot_memsic
     
-    %         evaluation_matrix(file_counter,count_window)=error;
+    %             [evaluation_matrix(file_counter),~]=size(mapping);
+    evaluation_matrix=[evaluation_matrix;arrangement];
+    
     %         count_window=count_window+1;
 end
 % end

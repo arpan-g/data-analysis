@@ -4,7 +4,7 @@ file=['C:\arpan\Thesis\data_analysis\data-analysis\WSU\',name,'.mat'];
 load(file)
 % index=[27,22,15,28,23,16,29,24,17,30,25,18];
 figure1 =figure;
-index=1:43;
+index=1:12;
 imagesc(newPirArray);
 % xlabel('time(x0.1s)');
 % ylabel('sensor id');
@@ -16,7 +16,7 @@ error=min(a);
 
 bar(a);
 a=sum(b');
-text(1:43,a',num2str(a','%d'),... 
+text(1:12,a',num2str(a','%d'),... 
 'HorizontalAlignment','center',... 
 'VerticalAlignment','bottom')
 xlabel('sensor id');
